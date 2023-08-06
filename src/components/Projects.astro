@@ -1,0 +1,135 @@
+<section class="section project" id="project">
+  <div class="container">
+    <header class="project__header">
+      <h2 class="project__title">Projects</h2>
+      <span class="project__subtitle">My recent work</span>
+    </header>
+    <div class="grid project__wrapper">
+      <div class="project__content">
+        <img
+          src="/images/em-sanchez.jpg"
+          alt="emsanchez"
+          class="project__image"
+        />
+        <h3 class="project__title">BudgetWise</h3>
+        <p class="project__description">
+          A personal finance app that tracks expenses, creates budgets and
+          provides money-saving tips.
+        </p>
+        <a href="#" class="project__link"
+          >View project
+          <i>arrow line</i>
+        </a>
+      </div>
+      <div class="project__content">
+        <img
+          src="/images/em-sanchez.jpg"
+          alt="emsanchez"
+          class="project__image"
+        />
+        <h3 class="project__title">BookWorm</h3>
+        <p class="project__description">
+          Is a book recommendation app that suggests personalized reading lists
+          based on user’s interests and preferences.
+        </p>
+        <a href="#" class="project__link"
+          >View project
+          <i>arrow line</i>
+        </a>
+      </div>
+      <div class="project__content">
+        <img
+          src="/images/em-sanchez.jpg"
+          alt="emsanchez"
+          class="project__image"
+        />
+        <h3 class="project__title">BudgetWise</h3>
+        <p class="project__description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,esse
+          ullam nemo velit voluptatum excepturi.
+        </p>
+        <a href="#" class="project__link"
+          >View project
+          <i>arrow line</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project__header {
+    margin: 8rem 0;
+    text-align: center;
+  }
+
+  .project__title {
+    font-size: var(--fs-xl);
+    margin-bottom: 0.5rem;
+  }
+
+  .project__subtitle {
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-md);
+    position: relative;
+  }
+
+  .project__subtitle::after {
+    position: absolute;
+    content: "";
+    width: 50%;
+    height: 0.5rem;
+    background-color: var(--primary-color);
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .project__content {
+    width: 100%;
+    max-width: 30rem;
+    justify-self: center;
+  }
+
+  .project__img {
+    margin-bottom: 3rem;
+  }
+
+  .project__title {
+    color: var(--white);
+    font-size: var(--fs-lg);
+    margin-bottom: 1rem;
+  }
+
+  .project__description {
+    margin-bottom: 2rem;
+  }
+
+  .project__link {
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    transition: var(--transition);
+  }
+
+  .project__link:hover {
+    color: var(--primary-color);
+    column-gap: 1rem;
+  }
+
+  @media screen and (min-width: 560px) {
+    .project__wrapper {
+      grid-template-columns: repeat(2, 250px);
+      justify-content: center;
+    }
+  }
+
+  @media screen and (min-width: 968px) {
+    .project__wrapper {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

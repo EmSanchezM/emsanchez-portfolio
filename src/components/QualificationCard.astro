@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  time: string;
+}
+
+const { time, title, body } = Astro.props;
+---
+
+<div>
+  <h3 class="qualification__title">{title}</h3>
+  <p class="qualification__description">
+    {body}
+  </p>
+  <span class="qualification__date">{time}</span>
+</div>
+
+<style>
+  .qualification__title {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-medium);
+    margin-bottom: 1rem;
+  }
+
+  .qualification__description {
+    margin-bottom: 2rem;
+  }
+
+  .qualification__date {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+  }
+</style>
