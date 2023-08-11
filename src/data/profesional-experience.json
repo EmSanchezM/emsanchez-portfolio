@@ -1,0 +1,20 @@
+[
+    { 
+        "slug": "clinpays-fintech",
+        "title": "Fullstack Developer at Clinpays", 
+        "description": "Fintech especializada en pagos dígitales. Encargado de optimizacion y modernizacion de proyectos heredados. Transformacion decomponentes de clase a funcionales con hooks. Creacion de proyectobatch payment para permitir pagos a través de archivos csv de maneraeficiente.",
+        "time": "2022 - Present" 
+    },
+    { 
+        "slug": "leader-realty",
+        "title": "Backend Developer at Leader Realty Inc", 
+        "description": "Empresa de bienes raices y sector inmobiliario en West Palm Beach, Florida. Creación de migraciones automatizas para tablas de la base de datos con MySQL. Integraciones con pasarelas de pagos como stripe y apple pay. Intregacion de autenticación con redes sociales (Gmail, Icloud). Conectividad API REST para acceder a datos inmobiliarios clave en west palm beach, florida.",
+        "time": "2021 - 2022" 
+    },
+    { 
+        "slug": "dataplus",
+        "title": "Fullstack Developer at Dataplus", 
+        "description": "Desarrollo de sistema de planificacion empresarial. API Rest con Nodejs, MongoDB. Frontend con React",
+        "time": "2020 - 2021" 
+    }
+]
