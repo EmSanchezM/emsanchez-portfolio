@@ -1,27 +1,48 @@
----
----
+<script>
+  import { onMount } from "svelte";
+  import { Bars } from "./icons";
 
-<header class="header" id="header">
+  let isMenuOpen = false;
+  let isScrolled = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+  }
+
+  function handleScroll() {
+    isScrolled = window.scrollY > 40;
+  }
+
+  onMount(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
+</script>
+
+<header class:header--scroll={isScrolled} class="header" id="header">
   <div class="container">
     <nav class="nav">
-      <a href="#" class="nav__logo">EmSanchez</a>
-      <div class="nav__menu" id="nav__menu">
+      <a href="#about" class="nav__logo">EmSanchez</a>
+      <div class="nav__menu {isMenuOpen ? 'nav__menu--open' : ''}" id="nav__menu">
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="#work" class="nav__link">Work</a>
+            <a href="#work" class="nav__link" on:click={toggleMenu}>Work</a>
           </li>
           <li class="nav__item">
-            <a href="#contact" class="nav__link">Contact</a>
+            <a href="#contact" class="nav__link" on:click={toggleMenu}>Contact</a>
           </li>
           <li class="nav__item">
-            <a href="#about" class="nav__link active">About</a>
-          </li>
-          <li class="nav__item">
-            <a href="#" class="nav__link">Github</a>
+            <a href="#about" class="nav__link" on:click={toggleMenu}>About</a>
           </li>
         </ul>
       </div>
-      <div class="nav__toggle">icono</div>
+      <button class="nav__toggle" on:click={toggleMenu}>
+        <Bars />
+      </button>
     </nav>
   </div>
 </header>
@@ -40,6 +61,11 @@
     transition: var(--transition);
   }
 
+  .header--scroll {
+    height: var(--height-header--scroll);
+    box-shadow: var(--box-shadow);
+  }
+
   .nav {
     display: flex;
     justify-content: space-between;
@@ -51,7 +77,7 @@
   .nav__logo {
     font-size: var(--fs-lg);
     font-weight: var(--fw-bold);
-    color: var(--primary-color);
+    color: #004e86;
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
@@ -110,7 +136,7 @@
       display: block;
     }
 
-    .nav__brand,
+    .nav__logo,
     .nav__toggle {
       z-index: var(--zindex-fixed);
     }
