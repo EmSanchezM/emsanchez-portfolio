@@ -4,11 +4,12 @@ interface Props {
   imageURL: string;
   title: string;
   description: string;
+  technologies: string;
 }
 
 import { ArrowLine } from "./icons";
 
-const { slug, title, description, imageURL } = Astro.props;
+const { slug, title, description, imageURL, technologies } = Astro.props;
 ---
 
 <div class="project__content">
@@ -17,6 +18,8 @@ const { slug, title, description, imageURL } = Astro.props;
   <p class="project__description">
     {description}
   </p>
+  <h4 class="project__title">Technologies</h4>
+  <p class="project__description">{technologies}</p>
   <a href={`/projects/${slug}`} class="project__link"
     >View project
     <ArrowLine />
