@@ -3,7 +3,7 @@ interface Props {
   title: string;
 }
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import Header from "../components/Header.svelte";
 
 const { title } = Astro.props;
 ---
@@ -19,7 +19,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Header />
+    <Header client:only="svelte" />
     <slot />
     <Footer />
   </body>
