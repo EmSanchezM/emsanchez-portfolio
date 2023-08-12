@@ -1,20 +1,44 @@
 [
-    {
-        "slug": "budgetwise",
-        "imageURL": "/images/projects/em-sanchez.webp",
-        "title": "BudgetWise",
-        "description": "A personal finance app that tracks expenses, creates budgets and provides money-saving tips."
-    },
-    {
-        "slug": "bookworm",
-        "imageURL": "/images/projects/em-sanchez.webp",
-        "title": "BookWorm",
-        "description": "Is a book recommendation app that suggests personalized reading lists based on users interests and preferences."
-    },
-    {
-        "slug": "restaurant-multitenant",
-        "imageURL": "/images/projects/em-sanchez.webp",
-        "title": "MultiRestaurants",
-        "description": "Is a book recommendation app that suggests personalized reading lists based on users interests and preferences."
-    }
+  {
+    "slug": "budgetwise",
+    "imageURL": "/images/projects/em-sanchez.webp",
+    "title": "BudgetWise",
+    "description": "A personal finance app that tracks expenses, creates budgets and provides money-saving tips.",
+    "technologies": "Typescript, Qwik, Prisma, Cloudflare"
+  },
+  {
+    "slug": "bookworm",
+    "imageURL": "/images/projects/em-sanchez.webp",
+    "title": "BookWorm",
+    "description": "Is a book recommendation app that suggests personalized reading lists based on users interests and preferences.",
+    "technologies": "Typescript, Qwik, Prisma, Cloudflare"
+  },
+  {
+    "slug": "restaurant-multitenant",
+    "imageURL": "/images/projects/em-sanchez.webp",
+    "title": "MultiRestaurants",
+    "description": "Is a book recommendation app that suggests personalized reading lists based on users interests and preferences.",
+    "technologies": "Typescript, Qwik, Prisma, Cloudflare"
+  },
+  {
+    "slug": "budgetwise",
+    "imageURL": "/images/projects/em-sanchez.webp",
+    "title": "BudgetWise",
+    "description": "A personal finance app that tracks expenses, creates budgets and provides money-saving tips.",
+    "technologies": "Typescript, Qwik, Prisma, Cloudflare"
+  },
+  {
+    "slug": "bookworm",
+    "imageURL": "/images/projects/em-sanchez.webp",
+    "title": "BookWorm",
+    "description": "Is a book recommendation app that suggests personalized reading lists based on users interests and preferences.",
+    "technologies": "Typescript, Qwik, Prisma, Cloudflare"
+  },
+  {
+    "slug": "restaurant-multitenant",
+    "imageURL": "/images/projects/em-sanchez.webp",
+    "title": "MultiRestaurants",
+    "description": "Is a book recommendation app that suggests personalized reading lists based on users interests and preferences.",
+    "technologies": "Typescript, Qwik, Prisma, Cloudflare"
+  }
 ]
