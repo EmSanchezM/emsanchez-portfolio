@@ -1,20 +1,20 @@
 [
-    { 
-        "slug": "clinpays-fintech",
-        "title": "Fullstack Developer at Clinpays", 
-        "description": "Fintech specialized in digital payments. In charge of optimization and modernization of legacy projects. Transformation of class components to functional ones with hooks. Creation of batch payment project to allow payments through csv files efficiently. Creation of batch payment project to allow payments through csv files efficiently.",
-        "time": "2022 - Present" 
-    },
-    { 
-        "slug": "leader-realty",
-        "title": "Backend Developer at Leader Realty Inc", 
-        "description": "Real estate company. In charge of automating migrations for database tables with MySQL. In charge of creating integrations with payment gateways such as stripe and apple pay. In charge of creating authentication integration with social networks (Gmail, Icloud). Responsible for integration with REST API to access key real estate data in west palm beach, florida.",
-        "time": "2021 - 2022" 
-    },
-    { 
-        "slug": "dataplus",
-        "title": "Fullstack Developer at Dataplus", 
-        "description": "Software consultant. Desarrollo de sistema de planificacion empresarial. API Rest con Nodejs, MongoDB. Frontend con React. Software consultant. Desarrollo de sistema de planificacion empresarial. API Rest con Nodejs, MongoDB. Frontend con React. Software consultant. Desarrollo de sistema de planificacion empresarial. API Rest con.",
-        "time": "2020 - 2021" 
-    }
+  {
+    "slug": "clinpays-fintech",
+    "title": "Fullstack Developer at Clinpays",
+    "description": "Fintech specialized in digital payments. In charge of optimization and modernization of legacy projects. Transformation of class components to functional ones with hooks. Creation of batch payment project to allow payments through csv files efficiently. Creation of batch payment project to allow payments through csv files efficiently.",
+    "time": "2022 - Present"
+  },
+  {
+    "slug": "leader-realty",
+    "title": "Backend Developer at Leader Realty Inc",
+    "description": "Real estate company. In charge of automating migrations for database tables with MySQL. In charge of creating integrations with payment gateways such as stripe and apple pay. In charge of creating authentication integration with social networks (Gmail, Icloud). Responsible for integration with REST API to access key real estate data in west palm beach, florida.",
+    "time": "2021 - 2022"
+  },
+  {
+    "slug": "dataplus",
+    "title": "Fullstack Developer at Dataplus",
+    "description": "Software consultant. Desarrollo de sistema de planificacion empresarial. API Rest con Nodejs, MongoDB. Frontend con React. Software consultant. Desarrollo de sistema de planificacion empresarial. API Rest con Nodejs, MongoDB. Frontend con React. Software consultant. Desarrollo de sistema de planificacion empresarial. API Rest con.",
+    "time": "2020 - 2021"
+  }
 ]
