@@ -1,0 +1,31 @@
+<svg 
+    stroke-width="1.5" 
+    viewBox="0 0 24 24" 
+    fill="none"
+    stroke="currentColor" 
+    class="icon"
+>
+    <path 
+        d="M21 8v8a5 5 0 01-5 5H8a5 5 0 01-5-5V8a5 5 0 015-5h8a5 5 0 015 5zM7 17v-7" 
+        stroke-width="1.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+    ></path>
+    <path 
+        d="M11 17v-3.25M11 10v3.75m0 0c0-3.75 6-3.75 6 0V17M7 7.01l.01-.011" 
+        stroke-width="1.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+    ></path>
+</svg>
+
+<style>
+    .icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .icon:hover {
+        color: var(--primary-color);
+    }
+</style>

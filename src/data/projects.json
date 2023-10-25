@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "budgetwise",
+    "imageURL": "/images/projects/budget-wise.jpg",
+    "title": "BudgetWise",
+    "description": "A personal finance app that tracks expenses, creates budgets and provides money-saving tips.",
+    "technologies": "Typescript, Qwik, Prisma, Cloudflare"
+  },
+  {
+    "slug": "bookworm",
+    "imageURL": "/images/projects/bookworm.webp",
+    "title": "BookWorm",
+    "description": "Is a book recommendation app that suggests personalized reading lists based on users interests and preferences.",
+    "technologies": "Typescript, Nextjs, Prisma, Cloudflare"
+  }
+]

@@ -1,0 +1,117 @@
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="grid hero__wrapper">
+      <div class="hero__content">
+        <h1 class="hero__title">
+          Hi, I'm Elvin, <br /> Software engineer.
+        </h1>
+        <p class="hero__description">
+          Focused on creating web and mobile applications. During my career, I
+          have worked in multidisciplinary teams, which has allowed me to
+          acquire solid communication and collaboration skills. My experience
+          covers development in different technologies and languages, including
+          but not limited to Java, Python, JavaScript, and frameworks like React
+          Nextjs, Nestjs, React Native. Also experience in the design and
+          implementation of databases, as well as in the integration of APIs and
+          web services.
+        </p>
+        <div class="hero__info">
+          <div class="hero__info-wrapper">
+            <span class="hero__info-number">+3</span>
+            <h2 class="hero__info-title">Year<br />Experience</h2>
+          </div>
+          <div class="hero__info-wrapper">
+            <p class="hero__info-number">20+</p>
+            <h2 class="hero__info-title">Projects<br />Completed</h2>
+          </div>
+        </div>
+      </div>
+      <img src="/images/em-sanchez.webp" alt="Em" class="hero__img" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero__wrapper {
+    min-height: calc(100vh - var(--height-header));
+    padding: 5rem 0;
+  }
+
+  .hero__content {
+    text-align: center;
+  }
+
+  .hero__title {
+    font-size: var(--fs-biggest);
+    margin-bottom: 5rem;
+    position: relative;
+  }
+
+  .hero__title::after {
+    position: absolute;
+    content: "";
+    background-color: var(--primary-color);
+    width: 10rem;
+    height: 0.5rem;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero__description {
+    margin-bottom: 5rem;
+  }
+
+  .hero__info {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;
+  }
+
+  .hero__info-number {
+    font-size: var(--fs-xxl);
+    font-weight: var(--fw-bold);
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .hero__info-title {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+    color: var(--text-color);
+  }
+
+  @media screen and (max-width: 968px) {
+    .hero__img {
+      width: 280px;
+      justify-self: center;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .hero__wrapper {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+    }
+
+    .hero__content {
+      text-align: initial;
+    }
+
+    .hero__title::after {
+      transform: none;
+      left: 0;
+    }
+
+    .hero__info {
+      justify-content: initial;
+    }
+
+    .hero__img {
+      justify-self: flex-end;
+    }
+  }
+</style>
