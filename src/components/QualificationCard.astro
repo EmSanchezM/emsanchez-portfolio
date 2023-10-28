@@ -8,13 +8,13 @@ interface Props {
 const { time, title, body } = Astro.props;
 ---
 
-<div>
+<article>
   <h3 class="qualification__title">{title}</h3>
   <p class="qualification__description">
     {body}
   </p>
   <span class="qualification__date">{time}</span>
-</div>
+</article>
 
 <style>
   .qualification__title {

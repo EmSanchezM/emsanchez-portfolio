@@ -12,7 +12,7 @@ import { ArrowLine } from "./icons";
 const { slug, title, description, imageURL, technologies } = Astro.props;
 ---
 
-<div class="project__content">
+<article class="project__content">
   <img src={imageURL} alt={`${title} image`} class="project__image" />
   <h3 class="project__title">{title}</h3>
   <p class="project__description">
@@ -24,7 +24,7 @@ const { slug, title, description, imageURL, technologies } = Astro.props;
     >View project
     <ArrowLine />
   </a>
-</div>
+</article>
 
 <style>
   .project__content {
