@@ -77,7 +77,7 @@
   .nav__logo {
     font-size: var(--fs-lg);
     font-weight: var(--fw-bold);
-    color: #004e86;
+    color: #2a74bc;
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
