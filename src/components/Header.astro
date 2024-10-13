@@ -1,46 +1,25 @@
-<script>
-  import { onMount } from "svelte";
-  import { Bars } from "./icons";
+---
+import { Bars } from "./icons";
+---
 
-  let isMenuOpen = false;
-  let isScrolled = false;
-
-  function toggleMenu() {
-    isMenuOpen = !isMenuOpen;
-  }
-
-  function handleScroll() {
-    isScrolled = window.scrollY > 40;
-  }
-
-  onMount(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  });
-
-</script>
-
-<header class:header--scroll={isScrolled} class="header" id="header">
+<header class="header" id="header">
   <div class="container">
     <nav class="nav">
       <a href="#about" class="nav__logo">EmSanchez</a>
-      <div class="nav__menu {isMenuOpen ? 'nav__menu--open' : ''}" id="nav__menu">
+      <div class="nav__menu" id="nav__menu">
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="#work" class="nav__link" on:click={toggleMenu}>Work</a>
+            <a href="#work" class="nav__link">Work</a>
           </li>
           <li class="nav__item">
-            <a href="#contact" class="nav__link" on:click={toggleMenu}>Contact</a>
+            <a href="#contact" class="nav__link">Contact</a>
           </li>
           <li class="nav__item">
-            <a href="#about" class="nav__link" on:click={toggleMenu}>About</a>
+            <a href="#about" class="nav__link">About</a>
           </li>
         </ul>
       </div>
-      <button class="nav__toggle" on:click={toggleMenu}>
+      <button class="nav__toggle" id="nav__toggle">
         <Bars />
       </button>
     </nav>
@@ -142,3 +121,31 @@
     }
   }
 </style>
+
+<script>
+  const header = document.getElementById('header');
+  const navMenu = document.getElementById('nav__menu');
+  const navToggle = document.getElementById('nav__toggle');
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    navMenu!.classList.toggle('nav__menu--open', isMenuOpen);
+  }
+
+  function handleScroll() {
+    header!.classList.toggle('header--scroll', window.scrollY > 40);
+  }
+
+  navToggle!.addEventListener('click', toggleMenu);
+  window.addEventListener('scroll', handleScroll);
+
+  // Cerrar el menú cuando se hace clic en un enlace
+  document.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (isMenuOpen) {
+        toggleMenu();
+      }
+    });
+  });
+</script>
