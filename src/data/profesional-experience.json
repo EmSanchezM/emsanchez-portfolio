@@ -1,9 +1,15 @@
 [
   {
+    "slug": "coderland-factory",
+    "title": "Senior Java Developer at Coderland",
+    "description": "It is a software consulting firm, focused on providing digital transformation solutions for organizations. Among my functions is to give technical support to internal developments as well as develop projects for multiple clients in Java.",
+    "time": "2025 - present"
+  },
+  {
     "slug": "clinpays-fintech",
     "title": "Fullstack Developer at Clinpays",
     "description": "Fintech specialized in digital payments. In charge of optimization and modernization of legacy projects. Transformation of class components to functional ones with hooks. Creation of batch payment project to allow payments through csv files efficiently. Creation of batch payment project to allow payments through csv files efficiently.",
-    "time": "2022 - Present"
+    "time": "2022 - 2025"
   },
   {
     "slug": "leader-realty",
