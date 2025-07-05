@@ -1,0 +1,7 @@
+name = "emsanchez-portfolio"
+account_id = "0e26eb7f90c96a251a9f959e1f8ae7ed"
+compatibility_date = "2024-07-05"
+pages_build_output_dir = "./dist"
+
+[build]
+command = "npm run build"
