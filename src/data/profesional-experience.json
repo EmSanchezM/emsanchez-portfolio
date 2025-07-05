@@ -8,19 +8,19 @@
   {
     "slug": "clinpays-fintech",
     "title": "Fullstack Developer at Clinpays",
-    "description": "Fintech specialized in digital payments. In charge of optimization and modernization of legacy projects. Transformation of class components to functional ones with hooks. Creation of batch payment project to allow payments through csv files efficiently. Creation of batch payment project to allow payments through csv files efficiently.",
+    "description": "Fintech specialized in digital payments. In charge of optimization and modernization of legacy projects. Transformation of class components to functional ones with hooks. Drive enhancements across the payment gateway platform, including redesigning the merchant onboarding form for higher conversion rates and updated a robust SDK to simplify integration for clients. Implementation CQRS-based architecture to isolate command and query workloads, improving scalability and maintainability of payment flows.",
     "time": "2022 - 2025"
   },
   {
     "slug": "leader-realty",
     "title": "Backend Developer at Leader Realty Inc",
-    "description": "Real estate company. In charge of automating migrations for database tables with MySQL. In charge of creating integrations with payment gateways such as stripe and apple pay. In charge of creating authentication integration with social networks (Gmail, Icloud). Responsible for integration with REST API to access key real estate data in west palm beach, florida.",
+    "description": "Real estate company. Optimized Laravel application performance by refactoring key services, implementing queue-based job processing, and streamlining Eloquent queries. Automated MySQL database migrations and versioning, ensuring zero-downtime deployments and consistent schema across environments. In charge of creating integrations with payment gateways such as stripe and apple pay. In charge of creating authentication integration with social networks (Gmail, Icloud). Responsible for integration with REST API to access key real estate data in west palm beach, florida.",
     "time": "2021 - 2022"
   },
   {
     "slug": "dataplus",
     "title": "Fullstack Developer at Dataplus",
-    "description": "Software consulting. Business planning system development. API Rest with Nodejs, MongoDB. Frontend with React, Redux.",
+    "description": "Software consulting. Developed a resilient business‑planning SaaS platform featuring offline-first capabilities. Leveraged PouchDB in the browser to cache critical modules during power outages, synchronizing seamlessly with the Node.js/MongoDB backend once connectivity is restored. Built a React/Redux frontend and REST API adhering to best practices.",
     "time": "2020 - 2021"
   }
 ]
