@@ -5,11 +5,12 @@ interface Props {
   title: string;
   description: string;
   technologies: string;
+  githubUrl: string;
 }
 
 import { ArrowLine } from "./icons";
 
-const { slug, title, description, imageURL, technologies } = Astro.props;
+const { title, description, imageURL, technologies, githubUrl } = Astro.props;
 ---
 
 <article class="project__content">
@@ -27,7 +28,7 @@ const { slug, title, description, imageURL, technologies } = Astro.props;
   </p>
   <h4 class="project__title">Technologies</h4>
   <p class="project__description">{technologies}</p>
-  <a href="#work" class="project__link"
+  <a href={githubUrl} target="_blank" class="project__link"
     >View project
     <ArrowLine />
   </a>
