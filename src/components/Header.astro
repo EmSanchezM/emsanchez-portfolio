@@ -5,21 +5,31 @@ import { Bars } from "./icons";
 <header class="header" id="header">
   <div class="container">
     <nav class="nav">
-      <a href="#about" class="nav__logo">EmSanchez</a>
+      <a href="/" class="nav__logo">EmSanchez</a>
       <div class="nav__menu" id="nav__menu">
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="#work" class="nav__link">Work</a>
+            <a href="/#work" class="nav__link">Work</a>
           </li>
           <li class="nav__item">
-            <a href="#contact" class="nav__link">Contact</a>
+            <a href="/#contact" class="nav__link">Contact</a>
           </li>
           <li class="nav__item">
-            <a href="#about" class="nav__link">About</a>
+            <a href="/resume" class="nav__link">Resume</a>
+          </li>
+          <li class="nav__item">
+            <a href="/#about" class="nav__link">About</a>
           </li>
         </ul>
       </div>
-      <button class="nav__toggle" id="nav__toggle">
+      <button 
+        class="nav__toggle" 
+        id="nav__toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav__menu"
+        type="button"
+      >
         <Bars />
       </button>
     </nav>
@@ -78,7 +88,7 @@ import { Bars } from "./icons";
   .nav__toggle {
     display: none;
     font-size: var(--fs-xl);
-    color: var(--color-white);
+    color: var(--white);
     cursor: pointer;
     transition: var(--transition);
   }
@@ -131,6 +141,7 @@ import { Bars } from "./icons";
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
     navMenu!.classList.toggle('nav__menu--open', isMenuOpen);
+    navToggle!.setAttribute('aria-expanded', isMenuOpen.toString());
   }
 
   function handleScroll() {
