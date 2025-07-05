@@ -1,7 +1,7 @@
 [
   {
     "slug": "budgetwise",
-    "imageURL": "/images/projects/budget-wise.jpg",
+    "imageURL": "/images/projects/budget-wise.webp",
     "title": "BudgetWise",
     "description": "A personal finance app that tracks expenses, creates budgets and provides money-saving tips.",
     "technologies": "Typescript, Qwik, Prisma, Cloudflare"
