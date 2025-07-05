@@ -56,7 +56,7 @@ import { Bars } from "./icons";
   .nav__logo {
     font-size: var(--fs-lg);
     font-weight: var(--fw-bold);
-    color: #2a74bc;
+    color: var(--white);
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
@@ -140,7 +140,6 @@ import { Bars } from "./icons";
   navToggle!.addEventListener('click', toggleMenu);
   window.addEventListener('scroll', handleScroll);
 
-  // Cerrar el menú cuando se hace clic en un enlace
   document.querySelectorAll('.nav__link').forEach(link => {
     link.addEventListener('click', () => {
       if (isMenuOpen) {
