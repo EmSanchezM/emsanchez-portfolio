@@ -6,14 +6,9 @@
           Hi, I'm Elvin, <br /> Software engineer.
         </h1>
         <p class="hero__description">
-          Focused on creating web and mobile applications. During my career, I
-          have worked in multidisciplinary teams, which has allowed me to
-          acquire solid communication and collaboration skills. My experience
-          covers development in different technologies and languages, including
-          but not limited to Java, Python, JavaScript, and frameworks like React
-          Nextjs, Nestjs, React Native. Also experience in the design and
-          implementation of databases, as well as in the integration of APIs and
-          web services.
+          Software engineer with +4 years of experience in web and mobile development.
+          Proficient in Java, JavaScript, Python and frameworks like React, Vue, Next.js, Nest.js, and React Native.
+          Experienced in database design, API integration, and working with cross-functional teams.
         </p>
         <div class="hero__info">
           <div class="hero__info-wrapper">
@@ -28,8 +23,15 @@
       </main>
       <img
         src="/images/em-sanchez.webp"
+        srcset="/images/em-sanchez-250.webp 250w,
+          /images/em-sanchez-475.webp 475w"
+        sizes="(max-width:968) 250px,475px"
         alt="Fotografía de Elvin Sánchez"
         class="hero__img"
+        fetchpriority="high"
+        decoding="sync"
+        width="475px"
+        height="475px"
       />
     </article>
   </div>
@@ -64,6 +66,9 @@
 
   .hero__description {
     margin-bottom: 5rem;
+    text-wrap: balance;
+    max-width: 65ch;
+    line-height: 1.6;
   }
 
   .hero__info {
@@ -92,17 +97,31 @@
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .hero__img:hover {
-    transform: scale(1.02);
   }
 
   @media screen and (max-width: 968px) {
+    .hero__wrapper {
+      padding: 3rem 0;
+      gap: 2rem;
+    }
+
     .hero__img {
-      width: 280px;
-      justify-self: center;
+      width: 250px;
+      height: 250px;
+      margin: 0 auto;
+    }
+
+    .hero__content {
+      padding: 0 1rem;
+    }
+
+    .hero__title {
+      font-size: var(--fs-xl);
+      margin-bottom: 3rem;
+    }
+
+    .hero__description {
+      margin-bottom: 3rem;
     }
   }
 
