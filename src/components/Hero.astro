@@ -17,11 +17,11 @@
         </p>
         <div class="hero__info">
           <div class="hero__info-wrapper">
-            <span class="hero__info-number">+3</span>
+            <span class="hero__info-number">+4</span>
             <h2 class="hero__info-title">Year<br />Experience</h2>
           </div>
           <div class="hero__info-wrapper">
-            <p class="hero__info-number">20+</p>
+            <p class="hero__info-number">25+</p>
             <h2 class="hero__info-title">Projects<br />Completed</h2>
           </div>
         </div>
@@ -86,6 +86,17 @@
     font-size: var(--fs-sm);
     font-weight: var(--fw-regular);
     color: var(--text-color);
+  }
+
+  .hero__img {
+    border-radius: 2rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .hero__img:hover {
+    transform: scale(1.02);
   }
 
   @media screen and (max-width: 968px) {
