@@ -17,6 +17,24 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link
+      rel="preload"
+      as="image"
+      href="/images/em-sanchez-250.webp"
+      media="(max-width: 968px)"
+      fetchpriority="high"
+      imagesizes="250px"
+      imagesrcset="/images/em-sanchez-250.webp 250w"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/images/em-sanchez-475.webp"
+      media="(min-width: 969px)"
+      fetchpriority="high"
+      imagesizes="475px"
+      imagesrcset="/images/em-sanchez-475.webp 475w"
+    />
   </head>
   <body>
     <Header />
