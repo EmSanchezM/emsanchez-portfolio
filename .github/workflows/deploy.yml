@@ -26,6 +26,13 @@ jobs:
       - name: Build site
         run: pnpm run build
 
+      # Workaround: @astrojs/cloudflare generates assets.binding="ASSETS" in
+      # dist/server/wrangler.json, but "ASSETS" is reserved in Pages projects
+      # since wrangler 4.76.0. Pages injects the ASSETS binding automatically,
+      # so it's safe to remove. Track: https://github.com/withastro/adapters/issues
+      - name: Remove reserved ASSETS binding from generated config
+        run: node -e "const f='dist/server/wrangler.json';const c=JSON.parse(require('fs').readFileSync(f));delete c.assets;require('fs').writeFileSync(f,JSON.stringify(c))"
+
       - name: Deploy to Cloudflare Pages
         run: pnpm exec wrangler deploy
         env:
