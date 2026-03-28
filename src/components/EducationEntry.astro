@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  institution: string;
+  time: string;
+}
+
+const { title, institution, time } = Astro.props;
+---
+
+<div class="edu-entry">
+  <h4 class="edu-entry__title">{title}</h4>
+  <p class="edu-entry__institution">{institution}</p>
+  <p class="edu-entry__time">{time}</p>
+</div>
+
+<style>
+  .edu-entry {
+    padding: 2.4rem;
+    border-left: 2px solid var(--primary);
+  }
+
+  .edu-entry__title {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-title-lg);
+    font-weight: var(--fw-bold);
+  }
+
+  .edu-entry__institution {
+    color: var(--primary);
+    margin-top: 0.4rem;
+  }
+
+  .edu-entry__time {
+    color: var(--outline);
+    font-size: var(--fs-label-sm);
+    margin-top: 1.5rem;
+    font-family: var(--ff-body);
+  }
+</style>
