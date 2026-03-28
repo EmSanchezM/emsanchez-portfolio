@@ -1,0 +1,35 @@
+---
+import experiences from "@/data/profesional-experience.json";
+import ExperienceEntry from "@/components/ExperienceEntry.astro";
+---
+
+<section class="experience section">
+  <div class="container">
+    <h2 class="experience__title">Professional Experience</h2>
+    <div class="experience__list">
+      {
+        experiences.map((exp) => (
+          <ExperienceEntry
+            role={exp.role}
+            company={exp.company}
+            description={exp.description}
+            time={exp.time}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience {
+    margin-bottom: var(--spacing-24);
+  }
+
+  .experience__title {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-lg);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--spacing-16);
+  }
+</style>
