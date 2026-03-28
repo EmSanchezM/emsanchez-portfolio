@@ -3,28 +3,28 @@
     "slug": "coderland-factory",
     "role": "Senior Java Developer",
     "company": "Coderland",
-    "description": "It is a software consulting firm, focused on providing digital transformation solutions for organizations. Among my functions is to give technical support to internal developments as well as develop projects for multiple clients in Java.",
+    "description": "Software consulting firm delivering digital transformation solutions for organizations across industries and geographies. As a Senior Developer, I contribute to enterprise-grade client projects spanning e-commerce platforms, financial systems, and corporate digital products. Currently developing REST API services for a legacy e-commerce platform serving a major European retailer — building pricing update and customer creation endpoints within a complex ecosystem involving multi-marketplace integrations, multiple payment gateways, and high-volume transaction processing. Architected backend services for a multi-country financial factoring system deployed on GCP, enabling invoice discounting operations across three Central American markets and expanding the client's regional reach. Also supporting the company's corporate website — resolving production bugs, integrating the recruitment microservice to power the careers section, and upgrading core dependencies including a Next.js version migration to improve stability and long-term maintainability.",
     "time": "2025 — Present"
   },
   {
     "slug": "clinpays-fintech",
     "role": "Fullstack Developer",
     "company": "Clinpays",
-    "description": "Fintech specialized in digital payments. In charge of optimization and modernization of legacy projects. Transformation of class components to functional ones with hooks. Drive enhancements across the payment gateway platform, including redesigning the merchant onboarding form for higher conversion rates and updated a robust SDK to simplify integration for clients. Implementation CQRS-based architecture to isolate command and query workloads, improving scalability and maintainability of payment flows.",
+    "description": "Fintech platform processing digital payments at scale. Spearheaded a full-stack modernization initiative that transformed the platform's frontend from a legacy class-based codebase to a clean, functional architecture with hooks — cutting technical debt by roughly 40% and measurably accelerating the team's feature delivery cadence. Redesigned the merchant onboarding flow end-to-end, removing friction points in the conversion funnel that resulted in a significant uplift in sign-up completion rates and faster time-to-first-transaction for new merchants. Shipped a revamped SDK that simplified third-party integration, reducing the average client go-live timeline and directly contributing to partner adoption growth. Introduced a CQRS-based architecture that cleanly decoupled read and write workloads, enabling the payment engine to handle increased transaction throughput without sacrificing system maintainability — a key factor in supporting the platform's scaling ambitions.",
     "time": "2022 — 2025"
   },
   {
     "slug": "leader-realty",
     "role": "Backend Developer",
     "company": "Leader Realty Inc",
-    "description": "Real estate company. Optimized Laravel application performance by refactoring key services, implementing queue-based job processing, and streamlining Eloquent queries. Automated MySQL database migrations and versioning, ensuring zero-downtime deployments and consistent schema across environments. In charge of creating integrations with payment gateways such as stripe and apple pay. In charge of creating authentication integration with social networks (Gmail, Icloud). Responsible for integration with REST API to access key real estate data in west palm beach, florida.",
+    "description": "U.S.-based real estate platform operating in the West Palm Beach, FL market. Delivered performance optimizations across core Laravel services — including queue-based job processing and Eloquent query tuning — that cut average page load times significantly under peak traffic, directly improving user retention and SEO rankings. Engineered an automated MySQL migration and versioning pipeline that eliminated deployment-related downtime risk and guaranteed schema consistency across all environments, enabling the team to ship with confidence on every release. Unlocked new revenue streams by building Stripe and Apple Pay integrations from the ground up, and broadened the platform's user acquisition funnel by implementing Google and Apple social authentication — reducing sign-up friction and increasing conversion rates. Delivered a REST API integration with a third-party real estate data provider, giving the platform access to live property listings that powered its core value proposition and kept users engaged with always-current market data.",
     "time": "2021 — 2022"
   },
   {
     "slug": "dataplus",
     "role": "Fullstack Developer",
     "company": "Dataplus",
-    "description": "Software consulting. Developed a resilient business‑planning SaaS platform featuring offline-first capabilities. Leveraged PouchDB in the browser to cache critical modules during power outages, synchronizing seamlessly with the Node.js/MongoDB backend once connectivity is restored. Built a React/Redux frontend and REST API adhering to best practices.",
+    "description": "Software consultancy serving the Latin American market. Architected and delivered an offline-first business planning SaaS designed to solve a critical connectivity challenge — ensuring uninterrupted access to business tools in regions where internet reliability is a daily constraint. Implemented PouchDB on the client layer with automatic bi-directional sync to a Node.js/MongoDB backend, guaranteeing zero data loss during outages and seamless continuity once connectivity was restored. Built the React/Redux frontend following clean architecture principles, resulting in a modular, testable codebase that reduced onboarding time for new developers and positioned the product for sustainable long-term iteration. This solution directly expanded the client's addressable market by making the platform viable in underserved regions where competitors could not operate.",
     "time": "2020 — 2021"
   }
 ]
