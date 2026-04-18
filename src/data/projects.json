@@ -43,11 +43,6 @@
         "solution": "Implemented a write-ahead logging strategy and optimized middleware to batch transactions. Migrated to a micro-caching layer to handle read-heavy balance inquiries.",
         "quote": "Improved average API response time from 240ms to 42ms."
       }
-    ],
-    "impact": [
-      { "value": "12k+", "label": "Active Users" },
-      { "value": "4.9/5", "label": "User Rating" },
-      { "value": "85%", "label": "Retention Rate" }
     ]
   },
   {
@@ -94,11 +89,6 @@
         "solution": "Implemented an event-sourcing pattern with conflict resolution, allowing seamless sync when connectivity is restored.",
         "quote": "Zero data loss across 10k+ sync events in testing."
       }
-    ],
-    "impact": [
-      { "value": "5k+", "label": "Active Readers" },
-      { "value": "4.7/5", "label": "User Rating" },
-      { "value": "92%", "label": "Sync Success" }
     ]
   }
 ]
