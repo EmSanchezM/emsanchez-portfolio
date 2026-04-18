@@ -1,0 +1,79 @@
+---
+interface Props {
+  role: string;
+  company: string;
+  description: string;
+  time: string;
+}
+
+const { role, company, description, time } = Astro.props;
+---
+
+<div class="exp-entry">
+  <div class="exp-entry__left">
+    <span class="exp-entry__date">{time}</span>
+    <h3 class="exp-entry__role">{role}</h3>
+    <p class="exp-entry__company">{company}</p>
+  </div>
+  <div class="exp-entry__right">
+    <p class="exp-entry__description">{description}</p>
+  </div>
+</div>
+
+<style>
+  .exp-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 4rem 1.5rem;
+    border-top: 1px solid rgba(68, 70, 84, 0.2);
+    transition: var(--transition);
+  }
+
+  .exp-entry:last-child {
+    border-bottom: 1px solid rgba(68, 70, 84, 0.2);
+  }
+
+  .exp-entry:hover {
+    background-color: var(--surface-container-lowest);
+  }
+
+  .exp-entry__date {
+    font-family: var(--ff-body);
+    font-size: var(--fs-label-sm);
+    color: var(--outline);
+    text-transform: uppercase;
+  }
+
+  .exp-entry__role {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-md);
+    font-weight: var(--fw-bold);
+    margin-top: 0.8rem;
+  }
+
+  .exp-entry__company {
+    color: var(--primary);
+    font-family: var(--ff-body);
+    margin-top: 0.4rem;
+  }
+
+  .exp-entry__description {
+    color: var(--on-surface-variant);
+    line-height: 1.6;
+    max-width: 56rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    .exp-entry {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+
+    .exp-entry__left {
+      flex-shrink: 0;
+      min-width: 24rem;
+    }
+  }
+</style>

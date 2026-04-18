@@ -24,6 +24,11 @@
       "undici": ">=7.24.0",
       "h3": ">=1.15.9",
       "devalue": ">=5.6.4"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }

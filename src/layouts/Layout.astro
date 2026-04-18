@@ -12,11 +12,17 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="Elvin Sanchez — Software Engineer. Crafting digital experiences through precise engineering and intentional design." />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="preload"
       as="image"
@@ -44,40 +50,68 @@ const { title } = Astro.props;
 </html>
 <style is:global>
   :root {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #242424;
-    --bg-footer: #151515;
+    /* Surface hierarchy */
+    --background: #131313;
+    --surface-container-lowest: #0E0E0E;
+    --surface-container-low: #1C1B1B;
+    --surface-container: #20201F;
+    --surface-container-high: #2A2A2A;
+    --surface-container-highest: #353535;
 
-    --primary-color: #2146c7;
-    --primary-color-dark: #0008c1;
+    /* Primary */
+    --primary: #B8C3FF;
+    --primary-container: #2146C7;
+    --on-primary: #002487;
+    --on-primary-container: #BBC6FF;
 
-    --white: #fff;
-    --black: #000;
-    --text-color: #908a8a;
-    --border-color: #373737;
+    /* Secondary */
+    --secondary: #89D0ED;
+    --secondary-container: #00627B;
 
-    --ff-body: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    --fs-sm: 1.4rem;
-    --fs-md: 1.6rem;
-    --fs-lg: 2rem;
-    --fs-xl: 2.4rem;
-    --fs-xxl: 3.2rem;
-    --fs-biggest: clamp(3rem, 8vw, 5rem);
+    /* Neutral / text */
+    --on-surface: #E5E2E1;
+    --on-surface-variant: #C4C5D6;
+    --outline: #8E90A0;
+    --outline-variant: #444654;
+
+    /* Typography */
+    --ff-headline: 'Space Grotesk', sans-serif;
+    --ff-body: 'Inter', sans-serif;
+
+    --fs-display: clamp(3.5rem, 8vw, 8rem);
+    --fs-headline-lg: 3rem;
+    --fs-headline-md: 2.25rem;
+    --fs-title-lg: 1.75rem;
+    --fs-body-lg: 1.8rem;
+    --fs-body-md: 1.6rem;
+    --fs-label-md: 1.4rem;
+    --fs-label-sm: 1.2rem;
 
     --fw-regular: 400;
     --fw-medium: 500;
     --fw-semibold: 600;
     --fw-bold: 700;
 
+    /* Spacing */
+    --spacing-4: 1rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2.75rem;
+    --spacing-12: 4rem;
+    --spacing-16: 5.5rem;
+    --spacing-24: 8.5rem;
+
+    /* Z-index */
     --zindex-menu: 1000;
     --zindex-fixed: 1010;
 
+    /* Layout */
     --width-container: 98rem;
-    --height-header: 10rem;
-    --height-header--scroll: 8rem;
 
-    --transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-    --box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Shadows */
+    --shadow-ambient: 0 8px 32px rgba(184, 195, 255, 0.06);
   }
 
   *,
@@ -90,7 +124,8 @@ const { title } = Astro.props;
   h2,
   h3,
   h4 {
-    color: var(--white);
+    color: var(--on-surface);
+    font-family: var(--ff-headline);
     font-weight: var(--fw-bold);
   }
 
@@ -121,7 +156,7 @@ const { title } = Astro.props;
 
   a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--on-surface-variant);
   }
 
   main {
@@ -129,12 +164,15 @@ const { title } = Astro.props;
   }
 
   body {
-    background-color: var(--bg-primary);
+    background-color: var(--background);
     font-family: var(--ff-body);
-    font-size: var(--fs-md);
-    color: var(--text-color);
-    margin-top: var(--height-header);
-    line-height: 1.2;
+    font-size: var(--fs-body-md);
+    color: var(--on-surface-variant);
+    line-height: 1.5;
+  }
+
+  ::selection {
+    background-color: rgba(184, 195, 255, 0.3);
   }
 
   .container {
@@ -153,29 +191,48 @@ const { title } = Astro.props;
   }
 
   .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
     padding: 1.5rem 4rem;
-    color: var(--white);
-    font-weight: var(--fw-semibold);
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-label-md);
+    border: none;
+    cursor: pointer;
     transition: var(--transition);
   }
 
   .btn--primary {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--primary), var(--primary-container));
+    color: var(--on-primary);
+    border-radius: 9999px;
   }
 
   .btn--primary:hover {
-    background-color: var(--primary-color-dark);
+    transform: scale(0.97);
   }
 
-  .btn--secondary {
-    background-color: var(--white);
-    color: var(--color-bg-primary);
+  .btn--ghost {
+    background: transparent;
+    color: var(--primary);
+    border-radius: 9999px;
   }
 
-  .btn--secondary:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
+  .btn--ghost:hover {
+    background-color: rgba(184, 195, 255, 0.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
   }
 </style>

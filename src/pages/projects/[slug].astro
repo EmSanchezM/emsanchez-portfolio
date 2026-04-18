@@ -1,0 +1,578 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import projects from "@/data/projects.json";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} — Elvin Sanchez`}>
+  <main class="case-study">
+    <!-- Hero -->
+    <section class="cs-hero">
+      <div class="cs-hero__bg">
+        <div class="cs-hero__overlay"></div>
+        <img
+          src={project.imageURL}
+          alt={project.title}
+          class="cs-hero__image"
+        />
+      </div>
+      <div class="cs-hero__content">
+        <span class="cs-hero__label">Case Study {project.year}</span>
+        <h1 class="cs-hero__title">
+          {project.title}<span class="cs-hero__dot">.</span>
+        </h1>
+        <p class="cs-hero__subtitle">{project.longDescription?.split('.')[0]}.</p>
+      </div>
+    </section>
+
+    <!-- Overview + Tech Stack -->
+    <section class="cs-overview">
+      <div class="cs-overview__grid">
+        <div class="cs-overview__text">
+          <h2 class="cs-overview__title">Overview</h2>
+          <p class="cs-overview__description">{project.longDescription}</p>
+          <div class="cs-overview__actions">
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" class="btn btn--primary">
+                View Source
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+        <div class="cs-overview__meta">
+          <div class="cs-overview__meta-group">
+            <h3 class="cs-overview__meta-label">Tech Stack</h3>
+            <ul class="cs-overview__tech-list">
+              {
+                project.technologies.map((tech: string) => (
+                  <li class="cs-overview__tech-item">
+                    <span class="cs-overview__tech-dot"></span>
+                    <span>{tech}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+          <div class="cs-overview__meta-group">
+            <h3 class="cs-overview__meta-label">Role</h3>
+            <p class="cs-overview__role">{project.role}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Pillars / Features -->
+    {project.features && (
+      <section class="cs-features">
+        <div class="cs-features__inner">
+          <h2 class="cs-features__title">Core Pillars</h2>
+          <div class="cs-features__grid">
+            {project.features.map((feature: any) => (
+              <div
+                class:list={[
+                  'cs-feature',
+                  { 'cs-feature--span2': feature.span === 2 },
+                  { 'cs-feature--accent': feature.accent },
+                ]}
+              >
+                <div class="cs-feature__content">
+                  <h3 class="cs-feature__name">{feature.title}</h3>
+                  <p class="cs-feature__desc">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Challenges & Solutions -->
+    {project.challenges && (
+      <section class="cs-challenges">
+        <div class="cs-challenges__inner">
+          {project.challenges.map((challenge: any, i: number) => (
+            <div class:list={['cs-challenge', { 'cs-challenge--reversed': i % 2 !== 0 }]}>
+              <div class="cs-challenge__problem">
+                <span class="cs-challenge__label">Challenge {String(i + 1).padStart(2, '0')}</span>
+                <h2 class="cs-challenge__title">{challenge.title}</h2>
+                <p class="cs-challenge__text">{challenge.problem}</p>
+              </div>
+              <div class="cs-challenge__solution">
+                <h4 class="cs-challenge__solution-title">The Solution</h4>
+                <p class="cs-challenge__text">{challenge.solution}</p>
+                {challenge.quote && (
+                  <blockquote class="cs-challenge__quote">
+                    "{challenge.quote}"
+                  </blockquote>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Impact Stats -->
+    {project.impact && (
+      <section class="cs-impact">
+        <div class="cs-impact__inner">
+          <h2 class="cs-impact__title">The Impact</h2>
+          <div class="cs-impact__grid">
+            {project.impact.map((stat: any) => (
+              <div class="cs-stat">
+                <div class="cs-stat__value">{stat.value}</div>
+                <div class="cs-stat__label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA -->
+    <section class="cs-cta">
+      <div class="cs-cta__card">
+        <h2 class="cs-cta__title">Ready to explore the code?</h2>
+        <p class="cs-cta__description">
+          {project.title} is open-source and available for review. Dive into the architectural decisions that power this project.
+        </p>
+        <div class="cs-cta__actions">
+          {project.githubUrl && (
+            <a href={project.githubUrl} target="_blank" class="btn btn--primary">GitHub Repo</a>
+          )}
+          <a href="/#work" class="cs-cta__ghost">Back to Projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* ===== Hero ===== */
+  .cs-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12rem 3.2rem 8rem;
+    overflow: hidden;
+  }
+
+  .cs-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .cs-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+  }
+
+  .cs-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--background), transparent);
+    z-index: 1;
+  }
+
+  .cs-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 72rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .cs-hero__label {
+    font-family: var(--ff-headline);
+    color: var(--primary);
+    letter-spacing: 0.2em;
+    font-size: var(--fs-label-sm);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    margin-bottom: 2.4rem;
+    display: block;
+  }
+
+  .cs-hero__title {
+    font-family: var(--ff-headline);
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    margin-bottom: 3.2rem;
+  }
+
+  .cs-hero__dot {
+    color: var(--primary);
+  }
+
+  .cs-hero__subtitle {
+    font-family: var(--ff-headline);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--on-surface-variant);
+    font-weight: 300;
+    line-height: 1.3;
+    max-width: 60rem;
+  }
+
+  /* ===== Overview ===== */
+  .cs-overview {
+    background-color: var(--surface-container-low);
+    padding: 8rem 3.2rem;
+  }
+
+  .cs-overview__grid {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    gap: 6rem;
+  }
+
+  .cs-overview__title {
+    font-size: var(--fs-headline-lg);
+    margin-bottom: 3.2rem;
+  }
+
+  .cs-overview__description {
+    font-size: var(--fs-body-lg);
+    line-height: 1.7;
+    color: var(--on-surface-variant);
+    margin-bottom: 3.2rem;
+  }
+
+  .cs-overview__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin-top: 4rem;
+  }
+
+  .cs-overview__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .cs-overview__meta-label {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-label-sm);
+    color: var(--secondary);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+  }
+
+  .cs-overview__tech-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .cs-overview__tech-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    color: var(--on-surface);
+    font-weight: var(--fw-medium);
+  }
+
+  .cs-overview__tech-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background-color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .cs-overview__role {
+    color: var(--on-surface);
+    font-weight: var(--fw-medium);
+  }
+
+  @media screen and (min-width: 769px) {
+    .cs-overview__grid {
+      grid-template-columns: 7fr 4fr;
+      gap: 8rem;
+    }
+  }
+
+  /* ===== Features Bento ===== */
+  .cs-features {
+    padding: 10rem 3.2rem;
+  }
+
+  .cs-features__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .cs-features__title {
+    font-size: var(--fs-headline-lg);
+    margin-bottom: var(--spacing-16);
+    text-align: center;
+  }
+
+  .cs-features__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cs-feature {
+    background-color: var(--surface-container-high);
+    border-radius: 0.8rem;
+    padding: 4rem;
+    min-height: 24rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .cs-feature--accent {
+    background-color: var(--primary-container);
+  }
+
+  .cs-feature--accent .cs-feature__name,
+  .cs-feature--accent .cs-feature__desc {
+    color: var(--on-primary-container);
+  }
+
+  .cs-feature__name {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-md);
+    font-weight: var(--fw-bold);
+    color: var(--on-surface);
+    margin-bottom: 0.8rem;
+  }
+
+  .cs-feature__desc {
+    color: var(--on-surface-variant);
+    max-width: 40rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    .cs-features__grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 26rem;
+    }
+
+    .cs-feature--span2 {
+      grid-column: span 2;
+    }
+  }
+
+  /* ===== Challenges ===== */
+  .cs-challenges {
+    background-color: var(--surface-container-lowest);
+    padding: 10rem 3.2rem;
+  }
+
+  .cs-challenges__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+  }
+
+  .cs-challenge {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .cs-challenge__label {
+    font-family: var(--ff-headline);
+    color: var(--secondary);
+    font-size: var(--fs-label-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    display: block;
+  }
+
+  .cs-challenge__title {
+    font-size: var(--fs-headline-lg);
+    line-height: 1.1;
+    margin-bottom: 2.4rem;
+  }
+
+  .cs-challenge__text {
+    color: var(--on-surface-variant);
+    line-height: 1.7;
+  }
+
+  .cs-challenge__solution {
+    background-color: var(--surface-container);
+    padding: 3.2rem;
+    border-radius: 0.8rem;
+  }
+
+  .cs-challenge__solution-title {
+    font-family: var(--ff-headline);
+    color: var(--primary);
+    font-size: var(--fs-title-lg);
+    font-weight: var(--fw-bold);
+    margin-bottom: 2rem;
+  }
+
+  .cs-challenge__quote {
+    margin-top: 2.4rem;
+    padding: 2rem;
+    background-color: var(--background);
+    border-left: 4px solid var(--primary);
+    border-radius: 0.25rem;
+    font-style: italic;
+    font-size: var(--fs-label-md);
+    color: var(--on-surface-variant);
+  }
+
+  @media screen and (min-width: 769px) {
+    .cs-challenge {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .cs-challenge__problem {
+      position: sticky;
+      top: 10rem;
+    }
+
+    .cs-challenge--reversed .cs-challenge__problem {
+      order: 2;
+    }
+
+    .cs-challenge--reversed .cs-challenge__solution {
+      order: 1;
+    }
+  }
+
+  /* ===== Impact ===== */
+  .cs-impact {
+    padding: 10rem 3.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cs-impact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(184, 195, 255, 0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cs-impact__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cs-impact__title {
+    font-size: clamp(3rem, 5vw, 4rem);
+    margin-bottom: 5rem;
+  }
+
+  .cs-impact__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 4rem;
+  }
+
+  .cs-stat__value {
+    font-family: var(--ff-headline);
+    font-size: clamp(3.5rem, 6vw, 4.8rem);
+    font-weight: var(--fw-bold);
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+  }
+
+  .cs-stat__label {
+    font-family: var(--ff-headline);
+    font-size: 1rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--secondary);
+  }
+
+  /* ===== CTA ===== */
+  .cs-cta {
+    padding: 0 3.2rem 10rem;
+  }
+
+  .cs-cta__card {
+    max-width: 72rem;
+    margin: 0 auto;
+    background-color: var(--surface-container-high);
+    border-radius: 2.4rem;
+    padding: 8rem 4rem;
+    text-align: center;
+  }
+
+  .cs-cta__title {
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    margin-bottom: 3.2rem;
+  }
+
+  .cs-cta__description {
+    color: var(--on-surface-variant);
+    font-size: var(--fs-body-lg);
+    max-width: 50rem;
+    margin: 0 auto 4rem;
+    line-height: 1.6;
+  }
+
+  .cs-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+
+  .cs-cta__ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background-color: var(--background);
+    color: var(--on-surface);
+    border-radius: 9999px;
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-label-md);
+    border: 1px solid rgba(68, 70, 84, 0.3);
+    transition: var(--transition);
+  }
+
+  .cs-cta__ghost:hover {
+    background-color: var(--surface-container-highest);
+  }
+
+  @media screen and (max-width: 560px) {
+    .cs-cta__card {
+      padding: 5rem 2rem;
+      border-radius: 1.6rem;
+    }
+  }
+</style>

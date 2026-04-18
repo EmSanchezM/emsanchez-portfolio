@@ -1,18 +1,90 @@
+---
+---
 
-<header class="intro" id="intro">
+<header class="resume-intro">
   <div class="container">
-    <h2>Intro</h2>
-    <hr>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-      Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies
-      sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a,
-      semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie,
-      enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper.
-      Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque
-      lacinia diam ac felis. Donec ultrices.
-    </p>
+    <div class="resume-intro__content">
+      <p class="resume-intro__label">Resume</p>
+      <h1 class="resume-intro__title">Elvin Sanchez</h1>
+      <p class="resume-intro__subtitle">Software Engineer & Architect</p>
+      <p class="resume-intro__description">
+        Software engineer with +5 years of experience in full-stack development.
+        Proficient in Java, JavaScript, TypeScript and frameworks like React, Next.js,
+        Spring Boot. Experienced in database design, API integration, scalable
+        architectures, and working with cross-functional teams.
+      </p>
+      <div class="resume-intro__contact">
+        <a href="mailto:emsanchez891@gmail.com" class="resume-intro__link">emsanchez891@gmail.com</a>
+        <span class="resume-intro__separator">·</span>
+        <a href="https://github.com/EmSanchezM" target="_blank" class="resume-intro__link">GitHub</a>
+        <span class="resume-intro__separator">·</span>
+        <a href="https://www.linkedin.com/in/elvin-sanchez-medina" target="_blank" class="resume-intro__link">LinkedIn</a>
+      </div>
+    </div>
   </div>
 </header>
 
-<style></style>
+<style>
+  .resume-intro {
+    padding-top: 14rem;
+    padding-bottom: 6rem;
+  }
+
+  .resume-intro__content {
+    max-width: 60rem;
+  }
+
+  .resume-intro__label {
+    font-family: var(--ff-body);
+    font-size: var(--fs-label-sm);
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.6rem;
+  }
+
+  .resume-intro__title {
+    font-family: var(--ff-headline);
+    font-size: clamp(3.5rem, 6vw, 5rem);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.04em;
+    margin-bottom: 0.8rem;
+  }
+
+  .resume-intro__subtitle {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-md);
+    color: var(--primary);
+    font-weight: var(--fw-medium);
+    margin-bottom: 3.2rem;
+  }
+
+  .resume-intro__description {
+    color: var(--on-surface-variant);
+    line-height: 1.7;
+    font-size: var(--fs-body-lg);
+    margin-bottom: 3.2rem;
+    max-width: 56rem;
+  }
+
+  .resume-intro__contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .resume-intro__link {
+    color: var(--primary);
+    font-size: var(--fs-label-md);
+    transition: var(--transition);
+  }
+
+  .resume-intro__link:hover {
+    color: var(--on-surface);
+  }
+
+  .resume-intro__separator {
+    color: var(--outline);
+  }
+</style>

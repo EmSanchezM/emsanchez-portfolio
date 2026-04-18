@@ -1,12 +1,156 @@
+---
+import experiences from "@/data/profesional-experience.json";
+import education from "@/data/education.json";
+import ExperienceEntry from "@/components/ExperienceEntry.astro";
+import EducationEntry from "@/components/EducationEntry.astro";
+---
 
-<section class="experience" id="experience"></section>
+<section class="resume-exp">
   <div class="container">
-    <h2>Experience</h2>
-    <hr>
-    <p>
-      timeline de experiencia
-    </p>
+    <!-- Experience -->
+    <div class="resume-exp__section">
+      <h2 class="resume-exp__heading">Professional Experience</h2>
+      <div class="resume-exp__list">
+        {
+          experiences.map((exp) => (
+            <ExperienceEntry
+              role={exp.role}
+              company={exp.company}
+              description={exp.description}
+              time={exp.time}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="resume-exp__section">
+      <h2 class="resume-exp__heading">Education</h2>
+      <div class="resume-exp__edu-grid">
+        {
+          education.map((edu) => (
+            <EducationEntry
+              title={edu.title}
+              institution={edu.institution}
+              time={edu.time}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="resume-exp__section">
+      <h2 class="resume-exp__heading">Core Skills</h2>
+      <div class="resume-exp__skills">
+        <div class="resume-exp__skill-group">
+          <h3 class="resume-exp__skill-label">Languages</h3>
+          <div class="resume-exp__chips">
+            <span class="resume-exp__chip">Java</span>
+            <span class="resume-exp__chip">Rust lang</span>
+            <span class="resume-exp__chip">TypeScript</span>
+            <span class="resume-exp__chip">JavaScript</span>
+            <span class="resume-exp__chip">Python</span>
+          </div>
+        </div>
+        <div class="resume-exp__skill-group">
+          <h3 class="resume-exp__skill-label">Frameworks</h3>
+          <div class="resume-exp__chips">
+            <span class="resume-exp__chip">React</span>
+            <span class="resume-exp__chip">Next.js</span>
+            <span class="resume-exp__chip">Spring Boot</span>
+            <span class="resume-exp__chip">Java Vert.x</span>
+            <span class="resume-exp__chip">Node.js</span>
+            <span class="resume-exp__chip">Nest.js</span>
+            <span class="resume-exp__chip">Python Django</span>
+            <span class="resume-exp__chip">Rust Axum</span>
+          </div>
+        </div>
+        <div class="resume-exp__skill-group">
+          <h3 class="resume-exp__skill-label">Infrastructure</h3>
+          <div class="resume-exp__chips">
+            <span class="resume-exp__chip">PostgreSQL</span>
+            <span class="resume-exp__chip">MySQL</span>
+            <span class="resume-exp__chip">SQL Server</span>
+            <span class="resume-exp__chip">MongoDB</span>
+            <span class="resume-exp__chip">SurrealDB</span>
+            <span class="resume-exp__chip">Docker</span>
+            <span class="resume-exp__chip">AWS</span>
+            <span class="resume-exp__chip">GCP</span>
+            <span class="resume-exp__chip">Cloudflare</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<style></style>
+<style>
+  .resume-exp {
+    padding-bottom: 8rem;
+  }
+
+  .resume-exp__section {
+    margin-bottom: var(--spacing-24);
+  }
+
+  .resume-exp__heading {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-lg);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--spacing-12);
+  }
+
+  .resume-exp__edu-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .resume-exp__skills {
+    background-color: var(--surface-container-low);
+    border-radius: 1.2rem;
+    padding: 3.2rem 4rem;
+    display: grid;
+    gap: 3.2rem;
+  }
+
+  .resume-exp__skill-label {
+    font-family: var(--ff-body);
+    font-size: var(--fs-label-sm);
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: var(--fw-bold);
+    margin-bottom: 1.6rem;
+  }
+
+  .resume-exp__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .resume-exp__chip {
+    padding: 0.6rem 1.4rem;
+    background-color: var(--surface-container-high);
+    color: var(--on-surface-variant);
+    font-size: var(--fs-label-sm);
+    border-radius: 0.25rem;
+    transition: var(--transition);
+  }
+
+  .resume-exp__chip:hover {
+    color: var(--primary);
+  }
+
+  @media screen and (min-width: 769px) {
+    .resume-exp__edu-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resume-exp__skills {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

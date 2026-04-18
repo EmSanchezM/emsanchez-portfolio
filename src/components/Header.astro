@@ -1,154 +1,188 @@
 ---
-import { Bars } from "./icons";
 ---
 
-<header class="header" id="header">
-  <div class="container">
-    <nav class="nav">
-      <a href="/" class="nav__logo">EmSanchez</a>
-      <div class="nav__menu" id="nav__menu">
-        <ul class="nav__list">
-          <li class="nav__item">
-            <a href="/#work" class="nav__link">Work</a>
-          </li>
-          <li class="nav__item">
-            <a href="/#contact" class="nav__link">Contact</a>
-          </li>
-          <li class="nav__item">
-            <a href="/#about" class="nav__link">About</a>
-          </li>
-        </ul>
-      </div>
-      <button 
-        class="nav__toggle" 
-        id="nav__toggle"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        aria-controls="nav__menu"
-        type="button"
-      >
-        <Bars />
-      </button>
-    </nav>
+<nav class="dock" id="header">
+  <a href="/" class="dock__logo">EMSANCHEZ</a>
+  <div class="dock__menu" id="nav__menu">
+    <ul class="dock__list">
+      <li class="dock__item">
+        <a href="/#work" class="dock__link">Work</a>
+      </li>
+      <li class="dock__item">
+        <a href="/#about" class="dock__link">About</a>
+      </li>
+      <li class="dock__item">
+        <a href="/#contact" class="dock__link">Contact</a>
+      </li>
+    </ul>
   </div>
-</header>
+  <div class="dock__actions">
+    <a href="/resume" class="dock__cta">Resume</a>
+    <button
+      class="dock__toggle"
+      id="nav__toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="nav__menu"
+      type="button"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</nav>
 
 <style>
-  .header {
-    background-color: var(--bg-primary);
+  .dock {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    height: var(--height-header);
-    z-index: var(--zindex-menu);
-    transition: var(--transition);
-  }
-
-  .header--scroll {
-    height: var(--height-header--scroll);
-    box-shadow: var(--box-shadow);
-  }
-
-  .nav {
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 72rem;
+    border-radius: 9999px;
+    background: rgba(19, 19, 19, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.2rem 2.4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    z-index: var(--zindex-fixed);
+    box-shadow: 0 8px 32px rgba(0, 0, 100, 0.1);
   }
 
-  .nav__logo {
-    font-size: var(--fs-lg);
+  .dock__logo {
+    font-family: var(--ff-headline);
+    font-size: 1.8rem;
     font-weight: var(--fw-bold);
-    color: var(--white);
+    letter-spacing: -0.04em;
+    color: var(--on-surface);
+  }
+
+  .dock__list {
+    display: flex;
+    gap: 3.2rem;
+    align-items: center;
+  }
+
+  .dock__link {
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-label-md);
+    letter-spacing: -0.02em;
+    color: var(--on-surface-variant);
+    transition: var(--transition);
+  }
+
+  .dock__link:hover,
+  .dock__link--active {
+    color: var(--primary);
+  }
+
+  .dock__actions {
     display: flex;
     align-items: center;
-    column-gap: 0.5rem;
+    gap: 1.2rem;
   }
 
-  .nav__list {
-    display: flex;
-    column-gap: 4rem;
-  }
-
-  .nav__link {
+  .dock__cta {
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+    padding: 0.8rem 2rem;
+    border-radius: 9999px;
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-label-sm);
     transition: var(--transition);
   }
 
-  .nav__link:hover {
-    color: var(--primary-color);
+  .dock__cta:hover {
+    transform: scale(0.95);
   }
 
-  .nav__toggle {
+  .dock__toggle {
     display: none;
-    font-size: var(--fs-xl);
-    color: var(--black);
+    background: none;
+    border: none;
+    color: var(--primary);
     cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 9999px;
     transition: var(--transition);
   }
 
-  .nav__toggle:hover {
-    color: var(--primary-color);
+  .dock__toggle:hover {
+    background: rgba(42, 42, 42, 0.5);
   }
 
   @media screen and (max-width: 968px) {
-    .nav__list {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      row-gap: 4rem;
+    .dock {
+      border-radius: 1.2rem;
+      top: 1rem;
+      padding: 1rem 1.6rem;
     }
 
-    .nav__menu {
+    .dock__menu {
       position: fixed;
       top: 0;
-      bottom: 0;
       left: 0;
       right: 0;
-      background-color: var(--bg-primary);
+      bottom: 0;
+      background: rgba(19, 19, 19, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: none;
       justify-content: center;
-      transition: var(--transition);
+      align-items: center;
+      z-index: var(--zindex-menu);
     }
 
-    .nav__menu--open {
+    .dock__menu--open {
       display: flex;
     }
 
-    .nav__toggle {
+    .dock__list {
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .dock__link {
+      font-size: var(--fs-headline-md);
+    }
+
+    .dock__toggle {
       display: block;
     }
 
-    .nav__logo,
-    .nav__toggle {
+    .dock__logo,
+    .dock__actions {
       z-index: var(--zindex-fixed);
+    }
+
+    .dock__cta {
+      display: none;
     }
   }
 </style>
 
 <script>
-  const header = document.getElementById('header');
   const navMenu = document.getElementById('nav__menu');
   const navToggle = document.getElementById('nav__toggle');
   let isMenuOpen = false;
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
-    navMenu!.classList.toggle('nav__menu--open', isMenuOpen);
+    navMenu!.classList.toggle('dock__menu--open', isMenuOpen);
     navToggle!.setAttribute('aria-expanded', isMenuOpen.toString());
   }
 
-  function handleScroll() {
-    header!.classList.toggle('header--scroll', window.scrollY > 40);
-  }
-
   navToggle!.addEventListener('click', toggleMenu);
-  window.addEventListener('scroll', handleScroll);
 
-  document.querySelectorAll('.nav__link').forEach(link => {
+  document.querySelectorAll('.dock__link').forEach(link => {
     link.addEventListener('click', () => {
       if (isMenuOpen) {
         toggleMenu();
