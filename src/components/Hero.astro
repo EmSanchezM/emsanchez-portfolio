@@ -26,13 +26,14 @@
         <div class="hero__glow"></div>
         <div class="hero__image-container">
           <img
-            src="/images/em-sanchez.webp"
+            src="/images/em-sanchez-475.webp"
             srcset="/images/em-sanchez-250.webp 250w, /images/em-sanchez-475.webp 475w"
             sizes="(max-width: 968px) 250px, 475px"
-            alt="Fotografía de Elvin Sánchez"
+            alt="Portrait of Elvin Sanchez, Software Engineer"
             class="hero__img"
             fetchpriority="high"
             decoding="sync"
+            loading="eager"
             width="475"
             height="475"
           />
@@ -132,6 +133,8 @@
     border-radius: 50%;
     filter: blur(100px);
     pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .hero__image-container {
@@ -149,10 +152,12 @@
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: filter 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: filter;
   }
 
-  .hero__img:hover {
+  .hero__img:hover,
+  .hero__img:focus-visible {
     filter: grayscale(0);
   }
 

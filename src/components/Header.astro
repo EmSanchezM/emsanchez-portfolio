@@ -1,8 +1,8 @@
 ---
 ---
 
-<nav class="dock" id="header">
-  <a href="/" class="dock__logo">EMSANCHEZ</a>
+<nav class="dock" id="header" aria-label="Primary">
+  <a href="/" class="dock__logo" aria-label="EMSANCHEZ — Home">EMSANCHEZ</a>
   <div class="dock__menu" id="nav__menu">
     <ul class="dock__list">
       <li class="dock__item">
@@ -27,7 +27,7 @@
       aria-controls="nav__menu"
       type="button"
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -81,8 +81,19 @@
   }
 
   .dock__link:hover,
+  .dock__link:focus-visible,
   .dock__link--active {
     color: var(--primary);
+  }
+
+  .dock__logo:focus-visible,
+  .dock__link:focus-visible,
+  .dock__cta:focus-visible,
+  .dock__menu-cta:focus-visible,
+  .dock__toggle:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
   .dock__actions {
@@ -121,8 +132,9 @@
     transition: var(--transition);
   }
 
-  .dock__toggle:hover {
-    background: rgba(42, 42, 42, 0.5);
+  .dock__toggle:hover,
+  .dock__toggle:focus-visible {
+    background: rgba(184, 195, 255, 0.12);
   }
 
   @media screen and (max-width: 968px) {

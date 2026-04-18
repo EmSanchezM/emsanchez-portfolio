@@ -12,8 +12,12 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Layout title={`${project.title} — Elvin Sanchez`}>
-  <main class="case-study">
+<Layout
+  title={`${project.title} — Case Study | Elvin Sanchez`}
+  description={project.description ?? project.longDescription?.split('.')[0] + '.'}
+  image={project.imageURL}
+>
+  <main class="case-study" id="main">
     <!-- Hero -->
     <section class="cs-hero">
       <div class="cs-hero__bg">
