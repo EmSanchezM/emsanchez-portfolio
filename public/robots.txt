@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://emsanchez.com/sitemap-index.xml
