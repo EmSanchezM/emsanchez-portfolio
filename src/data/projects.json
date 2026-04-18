@@ -90,5 +90,72 @@
         "quote": "Zero data loss across 10k+ sync events in testing."
       }
     ]
+  },
+  {
+    "slug": "pos-ecommerce-api",
+    "imageURL": "/images/projects/multitenant.webp",
+    "title": "POS + Ecommerce API",
+    "description": "Modular backend in Rust for point-of-sale and ecommerce, built around a Cargo workspace with strict domain boundaries and RBAC at the edge.",
+    "technologies": ["Rust", "Axum", "PostgreSQL", "SQLx", "Docker"],
+    "githubUrl": "https://github.com/EmSanchezM/pos-ecommerce-api",
+    "year": "2026",
+    "longDescription": "A production-grade REST API that unifies point-of-sale and ecommerce operations into a single backend, designed from day one to serve multiple stores from a single deployment. The system is built as a modular monolith: a Cargo workspace splits the domain into isolated crates (identity, inventory, purchasing, sales, core, common) with an api-gateway layer that owns HTTP concerns, dependency injection, tenant resolution and error mapping. The goal was to deliver the maintainability benefits of microservices and the isolation guarantees of multi-tenancy without the operational overhead — strong boundaries, independent compilation, and a single deployable unit.",
+    "role": "Backend Architect & Engineer",
+    "features": [
+      {
+        "title": "Modular Cargo Workspace",
+        "description": "Domain split into independent crates (identity, inventory, purchasing, sales) with explicit dependencies enforced by the Rust compiler.",
+        "span": 2
+      },
+      {
+        "title": "RBAC with JWT + Argon2",
+        "description": "Permission-scoped middleware, predefined roles (Admin, Manager, Cashier) and password hashing with argon2.",
+        "accent": true
+      },
+      {
+        "title": "SQLx Compile-Time Queries",
+        "description": "Every SQL statement is verified against the live schema at build time, catching drift before it ships."
+      },
+      {
+        "title": "Axum API Gateway",
+        "description": "Single HTTP entry point with a shared state DI container, unified error-to-HTTP mapping and typed extractors like CurrentUser.",
+        "span": 2
+      },
+      {
+        "title": "UUID v7 Identifiers",
+        "description": "Time-ordered IDs across all aggregates to keep indexes tight and preserve natural write ordering."
+      },
+      {
+        "title": "Multi-Tenant Foundation",
+        "description": "Architecture prepared to host multiple stores in one deployment, with tenant context resolved at the edge and flowing through the domain via typed extractors.",
+        "accent": true
+      }
+    ],
+    "challenges": [
+      {
+        "title": "Tenant Isolation Without a Fleet of Services",
+        "problem": "Running multiple independent stores on a single backend means every query, permission check and cache key has to be tenant-aware — and getting it wrong leaks one client's data into another's dashboard.",
+        "solution": "Tenant identity is lifted out of handlers into the request context through Axum extractors, so it's resolved once at the edge and flows through repositories automatically. The workspace layout keeps tenant-scoped logic inside the domain crates, leaving the api-gateway as the single place that enforces the boundary.",
+        "quote": "Tenancy as a cross-cutting concern resolved at the edge, not a flag threaded through every function."
+      },
+      {
+        "title": "Preventing a Monolith From Rotting",
+        "problem": "Mixing POS and ecommerce flows in a single codebase risked the classic ball-of-mud: sales logic leaking into inventory, circular dependencies, and a test suite that only runs end-to-end.",
+        "solution": "Structured the project as a Cargo workspace where each bounded context is its own crate. The compiler blocks accidental coupling, each module exposes a narrow public API, and the api-gateway is the only place that wires them together through a shared application state.",
+        "quote": "Enforced domain boundaries at compile time instead of in code review."
+      },
+      {
+        "title": "Authorization Without Boilerplate",
+        "problem": "A POS system has dozens of fine-grained actions (refund, void, adjust inventory, manage users). Hardcoding checks in every handler is error-prone and scatters policy across the codebase.",
+        "solution": "Centralized authentication and permission enforcement into Axum middleware and a CurrentUser extractor. Roles and permissions live in the database, are loaded per-request, and routes declare the permission they require — handlers stay focused on business logic.",
+        "quote": "Permission checks became a one-line route annotation."
+      },
+      {
+        "title": "Safe, Repeatable Database Evolution",
+        "problem": "Schema changes and initial data (permissions, roles, default store) had to be reliable across developer machines, CI and production without drift or duplicate rows.",
+        "solution": "Adopted SQLx migrations for schema and a dedicated idempotent seed crate for bootstrap data. The seed can run any number of times without producing duplicates, and compile-time query checks guarantee the code matches the current schema.",
+        "quote": "Schema, queries and seed data all verified before the binary is produced."
+      }
+    ]
   }
 ]
