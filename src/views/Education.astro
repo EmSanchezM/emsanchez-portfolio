@@ -1,0 +1,58 @@
+---
+import education from "@/data/education.json";
+import EducationEntry from "@/components/EducationEntry.astro";
+---
+
+<section class="education section">
+  <div class="container">
+    <div class="education__grid">
+      <div class="education__heading">
+        <h2 class="education__title">Education</h2>
+      </div>
+      <div class="education__entries">
+        {
+          education.map((edu) => (
+            <EducationEntry
+              title={edu.title}
+              institution={edu.institution}
+              time={edu.time}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .education {
+    margin-bottom: var(--spacing-24);
+  }
+
+  .education__grid {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .education__title {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-lg);
+    font-weight: var(--fw-bold);
+  }
+
+  .education__entries {
+    display: grid;
+    gap: 4rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    .education__grid {
+      grid-template-columns: 4fr 8fr;
+      gap: 6rem;
+    }
+
+    .education__entries {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

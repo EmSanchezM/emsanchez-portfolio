@@ -3,56 +3,35 @@ import projects from "@/data/projects.json";
 import ProjectCard from "@/components/ProjectCard.astro";
 ---
 
-<section class="section project" id="work">
+<section class="projects section" id="work">
   <div class="container">
-    <header class="project__header">
-      <h2 class="project__title">Projects</h2>
-      <span class="project__subtitle">My recent work</span>
-    </header>
-    <div class="grid project__wrapper">
+    <h2 class="projects__title">Selected Projects</h2>
+    <div class="projects__grid">
       {projects.map((project) => <ProjectCard {...project} />)}
     </div>
   </div>
 </section>
 
 <style>
-  .project__header {
-    margin: 8rem 0;
-    text-align: center;
+  .projects {
+    margin-bottom: var(--spacing-24);
   }
 
-  .project__title {
-    font-size: var(--fs-xl);
-    margin-bottom: 0.5rem;
-  }
-
-  .project__subtitle {
+  .projects__title {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-lg);
     font-weight: var(--fw-bold);
-    font-size: var(--fs-md);
-    position: relative;
+    margin-bottom: var(--spacing-16);
   }
 
-  .project__subtitle::after {
-    position: absolute;
-    content: "";
-    width: 50%;
-    height: 0.5rem;
-    background-color: var(--primary-color);
-    bottom: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+  .projects__grid {
+    display: grid;
+    gap: var(--spacing-8);
   }
 
-  @media screen and (min-width: 560px) {
-    .project__wrapper {
-      grid-template-columns: repeat(2, 250px);
-      justify-content: center;
-    }
-  }
-
-  @media screen and (min-width: 968px) {
-    .project__wrapper {
-      grid-template-columns: repeat(3, 1fr);
+  @media screen and (min-width: 769px) {
+    .projects__grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>

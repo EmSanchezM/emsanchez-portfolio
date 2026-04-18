@@ -1,7 +1,80 @@
-<footer class="footer" id="footer">
-  <div class="container">
-    <p class="footer__copyright">
-      &copy; {new Date().getFullYear()} Em Sanchez. All rights reserved.
+---
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__logo">EMSANCHEZ</span>
+    </div>
+    <div class="footer__links">
+      <a href="https://www.linkedin.com/in/elvin-sanchez-medina" target="_blank" class="footer__link">LinkedIn</a>
+      <a href="https://github.com/EmSanchezM" target="_blank" class="footer__link">GitHub</a>
+      <a href="mailto:emsanchez891@gmail.com" class="footer__link">Email</a>
+    </div>
+    <p class="footer__copy">
+      &copy; {new Date().getFullYear()} EMSANCHEZ. All rights reserved.
     </p>
   </div>
 </footer>
+
+<style>
+  .footer {
+    background-color: var(--surface-container-lowest);
+    padding: 5rem 3rem;
+    margin-top: var(--spacing-24);
+  }
+
+  .footer__inner {
+    max-width: 98rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(68, 70, 84, 0.15);
+    gap: 2rem;
+  }
+
+  .footer__logo {
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-bold);
+    font-size: 1.8rem;
+    color: var(--on-surface);
+  }
+
+  .footer__links {
+    display: flex;
+    gap: 3.2rem;
+  }
+
+  .footer__link {
+    font-family: var(--ff-body);
+    font-size: var(--fs-label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--on-surface-variant);
+    opacity: 0.8;
+    transition: var(--transition);
+  }
+
+  .footer__link:hover {
+    color: var(--primary);
+    opacity: 1;
+  }
+
+  .footer__copy {
+    font-size: 1rem;
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 768px) {
+    .footer__inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 2.4rem;
+    }
+  }
+</style>
