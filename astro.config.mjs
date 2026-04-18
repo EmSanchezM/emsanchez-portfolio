@@ -6,7 +6,7 @@ export default defineConfig({
   site: 'https://emsanchez.com',
   compressHTML: true,
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   integrations: [sitemap()],
 });
