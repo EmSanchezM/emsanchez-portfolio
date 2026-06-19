@@ -1,5 +1,66 @@
 [
   {
+    "slug": "wings-cup",
+    "imageURL": "/images/projects/wings-cup.webp",
+    "title": "Wings Cup",
+    "description": "A private prediction game for the 2026 World Cup: create rooms, invite friends, predict every match and climb a live leaderboard.",
+    "technologies": ["Nuxt 4", "Vue", "TypeScript", "Supabase", "Tailwind CSS"],
+    "githubUrl": "https://github.com/EmSanchezM/wings-cup",
+    "year": "2026",
+    "longDescription": "Wings Cup is a social prediction platform built around the 2026 World Cup, where groups of friends compete in private rooms by forecasting the score of every match. Each room has an owner, an invitation code and its own leaderboard, with a weighted scoring system that rewards exact scores over goal-difference over plain outcomes. The core engineering challenge was fairness: predictions must lock the instant a match kicks off, with no possibility of editing after the fact. Rather than trusting client clocks or fragile HTTP cron endpoints, the locking runs inside PostgreSQL via Supabase pg_cron, making the rules enforceable at the data layer itself.",
+    "role": "Product Owner, Lead & Fullstack Developer",
+    "features": [
+      {
+        "title": "Private Rooms & Invitations",
+        "description": "A guided multi-step flow to create rooms, each with an owner, a shareable invitation code and join links to onboard friends.",
+        "span": 2
+      },
+      {
+        "title": "Weighted Scoring Engine",
+        "description": "Exact score (+5), goal difference (+3) and correct outcome (+1) — configurable rules that turn every match into a strategic call.",
+        "accent": true
+      },
+      {
+        "title": "Predictions Locked at Kickoff",
+        "description": "Forecasts are frozen the moment a match starts and revealed to other members, keeping the game tamper-proof."
+      },
+      {
+        "title": "Live Leaderboard",
+        "description": "Per-room standings update automatically as results are loaded, with progress tracking across all 104 matches.",
+        "span": 2
+      },
+      {
+        "title": "Admin Match Console",
+        "description": "An admin panel to load results, drive match states (Scheduled, Live, Finished, Postponed) and bulk-lock predictions for matches already underway."
+      },
+      {
+        "title": "Database-Enforced Rules with RLS",
+        "description": "Row-Level Security and scheduled jobs run in PostgreSQL via Supabase, so access control and prediction locking live where the data does.",
+        "accent": true
+      }
+    ],
+    "challenges": [
+      {
+        "title": "Locking Predictions Without Trusting the Client",
+        "problem": "The integrity of the whole game depends on a single rule: no prediction can change after a match kicks off. Relying on the browser's clock or a user-triggered request would let anyone edit a forecast after seeing how the match unfolds.",
+        "solution": "Prediction locking was moved off the client entirely and into the database. A scheduled job runs through Supabase pg_cron, freezing every match whose start time has passed, while an admin action can bulk-lock matches already in progress. The rule is enforced server-side, in PostgreSQL, independent of any client.",
+        "quote": "Fairness enforced by the database clock, not the player's browser."
+      },
+      {
+        "title": "Multi-Tenant Visibility Without Leaking Predictions",
+        "problem": "Rooms are private competitions: members should only see each other's predictions once a match starts, and never the data of rooms they don't belong to. Mishandling this leaks strategy between rivals or exposes other groups entirely.",
+        "solution": "Access boundaries were encoded as Supabase Row-Level Security policies, so a member can only read predictions for rooms they belong to and only after the reveal condition is met. Authorization lives in the database, not scattered across UI guards that are easy to bypass.",
+        "quote": "Visibility rules expressed as RLS policies instead of trusted client checks."
+      },
+      {
+        "title": "A Tournament's Worth of Matches and State",
+        "problem": "A World Cup spans 104 matches across group and knockout stages, each moving through scheduled, live, finished and postponed states — and every state change ripples into scoring, locking and the leaderboard.",
+        "solution": "Match lifecycle was modeled as explicit states with clear transitions, paired with Zod validation and Pinia stores on the frontend. Finishing a match with a final score triggers automatic point distribution, so the admin manages state while scoring stays a derived, deterministic outcome.",
+        "quote": "Match state as the single source of truth that drives scoring automatically."
+      }
+    ]
+  },
+  {
     "slug": "budgetwise",
     "imageURL": "/images/projects/budget-wise.webp",
     "title": "BudgetWise",
