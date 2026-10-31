@@ -2,11 +2,15 @@
 import Layout from "@/layouts/Layout.astro";
 import Intro from "@/views/resume/intro.astro";
 import Experience from "@/views/resume/experience.astro";
+import { getLocale, useTranslations } from "@/i18n/ui";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <Layout
-  title="Resume | Elvin Sanchez — Software Engineer"
-  description="Resume of Elvin Sanchez — Senior Software Engineer with 5+ years delivering fintech and e-commerce platforms across Latin America, the U.S., and Europe."
+  title={t("meta.resumeTitle")}
+  description={t("meta.resumeDescription")}
 >
   <main class="main" id="main">
     <Intro />

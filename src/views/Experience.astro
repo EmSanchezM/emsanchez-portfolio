@@ -1,11 +1,16 @@
 ---
-import experiences from "@/data/profesional-experience.json";
+import { getLocale, useTranslations } from "@/i18n/ui";
+import { getExperiences } from "@/i18n/data";
 import ExperienceEntry from "@/components/ExperienceEntry.astro";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const experiences = getExperiences(locale);
 ---
 
 <section class="experience section" id="experience">
   <div class="container">
-    <h2 class="experience__title">Professional Experience</h2>
+    <h2 class="experience__title">{t("experience.title")}</h2>
     <div class="experience__list">
       {
         experiences.map((exp) => (

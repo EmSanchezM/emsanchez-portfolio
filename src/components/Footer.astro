@@ -1,4 +1,8 @@
 ---
+import { getLocale, useTranslations } from "@/i18n/ui";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <footer class="footer">
@@ -9,10 +13,10 @@
     <div class="footer__links">
       <a href="https://www.linkedin.com/in/elvin-sanchez-medina" target="_blank" class="footer__link">LinkedIn</a>
       <a href="https://github.com/EmSanchezM" target="_blank" class="footer__link">GitHub</a>
-      <a href="mailto:emsanchez891@gmail.com" class="footer__link">Email</a>
+      <a href="mailto:emsanchez891@gmail.com" class="footer__link">{t("contact.email")}</a>
     </div>
     <p class="footer__copy">
-      &copy; {new Date().getFullYear()} EMSANCHEZ. All rights reserved.
+      &copy; {new Date().getFullYear()} EMSANCHEZ. {t("footer.rights")}
     </p>
   </div>
 </footer>

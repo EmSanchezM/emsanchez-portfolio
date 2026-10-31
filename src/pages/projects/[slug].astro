@@ -1,19 +1,22 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import projects from "@/data/projects.json";
+import { getLocale, useTranslations } from "@/i18n/ui";
+import { getProjects } from "@/i18n/data";
 
 export function getStaticPaths() {
-  return projects.map((project) => ({
+  return getProjects("en").map((project) => ({
     params: { slug: project.slug },
     props: { project },
   }));
 }
 
 const { project } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <Layout
-  title={`${project.title} — Case Study | Elvin Sanchez`}
+  title={t("caseStudy.metaTitle", { title: project.title })}
   description={project.description ?? project.longDescription?.split('.')[0] + '.'}
   image={project.imageURL}
 >
@@ -29,7 +32,7 @@ const { project } = Astro.props;
         />
       </div>
       <div class="cs-hero__content">
-        <span class="cs-hero__label">Case Study {project.year}</span>
+        <span class="cs-hero__label">{t("caseStudy.label")} {project.year}</span>
         <h1 class="cs-hero__title">
           {project.title}<span class="cs-hero__dot">.</span>
         </h1>
@@ -41,12 +44,12 @@ const { project } = Astro.props;
     <section class="cs-overview">
       <div class="cs-overview__grid">
         <div class="cs-overview__text">
-          <h2 class="cs-overview__title">Overview</h2>
+          <h2 class="cs-overview__title">{t("caseStudy.overview")}</h2>
           <p class="cs-overview__description">{project.longDescription}</p>
           <div class="cs-overview__actions">
             {project.githubUrl && (
               <a href={project.githubUrl} target="_blank" class="btn btn--primary">
-                View Source
+                {t("caseStudy.viewSource")}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="7" y1="17" x2="17" y2="7"></line>
                   <polyline points="7 7 17 7 17 17"></polyline>
@@ -57,7 +60,7 @@ const { project } = Astro.props;
         </div>
         <div class="cs-overview__meta">
           <div class="cs-overview__meta-group">
-            <h3 class="cs-overview__meta-label">Tech Stack</h3>
+            <h3 class="cs-overview__meta-label">{t("detail.techStack")}</h3>
             <ul class="cs-overview__tech-list">
               {
                 project.technologies.map((tech: string) => (
@@ -70,7 +73,7 @@ const { project } = Astro.props;
             </ul>
           </div>
           <div class="cs-overview__meta-group">
-            <h3 class="cs-overview__meta-label">Role</h3>
+            <h3 class="cs-overview__meta-label">{t("caseStudy.role")}</h3>
             <p class="cs-overview__role">{project.role}</p>
           </div>
         </div>
@@ -81,7 +84,7 @@ const { project } = Astro.props;
     {project.features && (
       <section class="cs-features">
         <div class="cs-features__inner">
-          <h2 class="cs-features__title">Core Pillars</h2>
+          <h2 class="cs-features__title">{t("caseStudy.corePillars")}</h2>
           <div class="cs-features__grid">
             {project.features.map((feature: any) => (
               <div
@@ -109,12 +112,12 @@ const { project } = Astro.props;
           {project.challenges.map((challenge: any, i: number) => (
             <div class:list={['cs-challenge', { 'cs-challenge--reversed': i % 2 !== 0 }]}>
               <div class="cs-challenge__problem">
-                <span class="cs-challenge__label">Challenge {String(i + 1).padStart(2, '0')}</span>
+                <span class="cs-challenge__label">{t("caseStudy.challenge")} {String(i + 1).padStart(2, '0')}</span>
                 <h2 class="cs-challenge__title">{challenge.title}</h2>
                 <p class="cs-challenge__text">{challenge.problem}</p>
               </div>
               <div class="cs-challenge__solution">
-                <h4 class="cs-challenge__solution-title">The Solution</h4>
+                <h4 class="cs-challenge__solution-title">{t("caseStudy.solution")}</h4>
                 <p class="cs-challenge__text">{challenge.solution}</p>
                 {challenge.quote && (
                   <blockquote class="cs-challenge__quote">
@@ -132,7 +135,7 @@ const { project } = Astro.props;
     {project.impact && (
       <section class="cs-impact">
         <div class="cs-impact__inner">
-          <h2 class="cs-impact__title">The Impact</h2>
+          <h2 class="cs-impact__title">{t("caseStudy.impact")}</h2>
           <div class="cs-impact__grid">
             {project.impact.map((stat: any) => (
               <div class="cs-stat">
@@ -148,15 +151,15 @@ const { project } = Astro.props;
     <!-- CTA -->
     <section class="cs-cta">
       <div class="cs-cta__card">
-        <h2 class="cs-cta__title">Ready to explore the code?</h2>
+        <h2 class="cs-cta__title">{t("caseStudy.ctaTitle")}</h2>
         <p class="cs-cta__description">
-          {project.title} is open-source and available for review. Dive into the architectural decisions that power this project.
+          {t("caseStudy.ctaDescription", { title: project.title })}
         </p>
         <div class="cs-cta__actions">
           {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" class="btn btn--primary">GitHub Repo</a>
+            <a href={project.githubUrl} target="_blank" class="btn btn--primary">{t("caseStudy.githubRepo")}</a>
           )}
-          <a href="/#work" class="cs-cta__ghost">Back to Projects</a>
+          <a href="/#work" class="cs-cta__ghost">{t("caseStudy.back")}</a>
         </div>
       </div>
     </section>
