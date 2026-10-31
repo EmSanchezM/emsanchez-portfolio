@@ -1,4 +1,6 @@
 ---
+import { getLocale, localizePath, useTranslations } from "@/i18n/ui";
+
 interface Props {
   slug: string;
   imageURL: string;
@@ -10,13 +12,15 @@ interface Props {
 }
 
 const { slug, title, description, imageURL, technologies, githubUrl, year } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <article class="card">
   <div class="card__image-wrapper">
     <img
       src={imageURL}
-      alt={`${title} project`}
+      alt={t("projects.imageAlt", { title })}
       class="card__image"
       loading="lazy"
       width="600"
@@ -37,8 +41,8 @@ const { slug, title, description, imageURL, technologies, githubUrl, year } = As
       }
     </div>
     <div class="card__actions">
-      <a href={`/projects/${slug}`} class="card__cta">
-        View Case Study
+      <a href={localizePath(locale, `/projects/${slug}`)} class="card__cta">
+        {t("projects.viewCaseStudy")}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>

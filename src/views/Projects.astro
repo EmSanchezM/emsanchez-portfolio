@@ -1,11 +1,16 @@
 ---
-import projects from "@/data/projects.json";
+import { getLocale, useTranslations } from "@/i18n/ui";
+import { getProjects } from "@/i18n/data";
 import ProjectCard from "@/components/ProjectCard.astro";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const projects = getProjects(locale);
 ---
 
 <section class="projects section" id="work">
   <div class="container">
-    <h2 class="projects__title">Selected Projects</h2>
+    <h2 class="projects__title">{t("projects.title")}</h2>
     <div class="projects__grid">
       {projects.map((project) => <ProjectCard {...project} />)}
     </div>

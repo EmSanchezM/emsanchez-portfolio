@@ -1,17 +1,18 @@
 ---
+import { getLocale, useTranslations } from "@/i18n/ui";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <header class="resume-intro">
   <div class="container">
     <div class="resume-intro__content">
-      <p class="resume-intro__label">Resume</p>
+      <p class="resume-intro__label">{t("resume.label")}</p>
       <h1 class="resume-intro__title">Elvin Sanchez</h1>
-      <p class="resume-intro__subtitle">Software Engineer & Architect</p>
+      <p class="resume-intro__subtitle" set:html={t("hero.subtitle")} />
       <p class="resume-intro__description">
-        Software engineer with +5 years of experience in full-stack development.
-        Proficient in Java, JavaScript, TypeScript and frameworks like React, Next.js,
-        Spring Boot. Experienced in database design, API integration, scalable
-        architectures, and working with cross-functional teams.
+        {t("resume.description")}
       </p>
       <div class="resume-intro__contact">
         <a href="mailto:emsanchez891@gmail.com" class="resume-intro__link">emsanchez891@gmail.com</a>

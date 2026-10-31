@@ -1,29 +1,27 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import experiences from "@/data/profesional-experience.json";
+import { getLocale, localizePath, useTranslations } from "@/i18n/ui";
+import { getExperiencePaths } from "@/i18n/data";
 
 export function getStaticPaths() {
-  return experiences
-    .filter((exp) => "engagements" in exp)
-    .map((exp) => ({
-      params: { slug: exp.slug },
-      props: { exp },
-    }));
+  return getExperiencePaths("en");
 }
 
 const { exp } = Astro.props as { exp: any };
 const hasMany = exp.engagements.length > 1;
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <Layout
-  title={`${exp.company} — Experience | Elvin Sanchez`}
+  title={t("experienceDetail.metaTitle", { company: exp.company })}
   description={exp.summary.split('.')[0] + '.'}
 >
   <main class="xp" id="main">
     <!-- Hero -->
     <section class="xp-hero">
       <div class="xp-hero__content">
-        <span class="xp-hero__label">Experience · {exp.time}</span>
+        <span class="xp-hero__label">{t("experienceDetail.label")} · {exp.time}</span>
         <h1 class="xp-hero__title">
           {exp.company}<span class="xp-hero__dot">.</span>
         </h1>
@@ -35,12 +33,12 @@ const hasMany = exp.engagements.length > 1;
     <!-- Engagements -->
     <section class="xp-engagements">
       <div class="xp-engagements__inner">
-        <h2 class="xp-engagements__title">{hasMany ? 'Engagements' : 'Highlights'}</h2>
+        <h2 class="xp-engagements__title">{t(hasMany ? "experienceDetail.engagements" : "experienceDetail.highlights")}</h2>
         {exp.engagements.map((item: any, i: number) => (
           <article class="xp-item">
             <header class="xp-item__header">
               <span class="xp-item__label">
-                {hasMany && `Engagement ${String(i + 1).padStart(2, '0')} · `}{item.period}
+                {hasMany && `${t("experienceDetail.engagement")} ${String(i + 1).padStart(2, '0')} · `}{item.period}
               </span>
               <h3 class="xp-item__title">{item.title}</h3>
               <p class="xp-item__client">{item.client}</p>
@@ -67,7 +65,7 @@ const hasMany = exp.engagements.length > 1;
                     ))}
                   </div>
                 )}
-                <h4 class="xp-item__meta-label">Tech Stack</h4>
+                <h4 class="xp-item__meta-label">{t("detail.techStack")}</h4>
                 <ul class="xp-item__tech-list">
                   {item.technologies.map((tech: string) => (
                     <li class="xp-item__tech">{tech}</li>
@@ -83,13 +81,13 @@ const hasMany = exp.engagements.length > 1;
     <!-- CTA -->
     <section class="xp-cta">
       <div class="xp-cta__card">
-        <h2 class="xp-cta__title">Want the full story?</h2>
+        <h2 class="xp-cta__title">{t("experienceDetail.ctaTitle")}</h2>
         <p class="xp-cta__description">
-          I'm happy to walk through the architecture decisions behind this work.
+          <Fragment set:html={t("experienceDetail.ctaDescription")} />
         </p>
         <div class="xp-cta__actions">
-          <a href="/#contact" class="btn btn--primary">Get in touch</a>
-          <a href="/#experience" class="xp-cta__ghost">Back to Experience</a>
+          <a href={localizePath(locale, "/#contact")} class="btn btn--primary">{t("experienceDetail.contact")}</a>
+          <a href={localizePath(locale, "/#experience")} class="xp-cta__ghost">{t("experienceDetail.back")}</a>
         </div>
       </div>
     </section>

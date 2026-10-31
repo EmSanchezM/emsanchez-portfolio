@@ -1,0 +1,222 @@
+[
+  {
+    "slug": "wings-cup",
+    "imageURL": "/images/projects/wings-cup.webp",
+    "title": "Wings Cup",
+    "description": "Un juego privado de pronósticos para el Mundial 2026: crea salas, invita a tus amigos, pronostica cada partido y escala posiciones en una tabla en vivo.",
+    "technologies": ["Nuxt 4", "Vue", "TypeScript", "Supabase", "Tailwind CSS"],
+    "githubUrl": "https://github.com/EmSanchezM/wings-cup",
+    "year": "2026",
+    "longDescription": "Wings Cup es una plataforma social de pronósticos construida en torno al Mundial 2026, donde grupos de amigos compiten en salas privadas pronosticando el marcador de cada partido. Cada sala tiene un dueño, un código de invitación y su propia tabla de posiciones, con un sistema de puntuación ponderado que premia el marcador exacto por encima de la diferencia de goles, y esta por encima del simple resultado. El principal desafío de ingeniería fue la equidad: los pronósticos deben bloquearse en el instante en que comienza un partido, sin posibilidad de editarlos después. En lugar de confiar en los relojes de los clientes o en frágiles endpoints de cron por HTTP, el bloqueo se ejecuta dentro de PostgreSQL mediante Supabase pg_cron, lo que hace que las reglas se apliquen en la propia capa de datos.",
+    "role": "Product Owner, Líder y Desarrollador Fullstack",
+    "features": [
+      {
+        "title": "Salas privadas e invitaciones",
+        "description": "Un flujo guiado de varios pasos para crear salas, cada una con un dueño, un código de invitación para compartir y enlaces de acceso para sumar amigos.",
+        "span": 2
+      },
+      {
+        "title": "Motor de puntuación ponderado",
+        "description": "Marcador exacto (+5), diferencia de goles (+3) y resultado correcto (+1): reglas configurables que convierten cada partido en una decisión estratégica.",
+        "accent": true
+      },
+      {
+        "title": "Pronósticos bloqueados al inicio",
+        "description": "Los pronósticos se congelan en el momento en que comienza un partido y se revelan a los demás miembros, lo que mantiene el juego a prueba de manipulaciones."
+      },
+      {
+        "title": "Tabla de posiciones en vivo",
+        "description": "Las posiciones de cada sala se actualizan automáticamente a medida que se cargan los resultados, con seguimiento del avance en los 104 partidos.",
+        "span": 2
+      },
+      {
+        "title": "Consola de administración de partidos",
+        "description": "Un panel de administración para cargar resultados, controlar los estados de los partidos (Programado, En vivo, Finalizado, Aplazado) y bloquear en lote los pronósticos de partidos ya en curso."
+      },
+      {
+        "title": "Reglas aplicadas en la base de datos con RLS",
+        "description": "Row-Level Security y tareas programadas se ejecutan en PostgreSQL mediante Supabase, de modo que el control de acceso y el bloqueo de pronósticos viven donde están los datos.",
+        "accent": true
+      }
+    ],
+    "challenges": [
+      {
+        "title": "Bloquear pronósticos sin confiar en el cliente",
+        "problem": "La integridad de todo el juego depende de una sola regla: ningún pronóstico puede cambiar después de que comienza un partido. Depender del reloj del navegador o de una solicitud iniciada por el usuario permitiría que cualquiera editara un pronóstico después de ver cómo se desarrolla el partido.",
+        "solution": "El bloqueo de pronósticos se sacó por completo del cliente y se llevó a la base de datos. Una tarea programada se ejecuta mediante Supabase pg_cron y congela cada partido cuya hora de inicio ya pasó, mientras que una acción de administración puede bloquear en lote los partidos que ya están en curso. La regla se aplica del lado del servidor, en PostgreSQL, sin depender de ningún cliente.",
+        "quote": "Equidad garantizada por el reloj de la base de datos, no por el navegador del jugador."
+      },
+      {
+        "title": "Visibilidad multi-tenant sin filtrar pronósticos",
+        "problem": "Las salas son competencias privadas: los miembros solo deben ver los pronósticos de los demás una vez que comienza el partido, y nunca los datos de salas a las que no pertenecen. Manejar esto mal filtra estrategia entre rivales o expone por completo a otros grupos.",
+        "solution": "Los límites de acceso se codificaron como políticas de Row-Level Security de Supabase, de modo que un miembro solo puede leer los pronósticos de las salas a las que pertenece y solo después de que se cumple la condición de revelado. La autorización vive en la base de datos, no dispersa en guards de la UI que son fáciles de eludir.",
+        "quote": "Reglas de visibilidad expresadas como políticas RLS en lugar de verificaciones confiadas al cliente."
+      },
+      {
+        "title": "Todos los partidos y estados de un torneo",
+        "problem": "Un Mundial abarca 104 partidos entre la fase de grupos y las eliminatorias, cada uno pasando por los estados programado, en vivo, finalizado y aplazado, y cada cambio de estado repercute en la puntuación, el bloqueo y la tabla de posiciones.",
+        "solution": "El ciclo de vida de los partidos se modeló como estados explícitos con transiciones claras, acompañados de validación con Zod y stores de Pinia en el frontend. Finalizar un partido con un marcador final dispara el reparto automático de puntos: el administrador gestiona el estado y la puntuación sigue siendo un resultado derivado y determinístico.",
+        "quote": "El estado del partido como única fuente de verdad que impulsa la puntuación automáticamente."
+      }
+    ]
+  },
+  {
+    "slug": "budgetwise",
+    "imageURL": "/images/projects/budget-wise.webp",
+    "title": "BudgetWise",
+    "description": "Un gestor de finanzas personales completo, con categorización automática de transacciones y analíticas detalladas.",
+    "technologies": ["TypeScript", "Qwik", "Prisma", "Cloudflare"],
+    "githubUrl": "https://github.com/EmSanchezM/BudgetWise",
+    "year": "2023",
+    "longDescription": "BudgetWise nació de la frustración con las apps de finanzas recargadas y llenas de anuncios. La misión era construir una herramienta que priorizara la integridad de los datos y la claridad visual. Permite a los usuarios registrar gastos, definir presupuestos detallados y visualizar el crecimiento de su patrimonio neto a través de una interfaz precisa y editorial.",
+    "role": "Líder de ingeniería de producto",
+    "features": [
+      {
+        "title": "Analíticas en tiempo real",
+        "description": "Procesamiento instantáneo de transacciones con categorización dinámica mediante lógica personalizada.",
+        "span": 2
+      },
+      {
+        "title": "Seguridad de nivel bancario",
+        "description": "Cifrado de extremo a extremo para todos los metadatos financieros sensibles.",
+        "accent": true
+      },
+      {
+        "title": "Exportación inteligente",
+        "description": "Genera reportes PDF/CSV con un solo toque, preparados para la declaración de impuestos."
+      },
+      {
+        "title": "Sincronización global",
+        "description": "Sincronización fluida entre varios dispositivos para acceder a los datos en tiempo real.",
+        "span": 2
+      }
+    ],
+    "challenges": [
+      {
+        "title": "Visualización de datos compleja",
+        "problem": "El principal obstáculo era renderizar miles de puntos de datos sin sacrificar la capacidad de respuesta de la UI. Las librerías de gráficos estándar eran demasiado pesadas y no se ajustaban a los requisitos estéticos específicos del sistema de diseño.",
+        "solution": "Construí desde cero un motor de gráficos SVG liviano y propio. Esto permitió un control detallado de la estética y aseguró interacciones fluidas a 60fps en dispositivos móviles.",
+        "quote": "Reduje el tamaño del bundle en un 45% al eliminar módulos de gráficos sin uso."
+      },
+      {
+        "title": "Concurrencia en la base de datos",
+        "problem": "Manejar una gran cantidad de escrituras simultáneas en cuentas familiares compartidas provocaba problemas de bloqueo importantes en la configuración inicial de PostgreSQL.",
+        "solution": "Implementé una estrategia de write-ahead logging y un middleware optimizado para agrupar transacciones en lotes. Migré las consultas de saldo, de lectura intensiva, a una capa de microcaché.",
+        "quote": "Mejoré el tiempo promedio de respuesta de la API de 240ms a 42ms."
+      }
+    ]
+  },
+  {
+    "slug": "bookworm",
+    "imageURL": "/images/projects/bookworm.webp",
+    "title": "BookWorm",
+    "description": "Plataforma social de lectura para descubrir y compartir libros, con foco en una tipografía de alta fidelidad y una interacción libre de distracciones.",
+    "technologies": ["TypeScript", "Node.js", "SurrealDB"],
+    "githubUrl": "https://github.com/EmSanchezM/api-bookstore/",
+    "year": "2022",
+    "longDescription": "BookWorm reinventa la experiencia de lectura digital combinando el descubrimiento social con principios de diseño editorial. Está construida para ayudar a los lectores a encontrar su próximo libro favorito mediante recomendaciones curadas y reseñas impulsadas por la comunidad.",
+    "role": "Desarrollador Fullstack",
+    "features": [
+      {
+        "title": "Recomendaciones inteligentes",
+        "description": "Sugerencias de libros personalizadas según el historial de lectura y las preferencias de la comunidad.",
+        "span": 2
+      },
+      {
+        "title": "Listas de lectura",
+        "description": "Crea y comparte colecciones curadas de libros con categorías personalizadas.",
+        "accent": true
+      },
+      {
+        "title": "Reseñas sociales",
+        "description": "Reseñas impulsadas por la comunidad con formato de texto enriquecido y discusiones en hilos."
+      },
+      {
+        "title": "Arquitectura API-first",
+        "description": "API RESTful construida con Node.js y SurrealDB para consultas de datos flexibles.",
+        "span": 2
+      }
+    ],
+    "challenges": [
+      {
+        "title": "Recomendaciones basadas en grafos",
+        "problem": "Las consultas relacionales tradicionales eran demasiado lentas para generar recomendaciones a partir de preferencias de usuarios y metadatos de libros interconectados.",
+        "solution": "Aproveché las capacidades de recorrido de grafos de SurrealDB para construir un motor de recomendaciones que consulta de forma eficiente las relaciones entre usuarios, libros y géneros.",
+        "quote": "Las consultas de recomendaciones bajaron de 800ms a menos de 50ms."
+      },
+      {
+        "title": "Sincronización en tiempo real",
+        "problem": "Mantener el progreso de lectura sincronizado entre dispositivos y, al mismo tiempo, manejar correctamente los escenarios sin conexión.",
+        "solution": "Implementé un patrón de event sourcing con resolución de conflictos, que permite una sincronización fluida cuando se restablece la conectividad.",
+        "quote": "Cero pérdida de datos en más de 10k eventos de sincronización durante las pruebas."
+      }
+    ]
+  },
+  {
+    "slug": "pos-ecommerce-api",
+    "imageURL": "/images/projects/multitenant.webp",
+    "title": "POS + Ecommerce API",
+    "description": "Backend modular en Rust para punto de venta y ecommerce, construido sobre un Cargo workspace con límites de dominio estrictos y RBAC en el borde.",
+    "technologies": ["Rust", "Axum", "PostgreSQL", "SQLx", "Docker"],
+    "githubUrl": "https://github.com/EmSanchezM/pos-ecommerce-api",
+    "year": "2026",
+    "longDescription": "Una REST API lista para producción que unifica las operaciones de punto de venta y ecommerce en un solo backend, diseñada desde el primer día para atender a varias tiendas desde un único despliegue. El sistema está construido como un monolito modular: un Cargo workspace divide el dominio en crates aislados (identity, inventory, purchasing, sales, core, common) con una capa api-gateway responsable de los aspectos HTTP, la inyección de dependencias, la resolución del tenant y el mapeo de errores. El objetivo era obtener los beneficios de mantenibilidad de los microservicios y las garantías de aislamiento del multi-tenancy sin la carga operativa: límites fuertes, compilación independiente y una sola unidad desplegable.",
+    "role": "Arquitecto e Ingeniero Backend",
+    "features": [
+      {
+        "title": "Cargo workspace modular",
+        "description": "Dominio dividido en crates independientes (identity, inventory, purchasing, sales) con dependencias explícitas que el compilador de Rust hace cumplir.",
+        "span": 2
+      },
+      {
+        "title": "RBAC con JWT + Argon2",
+        "description": "Middleware basado en permisos, roles predefinidos (Admin, Manager, Cashier) y hash de contraseñas con argon2.",
+        "accent": true
+      },
+      {
+        "title": "Consultas de SQLx verificadas en compilación",
+        "description": "Cada sentencia SQL se verifica contra el esquema real en tiempo de compilación, detectando desviaciones antes de llegar a producción."
+      },
+      {
+        "title": "API Gateway con Axum",
+        "description": "Un único punto de entrada HTTP con un contenedor de DI basado en estado compartido, un mapeo unificado de errores a HTTP y extractores tipados como CurrentUser.",
+        "span": 2
+      },
+      {
+        "title": "Identificadores UUID v7",
+        "description": "IDs ordenados por tiempo en todos los agregados para mantener los índices compactos y conservar el orden natural de escritura."
+      },
+      {
+        "title": "Base multi-tenant",
+        "description": "Arquitectura preparada para alojar varias tiendas en un solo despliegue, con el contexto del tenant resuelto en el borde y propagado por el dominio mediante extractores tipados.",
+        "accent": true
+      }
+    ],
+    "challenges": [
+      {
+        "title": "Aislamiento de tenants sin una flota de servicios",
+        "problem": "Ejecutar varias tiendas independientes sobre un solo backend implica que cada consulta, verificación de permisos y clave de caché tiene que tener en cuenta el tenant, y equivocarse filtra los datos de un cliente en el panel de otro.",
+        "solution": "La identidad del tenant se saca de los handlers y se lleva al contexto de la solicitud mediante extractores de Axum, de modo que se resuelve una sola vez en el borde y fluye automáticamente por los repositorios. La estructura del workspace mantiene la lógica con alcance de tenant dentro de los crates de dominio, dejando al api-gateway como el único lugar que hace cumplir el límite.",
+        "quote": "El multi-tenancy como aspecto transversal resuelto en el borde, no como un flag que se pasa por cada función."
+      },
+      {
+        "title": "Evitar que un monolito se degrade",
+        "problem": "Mezclar los flujos de punto de venta y ecommerce en un solo código implicaba el riesgo de la clásica bola de barro: lógica de ventas filtrándose en el inventario, dependencias circulares y una suite de tests que solo corre de punta a punta.",
+        "solution": "Estructuré el proyecto como un Cargo workspace donde cada bounded context es su propio crate. El compilador bloquea el acoplamiento accidental, cada módulo expone una API pública acotada y el api-gateway es el único lugar que los conecta mediante un estado de aplicación compartido.",
+        "quote": "Límites de dominio aplicados en tiempo de compilación en lugar de en la revisión de código."
+      },
+      {
+        "title": "Autorización sin código repetitivo",
+        "problem": "Un sistema de punto de venta tiene decenas de acciones granulares (reembolsar, anular, ajustar inventario, gestionar usuarios). Codificar las verificaciones en cada handler es propenso a errores y dispersa las políticas por todo el código.",
+        "solution": "Centralicé la autenticación y la aplicación de permisos en un middleware de Axum y un extractor CurrentUser. Los roles y permisos viven en la base de datos, se cargan en cada solicitud y las rutas declaran el permiso que requieren, de modo que los handlers se mantienen enfocados en la lógica de negocio.",
+        "quote": "Las verificaciones de permisos se convirtieron en una anotación de una línea en la ruta."
+      },
+      {
+        "title": "Evolución de la base de datos segura y repetible",
+        "problem": "Los cambios de esquema y los datos iniciales (permisos, roles, tienda por defecto) tenían que ser confiables en las máquinas de desarrollo, en CI y en producción, sin desviaciones ni filas duplicadas.",
+        "solution": "Adopté migraciones de SQLx para el esquema y un crate de seed idempotente dedicado para los datos de arranque. El seed puede ejecutarse cualquier cantidad de veces sin producir duplicados, y la verificación de consultas en tiempo de compilación garantiza que el código coincida con el esquema actual.",
+        "quote": "Esquema, consultas y datos de seed verificados antes de producir el binario."
+      }
+    ]
+  }
+]

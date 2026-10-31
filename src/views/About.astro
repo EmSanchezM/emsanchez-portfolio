@@ -1,20 +1,24 @@
 ---
+import { getLocale, useTranslations } from "@/i18n/ui";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section class="about section" id="about">
   <div class="container">
     <div class="about__grid">
       <div class="about__text">
-        <h2 class="about__title">About me</h2>
+        <h2 class="about__title">{t("about.title")}</h2>
         <p class="about__description">
-          With over 5 years of experience in full-stack development, I focus on building scalable architectures that don't compromise on user experience. I believe code is a craft that requires both technical rigor and creative intuition.
+          <Fragment set:html={t("about.intro")} />
         </p>
         <p class="about__description">
-          Currently focused on Java ecosystems, React, Distributed Systems, and refining modern web interfaces with a strong emphasis on performance and clean architecture.
+          {t("about.focus")}
         </p>
       </div>
       <div class="about__tech">
-        <h3 class="about__tech-label">Core Technologies</h3>
+        <h3 class="about__tech-label">{t("about.techLabel")}</h3>
         <div class="about__chips">
           <span class="about__chip">Java</span>
           <span class="about__chip">Rust lang</span>
