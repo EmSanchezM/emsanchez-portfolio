@@ -12,6 +12,7 @@ export function getStaticPaths() {
 }
 
 const { exp } = Astro.props as { exp: any };
+const hasMany = exp.engagements.length > 1;
 ---
 
 <Layout
@@ -34,11 +35,13 @@ const { exp } = Astro.props as { exp: any };
     <!-- Engagements -->
     <section class="xp-engagements">
       <div class="xp-engagements__inner">
-        <h2 class="xp-engagements__title">Engagements</h2>
+        <h2 class="xp-engagements__title">{hasMany ? 'Engagements' : 'Highlights'}</h2>
         {exp.engagements.map((item: any, i: number) => (
           <article class="xp-item">
             <header class="xp-item__header">
-              <span class="xp-item__label">Engagement {String(i + 1).padStart(2, '0')} · {item.period}</span>
+              <span class="xp-item__label">
+                {hasMany && `Engagement ${String(i + 1).padStart(2, '0')} · `}{item.period}
+              </span>
               <h3 class="xp-item__title">{item.title}</h3>
               <p class="xp-item__client">{item.client}</p>
             </header>

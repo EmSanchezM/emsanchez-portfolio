@@ -12,7 +12,7 @@ import ExperienceEntry from "@/components/ExperienceEntry.astro";
           <ExperienceEntry
             role={exp.role}
             company={exp.company}
-            description={exp.description}
+            description={"teaser" in exp ? exp.teaser : exp.description}
             time={exp.time}
             detailsUrl={"engagements" in exp ? `/experience/${exp.slug}` : undefined}
           />

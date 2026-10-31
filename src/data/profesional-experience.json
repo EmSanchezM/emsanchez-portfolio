@@ -158,27 +158,109 @@
           }
         ]
       }
-    ]
+    ],
+    "teaser": "Senior engineer across five client engagements — from recovering 66 fintech deals blocked by a silent integration outage to identifying ~$12.5k a year in cloud savings for a European retailer."
   },
   {
     "slug": "clinpays-fintech",
     "role": "Fullstack Developer",
     "company": "Clinpays",
     "description": "Fintech platform processing digital payments at scale. Spearheaded a full-stack modernization initiative that transformed the platform's frontend from a legacy class-based codebase to a clean, functional architecture with hooks — cutting technical debt by roughly 40% and measurably accelerating the team's feature delivery cadence. Redesigned the merchant onboarding flow end-to-end, removing friction points in the conversion funnel that resulted in a significant uplift in sign-up completion rates and faster time-to-first-transaction for new merchants. Shipped a revamped SDK that simplified third-party integration, reducing the average client go-live timeline and directly contributing to partner adoption growth. Introduced a CQRS-based architecture that cleanly decoupled read and write workloads, enabling the payment engine to handle increased transaction throughput without sacrificing system maintainability — a key factor in supporting the platform's scaling ambitions.",
-    "time": "2022 — 2025"
+    "time": "2022 — 2025",
+    "teaser": "Led the modernization of a payments platform: roughly 40% less technical debt, a redesigned merchant onboarding and a CQRS payment engine built to scale.",
+    "summary": "Fintech platform processing digital payments at scale. I worked across the frontend, the merchant experience and the payment engine to help the platform grow without slowing the team down.",
+    "engagements": [
+      {
+        "title": "Payments Platform Modernization",
+        "client": "Clinpays — digital payments fintech",
+        "period": "2022 — 2025",
+        "summary": "Full-stack modernization of a payments platform, from its frontend architecture to merchant onboarding, third-party integration and the payment engine.",
+        "highlights": [
+          "Spearheaded a full-stack modernization that moved the frontend from a legacy class-based codebase to a clean, functional architecture with hooks, cutting technical debt by roughly 40% and measurably accelerating feature delivery.",
+          "Redesigned the merchant onboarding flow end-to-end, removing friction points in the conversion funnel to lift sign-up completion rates and shorten time-to-first-transaction for new merchants.",
+          "Shipped a revamped SDK that simplified third-party integration, reducing the average client go-live timeline and contributing to partner adoption growth.",
+          "Introduced a CQRS-based architecture that decoupled read and write workloads, letting the payment engine handle higher transaction throughput without sacrificing maintainability."
+        ],
+        "technologies": [
+          "React",
+          "CQRS",
+          "SDK"
+        ],
+        "impact": [
+          {
+            "value": "~40%",
+            "label": "Less technical debt"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "leader-realty",
     "role": "Backend Developer",
     "company": "Leader Realty Inc",
     "description": "U.S.-based real estate platform operating in the West Palm Beach, FL market. Delivered performance optimizations across core Laravel services — including queue-based job processing and Eloquent query tuning — that cut average page load times significantly under peak traffic, directly improving user retention and SEO rankings. Engineered an automated MySQL migration and versioning pipeline that eliminated deployment-related downtime risk and guaranteed schema consistency across all environments, enabling the team to ship with confidence on every release. Unlocked new revenue streams by building Stripe and Apple Pay integrations from the ground up, and broadened the platform's user acquisition funnel by implementing Google and Apple social authentication — reducing sign-up friction and increasing conversion rates. Delivered a REST API integration with a third-party real estate data provider, giving the platform access to live property listings that powered its core value proposition and kept users engaged with always-current market data.",
-    "time": "2021 — 2022"
+    "time": "2021 — 2022",
+    "teaser": "Made a U.S. real estate platform faster and ready to take payments: Laravel performance tuning, downtime-free database deploys, and Stripe and Apple Pay built from scratch.",
+    "summary": "U.S.-based real estate platform operating in the West Palm Beach, FL market. I owned backend work on performance, deployments, payments, authentication and live property data.",
+    "engagements": [
+      {
+        "title": "Real Estate Platform Backend",
+        "client": "Leader Realty — West Palm Beach, FL",
+        "period": "2021 — 2022",
+        "summary": "Backend services for a real estate platform, focused on speed under peak traffic, safe releases and new revenue streams.",
+        "highlights": [
+          "Delivered performance optimizations across core Laravel services, including queue-based job processing and Eloquent query tuning, significantly cutting average page load times under peak traffic and improving retention and SEO rankings.",
+          "Engineered an automated MySQL migration and versioning pipeline that eliminated deployment-related downtime risk and kept schemas consistent across environments.",
+          "Built Stripe and Apple Pay integrations from the ground up, opening new revenue streams.",
+          "Implemented Google and Apple social authentication, reducing sign-up friction and increasing conversion.",
+          "Integrated a third-party real estate data provider through its REST API, powering the platform's core value with live, always-current property listings."
+        ],
+        "technologies": [
+          "PHP",
+          "Laravel",
+          "MySQL",
+          "Stripe",
+          "Apple Pay",
+          "REST APIs"
+        ]
+      }
+    ]
   },
   {
     "slug": "dataplus",
     "role": "Fullstack Developer",
     "company": "Dataplus",
     "description": "Software consultancy serving the Latin American market. Architected and delivered an offline-first business planning SaaS designed to solve a critical connectivity challenge — ensuring uninterrupted access to business tools in regions where internet reliability is a daily constraint. Implemented PouchDB on the client layer with automatic bi-directional sync to a Node.js/MongoDB backend, guaranteeing zero data loss during outages and seamless continuity once connectivity was restored. Built the React/Redux frontend following clean architecture principles, resulting in a modular, testable codebase that reduced onboarding time for new developers and positioned the product for sustainable long-term iteration. This solution directly expanded the client's addressable market by making the platform viable in underserved regions where competitors could not operate.",
-    "time": "2020 — 2021"
+    "time": "2020 — 2021",
+    "teaser": "Built an offline-first SaaS that keeps working when the internet doesn't: PouchDB-to-MongoDB sync with zero data loss during outages.",
+    "summary": "Software consultancy serving the Latin American market. I architected and delivered an offline-first business planning SaaS for regions where connectivity is a daily constraint.",
+    "engagements": [
+      {
+        "title": "Offline-First Business Planning SaaS",
+        "client": "Dataplus — Latin American software consultancy",
+        "period": "2020 — 2021",
+        "summary": "A business planning SaaS designed to keep working in regions where internet reliability is a daily constraint.",
+        "highlights": [
+          "Architected and delivered an offline-first SaaS that guarantees uninterrupted access to business tools when connectivity drops.",
+          "Implemented PouchDB on the client with automatic bi-directional sync to a Node.js/MongoDB backend, ensuring zero data loss during outages and seamless continuity once connectivity returns.",
+          "Built the React/Redux frontend following clean architecture principles, producing a modular, testable codebase that shortened onboarding for new developers.",
+          "Made the product viable in underserved regions where competitors could not operate, expanding the client's addressable market."
+        ],
+        "technologies": [
+          "React",
+          "Redux",
+          "PouchDB",
+          "Node.js",
+          "MongoDB"
+        ],
+        "impact": [
+          {
+            "value": "0",
+            "label": "Data lost during outages"
+          }
+        ]
+      }
+    ]
   }
 ]
