@@ -1,15 +1,20 @@
 ---
-import experiences from "@/data/profesional-experience.json";
-import education from "@/data/education.json";
+import { getLocale, useTranslations } from "@/i18n/ui";
+import { getEducation, getExperiences } from "@/i18n/data";
 import ExperienceEntry from "@/components/ExperienceEntry.astro";
 import EducationEntry from "@/components/EducationEntry.astro";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const experiences = getExperiences(locale);
+const education = getEducation(locale);
 ---
 
 <section class="resume-exp">
   <div class="container">
     <!-- Experience -->
     <div class="resume-exp__section">
-      <h2 class="resume-exp__heading">Professional Experience</h2>
+      <h2 class="resume-exp__heading">{t("experience.title")}</h2>
       <div class="resume-exp__list">
         {
           experiences.map((exp) => (
@@ -26,7 +31,7 @@ import EducationEntry from "@/components/EducationEntry.astro";
 
     <!-- Education -->
     <div class="resume-exp__section">
-      <h2 class="resume-exp__heading">Education</h2>
+      <h2 class="resume-exp__heading">{t("education.title")}</h2>
       <div class="resume-exp__edu-grid">
         {
           education.map((edu) => (
@@ -42,10 +47,10 @@ import EducationEntry from "@/components/EducationEntry.astro";
 
     <!-- Skills -->
     <div class="resume-exp__section">
-      <h2 class="resume-exp__heading">Core Skills</h2>
+      <h2 class="resume-exp__heading">{t("resume.skills")}</h2>
       <div class="resume-exp__skills">
         <div class="resume-exp__skill-group">
-          <h3 class="resume-exp__skill-label">Languages</h3>
+          <h3 class="resume-exp__skill-label">{t("resume.languages")}</h3>
           <div class="resume-exp__chips">
             <span class="resume-exp__chip">Java</span>
             <span class="resume-exp__chip">Rust lang</span>
@@ -55,7 +60,7 @@ import EducationEntry from "@/components/EducationEntry.astro";
           </div>
         </div>
         <div class="resume-exp__skill-group">
-          <h3 class="resume-exp__skill-label">Frameworks</h3>
+          <h3 class="resume-exp__skill-label">{t("resume.frameworks")}</h3>
           <div class="resume-exp__chips">
             <span class="resume-exp__chip">React</span>
             <span class="resume-exp__chip">Next.js</span>
@@ -68,7 +73,7 @@ import EducationEntry from "@/components/EducationEntry.astro";
           </div>
         </div>
         <div class="resume-exp__skill-group">
-          <h3 class="resume-exp__skill-label">Infrastructure</h3>
+          <h3 class="resume-exp__skill-label">{t("resume.infrastructure")}</h3>
           <div class="resume-exp__chips">
             <span class="resume-exp__chip">PostgreSQL</span>
             <span class="resume-exp__chip">MySQL</span>

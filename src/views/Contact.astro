@@ -1,19 +1,23 @@
 ---
 import { Github, Linkedin, Mail } from "@/components/icons";
+import { getLocale, useTranslations } from "@/i18n/ui";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section id="contact" class="contact section">
   <div class="container">
     <div class="contact__card">
       <h2 class="contact__title">
-        Let's build something<br />extraordinary.
+        <Fragment set:html={t("contact.titleStart")} /><br />{t("contact.titleEnd")}
       </h2>
       <div class="contact__links">
         <a href="mailto:emsanchez891@gmail.com" class="contact__link-item">
           <div class="contact__icon-circle">
             <Mail />
           </div>
-          <span class="contact__label">Email</span>
+          <span class="contact__label">{t("contact.email")}</span>
         </a>
         <a
           href="https://www.linkedin.com/in/elvin-sanchez-medina"

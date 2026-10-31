@@ -1,0 +1,10 @@
+---
+import CaseStudyPage from "@/pages/projects/[slug].astro";
+import { getProjectPaths } from "@/i18n/data";
+
+export function getStaticPaths() {
+  return getProjectPaths("es");
+}
+---
+
+<CaseStudyPage {...Astro.props} />

@@ -6,9 +6,13 @@ import Experience from "@/views/Experience.astro";
 import Projects from "@/views/Projects.astro";
 import Education from "@/views/Education.astro";
 import Contact from "@/views/Contact.astro";
+import { getLocale, useTranslations } from "@/i18n/ui";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
-<Layout title="Elvin Sanchez | Software Engineer">
+<Layout title={t("meta.homeTitle")}>
   <main class="main" id="main">
     <Hero />
     <About />
