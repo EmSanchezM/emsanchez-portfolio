@@ -24,3 +24,6 @@ pnpm-debug.log*
 .DS_Store
 
 .atl
+
+# local git worktrees
+.worktrees/
