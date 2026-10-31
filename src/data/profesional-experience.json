@@ -1,30 +1,266 @@
 [
   {
-    "slug": "coderland-factory",
+    "slug": "coderland",
     "role": "Senior Java Developer",
     "company": "Coderland",
     "description": "Software consulting firm delivering digital transformation solutions for organizations across industries and geographies. As a Senior Developer, I contribute to enterprise-grade client projects spanning e-commerce platforms, financial systems, and corporate digital products. Currently developing REST API services for a legacy e-commerce platform serving a major European retailer — building pricing update and customer creation endpoints within a complex ecosystem involving multi-marketplace integrations, multiple payment gateways, and high-volume transaction processing. Architected backend services for a multi-country financial factoring system deployed on GCP, enabling invoice discounting operations across three Central American markets and expanding the client's regional reach. Also supporting the company's corporate website — resolving production bugs, integrating the recruitment microservice to power the careers section, and upgrading core dependencies including a Next.js version migration to improve stability and long-term maintainability.",
-    "time": "2025 — Present"
+    "time": "2025 — Present",
+    "summary": "At Coderland I work across several client engagements at once, from legacy enterprise systems to cloud-native microservices. My focus is keeping production platforms modern, secure and fast: planning low-risk framework and runtime migrations with written runbooks and rollback plans, shipping integrations, and turning technical findings into clear reports for project managers and clients.",
+    "engagements": [
+      {
+        "title": "Multi-Country Invoice Factoring Platform",
+        "client": "Factoring fintech — Central America",
+        "period": "2026",
+        "summary": "Invoice-factoring platform with a deployment per country and portals for administrators, clients and affiliates, integrated with a partner fintech API for funding.",
+        "highlights": [
+          "Root-caused a silent integration outage: after a storage migration, signed file URLs exceeded the partner API's 500-character limit and every funding submission was rejected for 11 days. Built a permanent short-URL proxy that signs links on demand, keeping storage private and auditable, and recovered 66 of 67 affected deals.",
+          "Designed and built a digital-consent evidence module: an append-only record of IP, server timestamp, user agent, the full accepted text and a SHA-256 hash, plus PDF certificates. Covered by 48 tests and live in all three countries.",
+          "Led the move of document storage to cloud storage (1,627 files) and a 101-commit country release with 16 migrations, resolving six unplanned blockers along the way.",
+          "Fixed 504 timeouts on large PDF reports: profiling showed rendering, not SQL, was the bottleneck, so generation moved to a dedicated background queue that also releases memory after each job.",
+          "Traced recurring 504 outages to outbound HTTP calls without timeouts hanging the application workers, and shipped timeouts plus database indexes.",
+          "Found a float × Decimal bug that had been silently dropping batch uploads in two countries since 2024, and fixed a portal-wide 403 for read-only users across 32 templates with a test that walks every link."
+        ],
+        "technologies": [
+          "Python",
+          "Django",
+          "PostgreSQL",
+          "GCP",
+          "Cloud Storage"
+        ],
+        "impact": [
+          {
+            "value": "66/67",
+            "label": "Blocked deals recovered"
+          },
+          {
+            "value": "3",
+            "label": "Countries running consent evidence"
+          }
+        ]
+      },
+      {
+        "title": "E-commerce Catalog & Marketplace Integrations",
+        "client": "European electronics retailer",
+        "period": "2026",
+        "summary": "Legacy Java EE system managing catalog, pricing, orders and marketplace connections for a high-volume retailer.",
+        "highlights": [
+          "Root-caused a payment-integrity defect: a background job confirmed marketplace payments as successful for every order, including orders that did not exist, and contained it.",
+          "Restored store access to online orders for 176 users by tracing a missing permission group in the new per-store logins — fixed in data, with no code change.",
+          "Recovered 616 of 616 seller invoices for the finance team after a seller suspension by scripting the right marketplace API, with no new development.",
+          "Authored a production AWS infrastructure audit that identified roughly $12.5k per year in potential savings.",
+          "Wrote the production cutover runbook for the catalog integration with the VTEX commerce platform."
+        ],
+        "technologies": [
+          "Java EE",
+          "SQL Server",
+          "AWS",
+          "Mirakl"
+        ],
+        "impact": [
+          {
+            "value": "~$12.5k",
+            "label": "Yearly savings identified"
+          },
+          {
+            "value": "616/616",
+            "label": "Invoices recovered"
+          }
+        ]
+      },
+      {
+        "title": "Recruiting Integration Middleware",
+        "client": "Integration service for a recruiting SaaS",
+        "period": "2026",
+        "summary": "Reactive service connecting the public careers site and the employee portal with a recruiting SaaS: vacancies, applications, referrals and webhooks.",
+        "highlights": [
+          "Built an AI job-posting pipeline: a poller and an outbox worker turn draft vacancies into the company's standard template with Gemini, later extended to postings published directly.",
+          "Automated a candidate re-engagement campaign with signed-token links, a durable outbox with dead-letter handling and email de-duplication, replacing manual spreadsheet cleanup.",
+          "Root-caused reopened and duplicated job postings to an external CRM automation after first ruling out the middleware.",
+          "Moved the service to a fully non-blocking WebFlux stack on Java 25 / Spring Boot 4, with client timeouts, connection pools and Prometheus monitoring.",
+          "A post-upgrade audit uncovered a CI pipeline silently skipping all 20 test classes and a blocking call on the reactive event loop — both fixed."
+        ],
+        "technologies": [
+          "Java",
+          "Spring Boot",
+          "WebFlux",
+          "Gemini",
+          "Prometheus"
+        ],
+        "impact": [
+          {
+            "value": "459",
+            "label": "Candidates in automated campaign"
+          },
+          {
+            "value": "20",
+            "label": "Test classes restored in CI"
+          }
+        ]
+      },
+      {
+        "title": "Internal Employee Portal",
+        "client": "Coderland — internal platform",
+        "period": "2026",
+        "summary": "Portal used for timesheets, invoicing, leave requests and referral commissions, integrated with the CRM, issue trackers and the recruiting middleware.",
+        "highlights": [
+          "Modernized the full stack with a strangler approach, one library per small PR: Spring Boot 3.5 / Java 17 on the backend and Vite, React 19 and TypeScript on the frontend.",
+          "Replaced a CRM SDK integration spread across 168 files with lean REST calls, and resolved duplicate CRM contacts deterministically, returning an explicit support error code instead of guessing.",
+          "Investigated referral commissions on production data: only 2 of 310 referrals were ever hired, showing an attribution and conversion problem rather than data loss, and fixed a double-charge root cause.",
+          "Root-caused around 40 recurring payroll and billing incidents, such as an API page limit truncating results and cancelled pre-invoices counted as pending.",
+          "Switched the build to pnpm, cutting CI build time from ~8 minutes to ~3 minutes."
+        ],
+        "technologies": [
+          "Java",
+          "Spring Boot",
+          "React",
+          "TypeScript",
+          "Vite"
+        ],
+        "impact": [
+          {
+            "value": "-60%",
+            "label": "CI build time"
+          },
+          {
+            "value": "~40",
+            "label": "Incidents root-caused"
+          }
+        ]
+      },
+      {
+        "title": "Corporate Website & Headless CMS",
+        "client": "Coderland — public multilingual website (ES/EN)",
+        "period": "2026",
+        "summary": "Multilingual corporate website and headless CMS whose contact forms feed leads into the CRM.",
+        "highlights": [
+          "Hardened lead forms with four anti-spam layers plus a final AI check with Gemini, after an audit found the reCAPTCHA token was never verified on the server.",
+          "Traced a long-running silent failure in lead capture through the logs and restored it, then fixed lead-source attribution so the CRM stores the real UTM source instead of a single default.",
+          "Migrated the blog off a paid SaaS into the CMS: 67 bilingual articles with permanent redirects and webhook-driven cache refresh.",
+          "Brought 45 orphan URLs to 100% crawlable coverage and fixed redirect status codes, validated in production.",
+          "Wrote a blameless postmortem for a cache-poisoning incident, identifying a three-layer amplification, and shipped the hotfix and architecture fix; also led the Strapi 4 → 5 production upgrade."
+        ],
+        "technologies": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Strapi",
+          "Gemini",
+          "AWS"
+        ],
+        "impact": [
+          {
+            "value": "67",
+            "label": "Articles migrated"
+          },
+          {
+            "value": "45",
+            "label": "Orphan URLs recovered"
+          }
+        ]
+      }
+    ],
+    "teaser": "Senior engineer across five client engagements — from recovering 66 fintech deals blocked by a silent integration outage to identifying ~$12.5k a year in cloud savings for a European retailer."
   },
   {
     "slug": "clinpays-fintech",
     "role": "Fullstack Developer",
     "company": "Clinpays",
     "description": "Fintech platform processing digital payments at scale. Spearheaded a full-stack modernization initiative that transformed the platform's frontend from a legacy class-based codebase to a clean, functional architecture with hooks — cutting technical debt by roughly 40% and measurably accelerating the team's feature delivery cadence. Redesigned the merchant onboarding flow end-to-end, removing friction points in the conversion funnel that resulted in a significant uplift in sign-up completion rates and faster time-to-first-transaction for new merchants. Shipped a revamped SDK that simplified third-party integration, reducing the average client go-live timeline and directly contributing to partner adoption growth. Introduced a CQRS-based architecture that cleanly decoupled read and write workloads, enabling the payment engine to handle increased transaction throughput without sacrificing system maintainability — a key factor in supporting the platform's scaling ambitions.",
-    "time": "2022 — 2025"
+    "time": "2022 — 2025",
+    "teaser": "Led the modernization of a payments platform: roughly 40% less technical debt, a redesigned merchant onboarding and a CQRS payment engine built to scale.",
+    "summary": "Fintech platform processing digital payments at scale. I worked across the frontend, the merchant experience and the payment engine to help the platform grow without slowing the team down.",
+    "engagements": [
+      {
+        "title": "Payments Platform Modernization",
+        "client": "Clinpays — digital payments fintech",
+        "period": "2022 — 2025",
+        "summary": "Full-stack modernization of a payments platform, from its frontend architecture to merchant onboarding, third-party integration and the payment engine.",
+        "highlights": [
+          "Spearheaded a full-stack modernization that moved the frontend from a legacy class-based codebase to a clean, functional architecture with hooks, cutting technical debt by roughly 40% and measurably accelerating feature delivery.",
+          "Redesigned the merchant onboarding flow end-to-end, removing friction points in the conversion funnel to lift sign-up completion rates and shorten time-to-first-transaction for new merchants.",
+          "Shipped a revamped SDK that simplified third-party integration, reducing the average client go-live timeline and contributing to partner adoption growth.",
+          "Introduced a CQRS-based architecture that decoupled read and write workloads, letting the payment engine handle higher transaction throughput without sacrificing maintainability."
+        ],
+        "technologies": [
+          "React",
+          "CQRS",
+          "SDK"
+        ],
+        "impact": [
+          {
+            "value": "~40%",
+            "label": "Less technical debt"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "leader-realty",
     "role": "Backend Developer",
     "company": "Leader Realty Inc",
     "description": "U.S.-based real estate platform operating in the West Palm Beach, FL market. Delivered performance optimizations across core Laravel services — including queue-based job processing and Eloquent query tuning — that cut average page load times significantly under peak traffic, directly improving user retention and SEO rankings. Engineered an automated MySQL migration and versioning pipeline that eliminated deployment-related downtime risk and guaranteed schema consistency across all environments, enabling the team to ship with confidence on every release. Unlocked new revenue streams by building Stripe and Apple Pay integrations from the ground up, and broadened the platform's user acquisition funnel by implementing Google and Apple social authentication — reducing sign-up friction and increasing conversion rates. Delivered a REST API integration with a third-party real estate data provider, giving the platform access to live property listings that powered its core value proposition and kept users engaged with always-current market data.",
-    "time": "2021 — 2022"
+    "time": "2021 — 2022",
+    "teaser": "Made a U.S. real estate platform faster and ready to take payments: Laravel performance tuning, downtime-free database deploys, and Stripe and Apple Pay built from scratch.",
+    "summary": "U.S.-based real estate platform operating in the West Palm Beach, FL market. I owned backend work on performance, deployments, payments, authentication and live property data.",
+    "engagements": [
+      {
+        "title": "Real Estate Platform Backend",
+        "client": "Leader Realty — West Palm Beach, FL",
+        "period": "2021 — 2022",
+        "summary": "Backend services for a real estate platform, focused on speed under peak traffic, safe releases and new revenue streams.",
+        "highlights": [
+          "Delivered performance optimizations across core Laravel services, including queue-based job processing and Eloquent query tuning, significantly cutting average page load times under peak traffic and improving retention and SEO rankings.",
+          "Engineered an automated MySQL migration and versioning pipeline that eliminated deployment-related downtime risk and kept schemas consistent across environments.",
+          "Built Stripe and Apple Pay integrations from the ground up, opening new revenue streams.",
+          "Implemented Google and Apple social authentication, reducing sign-up friction and increasing conversion.",
+          "Integrated a third-party real estate data provider through its REST API, powering the platform's core value with live, always-current property listings."
+        ],
+        "technologies": [
+          "PHP",
+          "Laravel",
+          "MySQL",
+          "Stripe",
+          "Apple Pay",
+          "REST APIs"
+        ]
+      }
+    ]
   },
   {
     "slug": "dataplus",
     "role": "Fullstack Developer",
     "company": "Dataplus",
     "description": "Software consultancy serving the Latin American market. Architected and delivered an offline-first business planning SaaS designed to solve a critical connectivity challenge — ensuring uninterrupted access to business tools in regions where internet reliability is a daily constraint. Implemented PouchDB on the client layer with automatic bi-directional sync to a Node.js/MongoDB backend, guaranteeing zero data loss during outages and seamless continuity once connectivity was restored. Built the React/Redux frontend following clean architecture principles, resulting in a modular, testable codebase that reduced onboarding time for new developers and positioned the product for sustainable long-term iteration. This solution directly expanded the client's addressable market by making the platform viable in underserved regions where competitors could not operate.",
-    "time": "2020 — 2021"
+    "time": "2020 — 2021",
+    "teaser": "Built an offline-first SaaS that keeps working when the internet doesn't: PouchDB-to-MongoDB sync with zero data loss during outages.",
+    "summary": "Software consultancy serving the Latin American market. I architected and delivered an offline-first business planning SaaS for regions where connectivity is a daily constraint.",
+    "engagements": [
+      {
+        "title": "Offline-First Business Planning SaaS",
+        "client": "Dataplus — Latin American software consultancy",
+        "period": "2020 — 2021",
+        "summary": "A business planning SaaS designed to keep working in regions where internet reliability is a daily constraint.",
+        "highlights": [
+          "Architected and delivered an offline-first SaaS that guarantees uninterrupted access to business tools when connectivity drops.",
+          "Implemented PouchDB on the client with automatic bi-directional sync to a Node.js/MongoDB backend, ensuring zero data loss during outages and seamless continuity once connectivity returns.",
+          "Built the React/Redux frontend following clean architecture principles, producing a modular, testable codebase that shortened onboarding for new developers.",
+          "Made the product viable in underserved regions where competitors could not operate, expanding the client's addressable market."
+        ],
+        "technologies": [
+          "React",
+          "Redux",
+          "PouchDB",
+          "Node.js",
+          "MongoDB"
+        ],
+        "impact": [
+          {
+            "value": "0",
+            "label": "Data lost during outages"
+          }
+        ]
+      }
+    ]
   }
 ]
