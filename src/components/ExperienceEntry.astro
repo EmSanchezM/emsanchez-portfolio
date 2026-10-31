@@ -4,9 +4,10 @@ interface Props {
   company: string;
   description: string;
   time: string;
+  detailsUrl?: string;
 }
 
-const { role, company, description, time } = Astro.props;
+const { role, company, description, time, detailsUrl } = Astro.props;
 ---
 
 <div class="exp-entry">
@@ -17,10 +18,35 @@ const { role, company, description, time } = Astro.props;
   </div>
   <div class="exp-entry__right">
     <p class="exp-entry__description">{description}</p>
+    {detailsUrl && (
+      <a href={detailsUrl} class="exp-entry__link">
+        View details
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    )}
   </div>
 </div>
 
 <style>
+  .exp-entry__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    color: var(--primary);
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-label-md);
+    transition: var(--transition);
+  }
+
+  .exp-entry__link:hover {
+    gap: 1.2rem;
+  }
+
   .exp-entry {
     display: flex;
     flex-direction: column;
