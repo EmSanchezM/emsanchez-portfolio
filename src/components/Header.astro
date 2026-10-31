@@ -1,28 +1,32 @@
 ---
+import { getLocale, useTranslations } from "@/i18n/ui";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
-<nav class="dock" id="header" aria-label="Primary">
-  <a href="/" class="dock__logo" aria-label="EMSANCHEZ — Home">EMSANCHEZ</a>
+<nav class="dock" id="header" aria-label={t("nav.label")}>
+  <a href="/" class="dock__logo" aria-label={t("nav.homeLabel")}>EMSANCHEZ</a>
   <div class="dock__menu" id="nav__menu">
     <ul class="dock__list">
       <li class="dock__item">
-        <a href="/#work" class="dock__link">Work</a>
+        <a href="/#work" class="dock__link">{t("nav.work")}</a>
       </li>
       <li class="dock__item">
-        <a href="/#about" class="dock__link">About</a>
+        <a href="/#about" class="dock__link">{t("nav.about")}</a>
       </li>
       <li class="dock__item">
-        <a href="/#contact" class="dock__link">Contact</a>
+        <a href="/#contact" class="dock__link">{t("nav.contact")}</a>
       </li>
     </ul>
-    <a href="/resume" class="dock__menu-cta">Resume</a>
+    <a href="/resume" class="dock__menu-cta">{t("nav.resume")}</a>
   </div>
   <div class="dock__actions">
-    <a href="/resume" class="dock__cta">Resume</a>
+    <a href="/resume" class="dock__cta">{t("nav.resume")}</a>
     <button
       class="dock__toggle"
       id="nav__toggle"
-      aria-label="Toggle navigation menu"
+      aria-label={t("nav.toggle")}
       aria-expanded="false"
       aria-controls="nav__menu"
       type="button"

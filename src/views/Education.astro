@@ -1,13 +1,18 @@
 ---
-import education from "@/data/education.json";
+import { getLocale, useTranslations } from "@/i18n/ui";
+import { getEducation } from "@/i18n/data";
 import EducationEntry from "@/components/EducationEntry.astro";
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const education = getEducation(locale);
 ---
 
 <section class="education section">
   <div class="container">
     <div class="education__grid">
       <div class="education__heading">
-        <h2 class="education__title">Education</h2>
+        <h2 class="education__title">{t("education.title")}</h2>
       </div>
       <div class="education__entries">
         {
