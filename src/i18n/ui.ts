@@ -22,6 +22,7 @@ const en = {
   "nav.contact": "Contact",
   "nav.resume": "Resume",
   "nav.toggle": "Toggle navigation menu",
+  "nav.switchLanguage": "Ver en español",
 
   "footer.rights": "All rights reserved.",
 
@@ -117,6 +118,7 @@ const es: Record<UIKey, string> = {
   "nav.contact": "Contacto",
   "nav.resume": "Currículum",
   "nav.toggle": "Abrir o cerrar el menú de navegación",
+  "nav.switchLanguage": "View in English",
 
   "footer.rights": "Todos los derechos reservados.",
 
@@ -194,6 +196,17 @@ export function getLocale(currentLocale: string | undefined): Locale {
   return locales.includes(currentLocale as Locale)
     ? (currentLocale as Locale)
     : defaultLocale;
+}
+
+// Strips the locale prefix: "/es/resume" -> "/resume", "/es" -> "/".
+export function stripLocale(pathname: string): string {
+  return pathname.replace(/^\/es(?=\/|$)/, "") || "/";
+}
+
+// Prefixes a site path for the locale; English keeps the unprefixed URL.
+export function localizePath(locale: Locale, path: string): string {
+  if (locale === defaultLocale) return path;
+  return path === "/" ? `/${locale}/` : `/${locale}${path}`;
 }
 
 // Returns a translator for the locale; {name} placeholders are replaced from vars.

@@ -1,5 +1,5 @@
 ---
-import { getLocale, useTranslations } from "@/i18n/ui";
+import { getLocale, localizePath, useTranslations } from "@/i18n/ui";
 import { getExperiences } from "@/i18n/data";
 import ExperienceEntry from "@/components/ExperienceEntry.astro";
 
@@ -19,7 +19,7 @@ const experiences = getExperiences(locale);
             company={exp.company}
             description={"teaser" in exp ? exp.teaser : exp.description}
             time={exp.time}
-            detailsUrl={"engagements" in exp ? `/experience/${exp.slug}` : undefined}
+            detailsUrl={"engagements" in exp ? localizePath(locale, `/experience/${exp.slug}`) : undefined}
           />
         ))
       }

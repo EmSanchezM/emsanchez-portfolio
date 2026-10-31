@@ -1,13 +1,10 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getLocale, useTranslations } from "@/i18n/ui";
-import { getProjects } from "@/i18n/data";
+import { getLocale, localizePath, useTranslations } from "@/i18n/ui";
+import { getProjectPaths } from "@/i18n/data";
 
 export function getStaticPaths() {
-  return getProjects("en").map((project) => ({
-    params: { slug: project.slug },
-    props: { project },
-  }));
+  return getProjectPaths("en");
 }
 
 const { project } = Astro.props;
@@ -159,7 +156,7 @@ const t = useTranslations(locale);
           {project.githubUrl && (
             <a href={project.githubUrl} target="_blank" class="btn btn--primary">{t("caseStudy.githubRepo")}</a>
           )}
-          <a href="/#work" class="cs-cta__ghost">{t("caseStudy.back")}</a>
+          <a href={localizePath(locale, "/#work")} class="cs-cta__ghost">{t("caseStudy.back")}</a>
         </div>
       </div>
     </section>

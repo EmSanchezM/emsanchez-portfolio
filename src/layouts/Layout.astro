@@ -11,7 +11,7 @@ import "@fontsource-variable/inter/wght.css";
 import "@fontsource-variable/space-grotesk/wght.css";
 import interLatin from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
 import spaceGroteskLatin from "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url";
-import { getLocale, ogLocales, useTranslations } from "@/i18n/ui";
+import { getLocale, localizePath, ogLocales, stripLocale, useTranslations } from "@/i18n/ui";
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
@@ -28,10 +28,10 @@ const canonicalURL = new URL(Astro.url.pathname, siteURL).href;
 const socialImage = new URL(image, siteURL).href;
 
 // Same page in each locale: English has no prefix, Spanish lives under /es.
-const basePath = Astro.url.pathname.replace(/^\/es(?=\/|$)/, "") || "/";
+const basePath = stripLocale(Astro.url.pathname);
 const alternates = {
-  en: new URL(basePath, siteURL).href,
-  es: new URL(basePath === "/" ? "/es/" : `/es${basePath}`, siteURL).href,
+  en: new URL(localizePath("en", basePath), siteURL).href,
+  es: new URL(localizePath("es", basePath), siteURL).href,
 };
 
 const personSchema = {

@@ -1,28 +1,39 @@
 ---
-import { getLocale, useTranslations } from "@/i18n/ui";
+import { getLocale, localizePath, stripLocale, useTranslations } from "@/i18n/ui";
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
+const otherLocale = locale === "en" ? "es" : "en";
+const switchHref = localizePath(otherLocale, stripLocale(Astro.url.pathname));
 ---
 
 <nav class="dock" id="header" aria-label={t("nav.label")}>
-  <a href="/" class="dock__logo" aria-label={t("nav.homeLabel")}>EMSANCHEZ</a>
+  <a href={localizePath(locale, "/")} class="dock__logo" aria-label={t("nav.homeLabel")}>EMSANCHEZ</a>
   <div class="dock__menu" id="nav__menu">
     <ul class="dock__list">
       <li class="dock__item">
-        <a href="/#work" class="dock__link">{t("nav.work")}</a>
+        <a href={localizePath(locale, "/#work")} class="dock__link">{t("nav.work")}</a>
       </li>
       <li class="dock__item">
-        <a href="/#about" class="dock__link">{t("nav.about")}</a>
+        <a href={localizePath(locale, "/#about")} class="dock__link">{t("nav.about")}</a>
       </li>
       <li class="dock__item">
-        <a href="/#contact" class="dock__link">{t("nav.contact")}</a>
+        <a href={localizePath(locale, "/#contact")} class="dock__link">{t("nav.contact")}</a>
       </li>
     </ul>
-    <a href="/resume" class="dock__menu-cta">{t("nav.resume")}</a>
+    <a href={localizePath(locale, "/resume")} class="dock__menu-cta">{t("nav.resume")}</a>
   </div>
   <div class="dock__actions">
-    <a href="/resume" class="dock__cta">{t("nav.resume")}</a>
+    <a
+      href={switchHref}
+      class="dock__lang"
+      hreflang={otherLocale}
+      lang={otherLocale}
+      aria-label={t("nav.switchLanguage")}
+    >
+      {otherLocale.toUpperCase()}
+    </a>
+    <a href={localizePath(locale, "/resume")} class="dock__cta">{t("nav.resume")}</a>
     <button
       class="dock__toggle"
       id="nav__toggle"
@@ -90,7 +101,25 @@ const t = useTranslations(locale);
     color: var(--primary);
   }
 
+  .dock__lang {
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-label-sm);
+    letter-spacing: 0.1em;
+    color: var(--on-surface-variant);
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(68, 70, 84, 0.5);
+    border-radius: 9999px;
+    transition: var(--transition);
+  }
+
+  .dock__lang:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+
   .dock__logo:focus-visible,
+  .dock__lang:focus-visible,
   .dock__link:focus-visible,
   .dock__cta:focus-visible,
   .dock__menu-cta:focus-visible,

@@ -1,15 +1,10 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getLocale, useTranslations } from "@/i18n/ui";
-import { getExperiences } from "@/i18n/data";
+import { getLocale, localizePath, useTranslations } from "@/i18n/ui";
+import { getExperiencePaths } from "@/i18n/data";
 
 export function getStaticPaths() {
-  return getExperiences("en")
-    .filter((exp) => "engagements" in exp)
-    .map((exp) => ({
-      params: { slug: exp.slug },
-      props: { exp },
-    }));
+  return getExperiencePaths("en");
 }
 
 const { exp } = Astro.props as { exp: any };
@@ -91,8 +86,8 @@ const t = useTranslations(locale);
           <Fragment set:html={t("experienceDetail.ctaDescription")} />
         </p>
         <div class="xp-cta__actions">
-          <a href="/#contact" class="btn btn--primary">{t("experienceDetail.contact")}</a>
-          <a href="/#experience" class="xp-cta__ghost">{t("experienceDetail.back")}</a>
+          <a href={localizePath(locale, "/#contact")} class="btn btn--primary">{t("experienceDetail.contact")}</a>
+          <a href={localizePath(locale, "/#experience")} class="xp-cta__ghost">{t("experienceDetail.back")}</a>
         </div>
       </div>
     </section>

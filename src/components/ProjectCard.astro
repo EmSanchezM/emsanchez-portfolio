@@ -1,5 +1,5 @@
 ---
-import { getLocale, useTranslations } from "@/i18n/ui";
+import { getLocale, localizePath, useTranslations } from "@/i18n/ui";
 
 interface Props {
   slug: string;
@@ -41,7 +41,7 @@ const t = useTranslations(locale);
       }
     </div>
     <div class="card__actions">
-      <a href={`/projects/${slug}`} class="card__cta">
+      <a href={localizePath(locale, `/projects/${slug}`)} class="card__cta">
         {t("projects.viewCaseStudy")}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>

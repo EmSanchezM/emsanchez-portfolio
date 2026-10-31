@@ -1,0 +1,10 @@
+---
+import ExperiencePage from "@/pages/experience/[slug].astro";
+import { getExperiencePaths } from "@/i18n/data";
+
+export function getStaticPaths() {
+  return getExperiencePaths("es");
+}
+---
+
+<ExperiencePage {...Astro.props} />
