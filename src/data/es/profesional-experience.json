@@ -1,11 +1,11 @@
 [
   {
     "slug": "coderland",
-    "role": "Desarrollador Java Senior",
+    "role": "Desarrollador Java Sénior",
     "company": "Coderland",
-    "description": "Consultora de software que entrega soluciones de transformación digital a organizaciones de distintas industrias y geografías. Como desarrollador senior, contribuyo a proyectos empresariales de clientes que abarcan plataformas de e-commerce, sistemas financieros y productos digitales corporativos. Actualmente desarrollo servicios REST API para una plataforma de e-commerce legacy que atiende a un importante retailer europeo: construyo endpoints de actualización de precios y creación de clientes dentro de un ecosistema complejo con integraciones a múltiples marketplaces, varias pasarelas de pago y procesamiento de transacciones de alto volumen. Diseñé la arquitectura de los servicios backend de un sistema de factoraje financiero multipaís desplegado en GCP, que permite operaciones de descuento de facturas en tres mercados de Centroamérica y amplía el alcance regional del cliente. También doy soporte al sitio web corporativo de la empresa: resuelvo bugs en producción, integré el microservicio de reclutamiento que impulsa la sección de empleos y actualicé dependencias clave, incluida una migración de versión de Next.js para mejorar la estabilidad y la mantenibilidad a largo plazo.",
+    "description": "Consultora de software que entrega soluciones de transformación digital a organizaciones de distintas industrias y regiones. Como desarrollador sénior, contribuyo a proyectos empresariales de clientes que abarcan plataformas de e-commerce, sistemas financieros y productos digitales corporativos. Actualmente desarrollo servicios REST API para una plataforma de e-commerce legacy que atiende a un importante retailer europeo: construyo endpoints de actualización de precios y creación de clientes dentro de un ecosistema complejo con integraciones a múltiples marketplaces, varias pasarelas de pago y procesamiento de transacciones de alto volumen. Diseñé la arquitectura de los servicios backend de un sistema de factoraje financiero multipaís desplegado en GCP, que permite operaciones de descuento de facturas en tres mercados de Centroamérica y amplía el alcance regional del cliente. También doy soporte al sitio web corporativo de la empresa: resuelvo bugs en producción, integré el microservicio de reclutamiento que alimenta la sección de empleos y actualicé dependencias clave, incluida una migración de versión de Next.js para mejorar la estabilidad y la mantenibilidad a largo plazo.",
     "time": "2025 — Presente",
-    "summary": "En Coderland trabajo en varios proyectos de clientes a la vez, desde sistemas empresariales legacy hasta microservicios cloud-native. Mi foco es mantener las plataformas en producción modernas, seguras y rápidas: planificar migraciones de frameworks y runtimes de bajo riesgo con runbooks escritos y planes de rollback, entregar integraciones y convertir los hallazgos técnicos en reportes claros para project managers y clientes.",
+    "summary": "En Coderland trabajo en varios proyectos de clientes a la vez, desde sistemas empresariales legacy hasta microservicios cloud-native. Me enfoco en mantener las plataformas en producción modernas, seguras y rápidas: planificar migraciones de bajo riesgo de frameworks y runtimes con runbooks escritos y planes de rollback, entregar integraciones y convertir los hallazgos técnicos en reportes claros para project managers y clientes.",
     "engagements": [
       {
         "title": "Plataforma multipaís de factoraje de facturas",
@@ -13,12 +13,12 @@
         "period": "2026",
         "summary": "Plataforma de factoraje de facturas con un despliegue por país y portales para administradores, clientes y afiliados, integrada con la API de una fintech aliada para el fondeo.",
         "highlights": [
-          "Encontré la causa raíz de una caída silenciosa de una integración: tras una migración de almacenamiento, las URLs firmadas de los archivos superaban el límite de 500 caracteres de la API del aliado y todas las solicitudes de fondeo fueron rechazadas durante 11 días. Construí un proxy permanente de URLs cortas que firma los enlaces bajo demanda, manteniendo el almacenamiento privado y auditable, y recuperé 66 de las 67 operaciones afectadas.",
-          "Diseñé y construí un módulo de evidencia de consentimiento digital: un registro de solo inserción con IP, marca de tiempo del servidor, user agent, el texto completo aceptado y un hash SHA-256, además de certificados en PDF. Cubierto por 48 tests y en producción en los tres países.",
-          "Lideré el traslado del almacenamiento de documentos a cloud storage (1,627 archivos) y un release de país de 101 commits con 16 migraciones, resolviendo en el camino seis bloqueos no planificados.",
+          "Identifiqué la causa raíz de una caída silenciosa en una integración: tras una migración de almacenamiento, las URLs firmadas de los archivos superaban el límite de 500 caracteres de la API del aliado y todas las solicitudes de fondeo fueron rechazadas durante 11 días. Construí un proxy permanente de URLs cortas que firma los enlaces bajo demanda, manteniendo el almacenamiento privado y auditable, y recuperé 66 de las 67 operaciones afectadas.",
+          "Diseñé y construí un módulo de evidencia de consentimiento digital: un registro append-only con IP, marca de tiempo del servidor, user agent, el texto completo aceptado y un hash SHA-256, además de certificados en PDF. Cubierto por 48 tests y en producción en los tres países.",
+          "Lideré el traslado del almacenamiento de documentos a cloud storage (1,627 archivos) y el release de un país con 101 commits y 16 migraciones, resolviendo sobre la marcha seis bloqueos imprevistos.",
           "Corregí timeouts 504 en reportes PDF grandes: el profiling mostró que el cuello de botella era el renderizado, no SQL, así que la generación pasó a una cola dedicada en segundo plano que además libera memoria después de cada tarea.",
-          "Rastreé caídas 504 recurrentes hasta llamadas HTTP salientes sin timeout que bloqueaban los workers de la aplicación, y entregué timeouts junto con índices de base de datos.",
-          "Encontré un bug de float × Decimal que desde 2024 descartaba silenciosamente cargas por lotes en dos países, y corregí un 403 en todo el portal para usuarios de solo lectura en 32 plantillas, con un test que recorre cada enlace."
+          "Rastreé el origen de caídas 504 recurrentes: llamadas HTTP salientes sin timeout que bloqueaban los workers de la aplicación. Lo resolví con timeouts e índices en la base de datos.",
+          "Encontré un bug de float × Decimal que desde 2024 descartaba silenciosamente cargas por lotes en dos países, y corregí un error 403 que afectaba a todo el portal para los usuarios de solo lectura, en 32 plantillas, con un test que recorre cada enlace."
         ],
         "technologies": [
           "Python",
@@ -44,10 +44,10 @@
         "period": "2026",
         "summary": "Sistema legacy en Java EE que gestiona catálogo, precios, pedidos y conexiones con marketplaces para un retailer de alto volumen.",
         "highlights": [
-          "Encontré la causa raíz de un defecto de integridad de pagos: un proceso en segundo plano confirmaba como exitosos los pagos de marketplace de todos los pedidos, incluso de pedidos que no existían, y lo contuve.",
-          "Restablecí el acceso de las tiendas a los pedidos online para 176 usuarios al rastrear un grupo de permisos faltante en los nuevos accesos por tienda; se corrigió en los datos, sin cambios de código.",
-          "Recuperé 616 de 616 facturas de vendedores para el equipo de finanzas tras la suspensión de un vendedor, mediante un script sobre la API correcta del marketplace, sin nuevo desarrollo.",
-          "Elaboré una auditoría de la infraestructura de AWS en producción que identificó cerca de $12.5k al año en ahorros potenciales.",
+          "Identifiqué la causa raíz de un defecto de integridad de pagos y lo contuve: un proceso en segundo plano confirmaba como exitosos los pagos de marketplace de todos los pedidos, incluso de pedidos inexistentes.",
+          "Restablecí a 176 usuarios de tienda el acceso a los pedidos online tras detectar que faltaba un grupo de permisos en los nuevos accesos por tienda; se corrigió a nivel de datos, sin cambios de código.",
+          "Recuperé 616 de 616 facturas de vendedores para el equipo de finanzas tras la suspensión de un vendedor, con un script contra la API adecuada del marketplace, sin desarrollo nuevo.",
+          "Realicé una auditoría de la infraestructura de AWS en producción que identificó ahorros potenciales de cerca de $12.5k al año.",
           "Escribí el runbook del cutover a producción de la integración del catálogo con la plataforma de comercio VTEX."
         ],
         "technologies": [
@@ -73,11 +73,11 @@
         "period": "2026",
         "summary": "Servicio reactivo que conecta el sitio público de empleos y el portal de empleados con un SaaS de reclutamiento: vacantes, postulaciones, referidos y webhooks.",
         "highlights": [
-          "Construí un pipeline de publicación de vacantes con IA: un poller y un worker de outbox convierten los borradores de vacantes a la plantilla estándar de la empresa con Gemini; luego se extendió a las vacantes publicadas directamente.",
-          "Automaticé una campaña de reactivación de candidatos con enlaces de token firmado, un outbox durable con manejo de dead-letter y deduplicación de correos, reemplazando la limpieza manual de hojas de cálculo.",
-          "Encontré que la causa raíz de vacantes reabiertas y duplicadas era una automatización de un CRM externo, después de descartar primero el middleware.",
+          "Construí un pipeline de publicación de vacantes con IA: un poller y un worker de outbox adaptan los borradores de vacantes a la plantilla estándar de la empresa usando Gemini; luego se amplió a las vacantes publicadas directamente.",
+          "Automaticé una campaña de reactivación de candidatos con enlaces con token firmado, un outbox durable con manejo de dead letters y deduplicación de correos, en lugar de la limpieza manual de hojas de cálculo.",
+          "Tras descartar primero el middleware, identifiqué que la causa raíz de las vacantes reabiertas y duplicadas era una automatización de un CRM externo.",
           "Migré el servicio a un stack WebFlux totalmente no bloqueante sobre Java 25 / Spring Boot 4, con timeouts en los clientes, pools de conexiones y monitoreo con Prometheus.",
-          "Una auditoría posterior a la actualización descubrió un pipeline de CI que omitía silenciosamente las 20 clases de tests y una llamada bloqueante en el event loop reactivo; ambos se corrigieron."
+          "Una auditoría posterior a la actualización detectó que el pipeline de CI omitía silenciosamente las 20 clases de tests y que había una llamada bloqueante en el event loop reactivo; ambos problemas quedaron corregidos."
         ],
         "technologies": [
           "Java",
@@ -101,13 +101,13 @@
         "title": "Portal interno de empleados",
         "client": "Coderland — plataforma interna",
         "period": "2026",
-        "summary": "Portal usado para hojas de horas, facturación, solicitudes de permisos y comisiones por referidos, integrado con el CRM, los gestores de incidencias y el middleware de reclutamiento.",
+        "summary": "Portal para el registro de horas, la facturación, las solicitudes de permisos y las comisiones por referidos, integrado con el CRM, los gestores de incidencias y el middleware de reclutamiento.",
         "highlights": [
-          "Modernicé todo el stack con un enfoque strangler, una librería por PR pequeño: Spring Boot 3.5 / Java 17 en el backend y Vite, React 19 y TypeScript en el frontend.",
+          "Modernicé todo el stack con el patrón strangler, actualizando las librerías una por una, cada una en su propio PR pequeño: Spring Boot 3.5 / Java 17 en el backend y Vite, React 19 y TypeScript en el frontend.",
           "Reemplacé una integración con el SDK del CRM repartida en 168 archivos por llamadas REST livianas, y resolví los contactos duplicados del CRM de forma determinística, devolviendo un código de error explícito para soporte en lugar de adivinar.",
-          "Investigué las comisiones por referidos con datos de producción: solo 2 de 310 referidos llegaron a ser contratados, lo que mostró un problema de atribución y conversión y no una pérdida de datos, y corregí la causa raíz de un doble cobro.",
-          "Encontré la causa raíz de unos 40 incidentes recurrentes de nómina y facturación, como un límite de páginas de una API que truncaba resultados y prefacturas canceladas contadas como pendientes.",
-          "Cambié el build a pnpm, reduciendo el tiempo de build en CI de ~8 minutos a ~3 minutos."
+          "Investigué las comisiones por referidos con datos de producción: solo 2 de 310 referidos llegaron a ser contratados, lo que evidenció un problema de atribución y conversión, no una pérdida de datos. Además, corregí la causa raíz de un doble cobro.",
+          "Identifiqué la causa raíz de unos 40 incidentes recurrentes de nómina y facturación, como un límite de paginación de una API que truncaba los resultados o prefacturas canceladas que se contaban como pendientes.",
+          "Migré el build a pnpm y reduje el tiempo de build en CI de ~8 minutos a ~3 minutos."
         ],
         "technologies": [
           "Java",
@@ -133,11 +133,11 @@
         "period": "2026",
         "summary": "Sitio web corporativo multilingüe y CMS headless cuyos formularios de contacto envían leads al CRM.",
         "highlights": [
-          "Reforcé los formularios de leads con cuatro capas antispam más una verificación final con IA usando Gemini, después de que una auditoría encontró que el token de reCAPTCHA nunca se verificaba en el servidor.",
-          "Rastreé en los logs una falla silenciosa y prolongada en la captura de leads y la restablecí; luego corregí la atribución de origen de los leads para que el CRM guarde la fuente UTM real en lugar de un único valor por defecto.",
+          "Reforcé los formularios de leads con cuatro capas antispam más una verificación final con IA usando Gemini, tras detectar en una auditoría que el token de reCAPTCHA nunca se validaba en el servidor.",
+          "Rastreé en los logs una falla silenciosa y prolongada en la captura de leads y restablecí la captura; luego corregí la atribución de origen de los leads para que el CRM guarde la fuente UTM real en lugar de un único valor por defecto.",
           "Migré el blog desde un SaaS de pago al CMS: 67 artículos bilingües con redirecciones permanentes y actualización de caché mediante webhooks.",
-          "Llevé 45 URLs huérfanas a una cobertura rastreable del 100% y corregí los códigos de estado de las redirecciones, validado en producción.",
-          "Escribí un postmortem sin culpables sobre un incidente de cache poisoning, identificando una amplificación en tres capas, y entregué el hotfix y la corrección de arquitectura; también lideré la actualización de Strapi 4 → 5 en producción."
+          "Logré que 45 URLs huérfanas quedaran 100% rastreables y corregí los códigos de estado de las redirecciones, con validación en producción.",
+          "Escribí un postmortem blameless sobre un incidente de cache poisoning, en el que identifiqué una amplificación en tres capas, y entregué el hotfix y la corrección de arquitectura; también lideré la actualización de Strapi 4 → 5 en producción."
         ],
         "technologies": [
           "Next.js",
@@ -159,13 +159,13 @@
         ]
       }
     ],
-    "teaser": "Ingeniero senior en cinco proyectos de clientes: desde recuperar 66 operaciones de una fintech bloqueadas por una caída silenciosa de una integración hasta identificar ~$12.5k al año en ahorros de cloud para un retailer europeo."
+    "teaser": "Ingeniero sénior en cinco proyectos de clientes: desde recuperar 66 operaciones de una fintech bloqueadas por la caída silenciosa de una integración hasta identificar ~$12.5k al año en ahorros de cloud para un retailer europeo."
   },
   {
     "slug": "clinpays-fintech",
     "role": "Desarrollador Fullstack",
     "company": "Clinpays",
-    "description": "Plataforma fintech que procesa pagos digitales a escala. Impulsé una iniciativa de modernización full-stack que transformó el frontend de la plataforma, pasando de un código legacy basado en clases a una arquitectura limpia y funcional con hooks, lo que redujo la deuda técnica en aproximadamente un 40% y aceleró de forma medible el ritmo de entrega de funcionalidades del equipo. Rediseñé de punta a punta el flujo de onboarding de comercios, eliminando puntos de fricción en el embudo de conversión, lo que se tradujo en un aumento significativo de la tasa de registros completados y en un menor tiempo hasta la primera transacción para los nuevos comercios. Entregué un SDK renovado que simplificó la integración de terceros, redujo el tiempo promedio de puesta en producción de los clientes y contribuyó directamente al crecimiento de la adopción por parte de los partners. Introduje una arquitectura basada en CQRS que separó limpiamente las cargas de lectura y escritura, lo que permitió al motor de pagos manejar un mayor volumen de transacciones sin sacrificar la mantenibilidad del sistema, un factor clave para sostener las ambiciones de escalamiento de la plataforma.",
+    "description": "Plataforma fintech que procesa pagos digitales a escala. Impulsé una iniciativa de modernización full-stack que llevó el frontend de la plataforma de un código legacy basado en clases a una arquitectura limpia y funcional con hooks, lo que redujo la deuda técnica en aproximadamente un 40% y aceleró de forma medible el ritmo de entrega de funcionalidades del equipo. Rediseñé de punta a punta el flujo de onboarding de comercios, eliminando puntos de fricción en el embudo de conversión, lo que se tradujo en un aumento significativo de la tasa de registros completados y en un menor tiempo hasta la primera transacción para los nuevos comercios. Entregué un SDK renovado que simplificó la integración de terceros, redujo el tiempo promedio de puesta en producción de los clientes y contribuyó directamente al crecimiento de la adopción por parte de los partners. Introduje una arquitectura basada en CQRS que separó limpiamente las cargas de lectura y escritura, lo que permitió al motor de pagos manejar un mayor volumen de transacciones sin sacrificar la mantenibilidad del sistema, un factor clave para sostener los planes de escalamiento de la plataforma.",
     "time": "2022 — 2025",
     "teaser": "Lideré la modernización de una plataforma de pagos: aproximadamente un 40% menos de deuda técnica, un onboarding de comercios rediseñado y un motor de pagos CQRS preparado para escalar.",
     "summary": "Plataforma fintech que procesa pagos digitales a escala. Trabajé en el frontend, la experiencia de comercios y el motor de pagos para ayudar a que la plataforma creciera sin frenar al equipo.",
@@ -179,7 +179,7 @@
           "Impulsé una modernización full-stack que llevó el frontend de un código legacy basado en clases a una arquitectura limpia y funcional con hooks, reduciendo la deuda técnica en aproximadamente un 40% y acelerando de forma medible la entrega de funcionalidades.",
           "Rediseñé de punta a punta el flujo de onboarding de comercios, eliminando puntos de fricción en el embudo de conversión para aumentar la tasa de registros completados y acortar el tiempo hasta la primera transacción de los nuevos comercios.",
           "Entregué un SDK renovado que simplificó la integración de terceros, redujo el tiempo promedio de puesta en producción de los clientes y contribuyó al crecimiento de la adopción por parte de los partners.",
-          "Introduje una arquitectura basada en CQRS que separó las cargas de lectura y escritura, permitiendo al motor de pagos manejar un mayor volumen de transacciones sin sacrificar la mantenibilidad."
+          "Introduje una arquitectura basada en CQRS que separó las cargas de lectura y escritura, lo que permitió al motor de pagos manejar un mayor volumen de transacciones sin sacrificar la mantenibilidad."
         ],
         "technologies": [
           "React",
@@ -199,9 +199,9 @@
     "slug": "leader-realty",
     "role": "Desarrollador Backend",
     "company": "Leader Realty Inc",
-    "description": "Plataforma inmobiliaria con sede en EE. UU. que opera en el mercado de West Palm Beach, FL. Entregué optimizaciones de rendimiento en los servicios principales de Laravel, incluido el procesamiento de tareas en colas y el ajuste de consultas Eloquent, que redujeron de forma significativa los tiempos promedio de carga de página en picos de tráfico, mejorando directamente la retención de usuarios y el posicionamiento SEO. Diseñé un pipeline automatizado de migraciones y versionado de MySQL que eliminó el riesgo de caídas asociadas a los despliegues y garantizó la consistencia del esquema en todos los entornos, permitiendo al equipo publicar con confianza en cada release. Abrí nuevas fuentes de ingresos al construir desde cero las integraciones con Stripe y Apple Pay, y amplié el embudo de adquisición de usuarios al implementar la autenticación social con Google y Apple, reduciendo la fricción en el registro y aumentando las tasas de conversión. Entregué una integración REST API con un proveedor externo de datos inmobiliarios, que dio a la plataforma acceso a listados de propiedades en vivo que sostenían su propuesta de valor principal y mantenían a los usuarios comprometidos con datos de mercado siempre actualizados.",
+    "description": "Plataforma inmobiliaria con sede en EE. UU. que opera en el mercado de West Palm Beach, FL. Entregué optimizaciones de rendimiento en los servicios principales de Laravel, incluido el procesamiento de tareas en colas y el ajuste de consultas Eloquent, que redujeron de forma significativa los tiempos promedio de carga de página en picos de tráfico, mejorando directamente la retención de usuarios y el posicionamiento SEO. Diseñé un pipeline automatizado de migraciones y versionado de MySQL que eliminó el riesgo de caídas asociadas a los despliegues y garantizó la consistencia del esquema en todos los entornos, lo que permitió al equipo publicar cada release con confianza. Abrí nuevas fuentes de ingresos al construir desde cero las integraciones con Stripe y Apple Pay, y amplié el embudo de adquisición de usuarios al implementar la autenticación social con Google y Apple, reduciendo la fricción en el registro y aumentando las tasas de conversión. Entregué una integración REST API con un proveedor externo de datos inmobiliarios, que dio a la plataforma acceso a listados de propiedades en vivo que sostenían su propuesta de valor principal y mantenían el interés de los usuarios con datos de mercado siempre actualizados.",
     "time": "2021 — 2022",
-    "teaser": "Hice más rápida una plataforma inmobiliaria de EE. UU. y la preparé para recibir pagos: ajuste de rendimiento en Laravel, despliegues de base de datos sin caídas y Stripe y Apple Pay construidos desde cero.",
+    "teaser": "Aceleré una plataforma inmobiliaria de EE. UU. y la preparé para recibir pagos: ajuste de rendimiento en Laravel, despliegues de base de datos sin caídas y Stripe y Apple Pay construidos desde cero.",
     "summary": "Plataforma inmobiliaria con sede en EE. UU. que opera en el mercado de West Palm Beach, FL. Fui responsable del trabajo de backend en rendimiento, despliegues, pagos, autenticación y datos de propiedades en vivo.",
     "engagements": [
       {
@@ -214,7 +214,7 @@
           "Diseñé un pipeline automatizado de migraciones y versionado de MySQL que eliminó el riesgo de caídas asociadas a los despliegues y mantuvo los esquemas consistentes entre entornos.",
           "Construí desde cero las integraciones con Stripe y Apple Pay, abriendo nuevas fuentes de ingresos.",
           "Implementé la autenticación social con Google y Apple, reduciendo la fricción en el registro y aumentando la conversión.",
-          "Integré un proveedor externo de datos inmobiliarios a través de su REST API, impulsando el valor principal de la plataforma con listados de propiedades en vivo y siempre actualizados."
+          "Integré la REST API de un proveedor externo de datos inmobiliarios, que sostiene el valor principal de la plataforma con listados de propiedades en vivo y siempre actualizados."
         ],
         "technologies": [
           "PHP",
@@ -231,16 +231,16 @@
     "slug": "dataplus",
     "role": "Desarrollador Fullstack",
     "company": "Dataplus",
-    "description": "Consultora de software que atiende al mercado latinoamericano. Diseñé y entregué un SaaS de planificación de negocios offline-first pensado para resolver un desafío crítico de conectividad: garantizar el acceso ininterrumpido a herramientas de negocio en regiones donde la confiabilidad de internet es una limitación diaria. Implementé PouchDB en la capa del cliente con sincronización bidireccional automática hacia un backend en Node.js/MongoDB, garantizando cero pérdida de datos durante las caídas y una continuidad sin interrupciones al restablecerse la conectividad. Construí el frontend en React/Redux siguiendo principios de arquitectura limpia, lo que dio como resultado un código modular y testeable que redujo el tiempo de onboarding de nuevos desarrolladores y dejó el producto listo para una iteración sostenible a largo plazo. Esta solución amplió directamente el mercado al que podía llegar el cliente, al hacer viable la plataforma en regiones desatendidas donde la competencia no podía operar.",
+    "description": "Consultora de software que atiende al mercado latinoamericano. Diseñé y entregué un SaaS de planificación de negocios offline-first pensado para resolver un desafío crítico de conectividad: garantizar el acceso ininterrumpido a herramientas de negocio en regiones donde la falta de una conexión a internet confiable es una limitación diaria. Implementé PouchDB en la capa del cliente con sincronización bidireccional automática hacia un backend en Node.js/MongoDB, garantizando cero pérdida de datos durante las caídas y una continuidad sin interrupciones al restablecerse la conectividad. Construí el frontend en React/Redux siguiendo principios de arquitectura limpia, lo que dio como resultado un código modular y testeable que redujo el tiempo de onboarding de nuevos desarrolladores y dejó el producto listo para una iteración sostenible a largo plazo. Esta solución amplió directamente el mercado al que podía llegar el cliente, al hacer viable la plataforma en regiones desatendidas donde la competencia no podía operar.",
     "time": "2020 — 2021",
-    "teaser": "Construí un SaaS offline-first que sigue funcionando cuando internet no: sincronización de PouchDB a MongoDB con cero pérdida de datos durante las caídas.",
+    "teaser": "Construí un SaaS offline-first que sigue funcionando aunque se caiga internet: sincronización de PouchDB a MongoDB con cero pérdida de datos durante las caídas.",
     "summary": "Consultora de software que atiende al mercado latinoamericano. Diseñé y entregué un SaaS de planificación de negocios offline-first para regiones donde la conectividad es una limitación diaria.",
     "engagements": [
       {
         "title": "SaaS de planificación de negocios offline-first",
         "client": "Dataplus — consultora de software latinoamericana",
         "period": "2020 — 2021",
-        "summary": "Un SaaS de planificación de negocios diseñado para seguir funcionando en regiones donde la confiabilidad de internet es una limitación diaria.",
+        "summary": "Un SaaS de planificación de negocios diseñado para seguir funcionando en regiones donde la falta de una conexión a internet confiable es una limitación diaria.",
         "highlights": [
           "Diseñé y entregué un SaaS offline-first que garantiza el acceso ininterrumpido a herramientas de negocio cuando se cae la conectividad.",
           "Implementé PouchDB en el cliente con sincronización bidireccional automática hacia un backend en Node.js/MongoDB, asegurando cero pérdida de datos durante las caídas y una continuidad sin interrupciones cuando vuelve la conectividad.",

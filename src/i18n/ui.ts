@@ -145,7 +145,7 @@ const es: Record<UIKey, string> = {
   "projects.viewCaseStudy": "Ver caso de estudio",
   "projects.imageAlt": "Proyecto {title}",
 
-  "education.title": "Educación",
+  "education.title": "Formación académica",
 
   "contact.titleStart": "Construyamos algo",
   "contact.titleEnd": "extraordinario.",

@@ -55,7 +55,7 @@
       {
         "title": "Todos los partidos y estados de un torneo",
         "problem": "Un Mundial abarca 104 partidos entre la fase de grupos y las eliminatorias, cada uno pasando por los estados programado, en vivo, finalizado y aplazado, y cada cambio de estado repercute en la puntuación, el bloqueo y la tabla de posiciones.",
-        "solution": "El ciclo de vida de los partidos se modeló como estados explícitos con transiciones claras, acompañados de validación con Zod y stores de Pinia en el frontend. Finalizar un partido con un marcador final dispara la distribución automática de puntos, así el administrador gestiona el estado mientras la puntuación sigue siendo un resultado derivado y determinístico.",
+        "solution": "El ciclo de vida de los partidos se modeló como estados explícitos con transiciones claras, acompañados de validación con Zod y stores de Pinia en el frontend. Finalizar un partido con un marcador final dispara el reparto automático de puntos: el administrador gestiona el estado y la puntuación sigue siendo un resultado derivado y determinístico.",
         "quote": "El estado del partido como única fuente de verdad que impulsa la puntuación automáticamente."
       }
     ]
@@ -64,12 +64,12 @@
     "slug": "budgetwise",
     "imageURL": "/images/projects/budget-wise.webp",
     "title": "BudgetWise",
-    "description": "Un completo gestor de finanzas personales con categorización automática de transacciones y analíticas en profundidad.",
+    "description": "Un gestor de finanzas personales completo, con categorización automática de transacciones y analíticas detalladas.",
     "technologies": ["TypeScript", "Qwik", "Prisma", "Cloudflare"],
     "githubUrl": "https://github.com/EmSanchezM/BudgetWise",
     "year": "2023",
     "longDescription": "BudgetWise nació de la frustración con las apps de finanzas recargadas y llenas de anuncios. La misión era construir una herramienta que priorizara la integridad de los datos y la claridad visual. Permite a los usuarios registrar gastos, definir presupuestos detallados y visualizar el crecimiento de su patrimonio neto a través de una interfaz precisa y editorial.",
-    "role": "Ingeniero de Producto Líder",
+    "role": "Líder de ingeniería de producto",
     "features": [
       {
         "title": "Analíticas en tiempo real",
@@ -101,7 +101,7 @@
       {
         "title": "Concurrencia en la base de datos",
         "problem": "Manejar una gran cantidad de escrituras simultáneas en cuentas familiares compartidas provocaba problemas de bloqueo importantes en la configuración inicial de PostgreSQL.",
-        "solution": "Implementé una estrategia de write-ahead logging y un middleware optimizado para agrupar transacciones en lotes. Migré a una capa de micro-caché para atender las consultas de saldo, de lectura intensiva.",
+        "solution": "Implementé una estrategia de write-ahead logging y un middleware optimizado para agrupar transacciones en lotes. Migré las consultas de saldo, de lectura intensiva, a una capa de microcaché.",
         "quote": "Mejoré el tiempo promedio de respuesta de la API de 240ms a 42ms."
       }
     ]
@@ -170,7 +170,7 @@
       },
       {
         "title": "RBAC con JWT + Argon2",
-        "description": "Middleware con alcance por permisos, roles predefinidos (Admin, Manager, Cashier) y hash de contraseñas con argon2.",
+        "description": "Middleware basado en permisos, roles predefinidos (Admin, Manager, Cashier) y hash de contraseñas con argon2.",
         "accent": true
       },
       {
