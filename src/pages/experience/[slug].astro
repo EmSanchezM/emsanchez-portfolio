@@ -1,0 +1,350 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import experiences from "@/data/profesional-experience.json";
+
+export function getStaticPaths() {
+  return experiences
+    .filter((exp) => "engagements" in exp)
+    .map((exp) => ({
+      params: { slug: exp.slug },
+      props: { exp },
+    }));
+}
+
+const { exp } = Astro.props as { exp: any };
+---
+
+<Layout
+  title={`${exp.company} — Experience | Elvin Sanchez`}
+  description={exp.summary.split('.')[0] + '.'}
+>
+  <main class="xp" id="main">
+    <!-- Hero -->
+    <section class="xp-hero">
+      <div class="xp-hero__content">
+        <span class="xp-hero__label">Experience · {exp.time}</span>
+        <h1 class="xp-hero__title">
+          {exp.company}<span class="xp-hero__dot">.</span>
+        </h1>
+        <p class="xp-hero__role">{exp.role}</p>
+        <p class="xp-hero__summary">{exp.summary}</p>
+      </div>
+    </section>
+
+    <!-- Engagements -->
+    <section class="xp-engagements">
+      <div class="xp-engagements__inner">
+        <h2 class="xp-engagements__title">Engagements</h2>
+        {exp.engagements.map((item: any, i: number) => (
+          <article class="xp-item">
+            <header class="xp-item__header">
+              <span class="xp-item__label">Engagement {String(i + 1).padStart(2, '0')} · {item.period}</span>
+              <h3 class="xp-item__title">{item.title}</h3>
+              <p class="xp-item__client">{item.client}</p>
+            </header>
+
+            <div class="xp-item__body">
+              <div class="xp-item__main">
+                <p class="xp-item__summary">{item.summary}</p>
+                <ul class="xp-item__highlights">
+                  {item.highlights.map((highlight: string) => (
+                    <li class="xp-item__highlight">{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <aside class="xp-item__meta">
+                {item.impact && (
+                  <div class="xp-item__stats">
+                    {item.impact.map((stat: any) => (
+                      <div class="xp-stat">
+                        <div class="xp-stat__value">{stat.value}</div>
+                        <div class="xp-stat__label">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <h4 class="xp-item__meta-label">Tech Stack</h4>
+                <ul class="xp-item__tech-list">
+                  {item.technologies.map((tech: string) => (
+                    <li class="xp-item__tech">{tech}</li>
+                  ))}
+                </ul>
+              </aside>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="xp-cta">
+      <div class="xp-cta__card">
+        <h2 class="xp-cta__title">Want the full story?</h2>
+        <p class="xp-cta__description">
+          Client details are kept confidential, but I'm happy to walk through the architecture decisions behind this work.
+        </p>
+        <div class="xp-cta__actions">
+          <a href="/#contact" class="btn btn--primary">Get in touch</a>
+          <a href="/#experience" class="xp-cta__ghost">Back to Experience</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* ===== Hero ===== */
+  .xp-hero {
+    padding: 16rem 3.2rem 8rem;
+  }
+
+  .xp-hero__content {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .xp-hero__label {
+    font-family: var(--ff-headline);
+    color: var(--primary);
+    letter-spacing: 0.2em;
+    font-size: var(--fs-label-sm);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    margin-bottom: 2.4rem;
+    display: block;
+  }
+
+  .xp-hero__title {
+    font-family: var(--ff-headline);
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    margin-bottom: 2.4rem;
+  }
+
+  .xp-hero__dot {
+    color: var(--primary);
+  }
+
+  .xp-hero__role {
+    font-family: var(--ff-headline);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--secondary);
+    margin-bottom: 3.2rem;
+  }
+
+  .xp-hero__summary {
+    font-size: var(--fs-body-lg);
+    line-height: 1.7;
+    color: var(--on-surface-variant);
+    max-width: 60rem;
+  }
+
+  /* ===== Engagements ===== */
+  .xp-engagements {
+    background-color: var(--surface-container-low);
+    padding: 10rem 3.2rem;
+  }
+
+  .xp-engagements__inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+  }
+
+  .xp-engagements__title {
+    font-size: var(--fs-headline-lg);
+  }
+
+  .xp-item {
+    padding-top: 4rem;
+    border-top: 1px solid rgba(68, 70, 84, 0.3);
+  }
+
+  .xp-item__label {
+    font-family: var(--ff-headline);
+    color: var(--secondary);
+    font-size: var(--fs-label-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1.6rem;
+  }
+
+  .xp-item__title {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-headline-md);
+    font-weight: var(--fw-bold);
+    line-height: 1.1;
+  }
+
+  .xp-item__client {
+    color: var(--primary);
+    margin-top: 0.8rem;
+  }
+
+  .xp-item__body {
+    display: grid;
+    gap: 4rem;
+    margin-top: 3.2rem;
+  }
+
+  .xp-item__summary {
+    color: var(--on-surface);
+    line-height: 1.7;
+    margin-bottom: 2.4rem;
+  }
+
+  .xp-item__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .xp-item__highlight {
+    position: relative;
+    padding-left: 2rem;
+    color: var(--on-surface-variant);
+    line-height: 1.6;
+  }
+
+  .xp-item__highlight::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.9rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background-color: var(--primary);
+  }
+
+  .xp-item__meta {
+    background-color: var(--surface-container);
+    border-radius: 0.8rem;
+    padding: 3.2rem;
+    align-self: start;
+  }
+
+  .xp-item__stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    padding-bottom: 2.4rem;
+    margin-bottom: 2.4rem;
+    border-bottom: 1px solid rgba(68, 70, 84, 0.3);
+  }
+
+  .xp-stat__value {
+    font-family: var(--ff-headline);
+    font-size: clamp(2.8rem, 4vw, 3.6rem);
+    font-weight: var(--fw-bold);
+    color: var(--primary);
+    line-height: 1.1;
+  }
+
+  .xp-stat__label {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-label-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-top: 0.4rem;
+  }
+
+  .xp-item__meta-label {
+    font-family: var(--ff-headline);
+    font-size: var(--fs-label-sm);
+    color: var(--secondary);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+  }
+
+  .xp-item__tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .xp-item__tech {
+    padding: 0.4rem 1.2rem;
+    border-radius: 9999px;
+    background-color: var(--surface-container-highest);
+    color: var(--on-surface);
+    font-size: var(--fs-label-sm);
+  }
+
+  @media screen and (min-width: 769px) {
+    .xp-item__body {
+      grid-template-columns: 7fr 4fr;
+      gap: 6rem;
+    }
+  }
+
+  /* ===== CTA ===== */
+  .xp-cta {
+    padding: 10rem 3.2rem;
+  }
+
+  .xp-cta__card {
+    max-width: 72rem;
+    margin: 0 auto;
+    background-color: var(--surface-container-high);
+    border-radius: 2.4rem;
+    padding: 8rem 4rem;
+    text-align: center;
+  }
+
+  .xp-cta__title {
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    margin-bottom: 3.2rem;
+  }
+
+  .xp-cta__description {
+    color: var(--on-surface-variant);
+    font-size: var(--fs-body-lg);
+    max-width: 50rem;
+    margin: 0 auto 4rem;
+    line-height: 1.6;
+  }
+
+  .xp-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+
+  .xp-cta__ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background-color: var(--background);
+    color: var(--on-surface);
+    border-radius: 9999px;
+    font-family: var(--ff-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-label-md);
+    border: 1px solid rgba(68, 70, 84, 0.3);
+    transition: var(--transition);
+  }
+
+  .xp-cta__ghost:hover {
+    background-color: var(--surface-container-highest);
+  }
+
+  @media screen and (max-width: 560px) {
+    .xp-cta__card {
+      padding: 5rem 2rem;
+      border-radius: 1.6rem;
+    }
+  }
+</style>

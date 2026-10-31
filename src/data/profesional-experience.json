@@ -1,10 +1,165 @@
 [
   {
-    "slug": "coderland-factory",
+    "slug": "coderland",
     "role": "Senior Java Developer",
     "company": "Coderland",
     "description": "Software consulting firm delivering digital transformation solutions for organizations across industries and geographies. As a Senior Developer, I contribute to enterprise-grade client projects spanning e-commerce platforms, financial systems, and corporate digital products. Currently developing REST API services for a legacy e-commerce platform serving a major European retailer — building pricing update and customer creation endpoints within a complex ecosystem involving multi-marketplace integrations, multiple payment gateways, and high-volume transaction processing. Architected backend services for a multi-country financial factoring system deployed on GCP, enabling invoice discounting operations across three Central American markets and expanding the client's regional reach. Also supporting the company's corporate website — resolving production bugs, integrating the recruitment microservice to power the careers section, and upgrading core dependencies including a Next.js version migration to improve stability and long-term maintainability.",
-    "time": "2025 — Present"
+    "time": "2025 — Present",
+    "summary": "At Coderland I work across several client engagements at once, from legacy enterprise systems to cloud-native microservices. My focus is keeping production platforms modern, secure and fast: planning low-risk framework and runtime migrations with written runbooks and rollback plans, shipping integrations, and turning technical findings into clear reports for project managers and clients. Client names are kept confidential.",
+    "engagements": [
+      {
+        "title": "Multi-Country Invoice Factoring Platform",
+        "client": "Factoring fintech — Central America",
+        "period": "2026",
+        "summary": "Invoice-factoring platform with a deployment per country and portals for administrators, clients and affiliates, integrated with a partner fintech API for funding.",
+        "highlights": [
+          "Root-caused a silent integration outage: after a storage migration, signed file URLs exceeded the partner API's 500-character limit and every funding submission was rejected for 11 days. Built a permanent short-URL proxy that signs links on demand, keeping storage private and auditable, and recovered 66 of 67 affected deals.",
+          "Designed and built a digital-consent evidence module: an append-only record of IP, server timestamp, user agent, the full accepted text and a SHA-256 hash, plus PDF certificates. Covered by 48 tests and live in all three countries.",
+          "Led the move of document storage to cloud storage (1,627 files) and a 101-commit country release with 16 migrations, resolving six unplanned blockers along the way.",
+          "Fixed 504 timeouts on large PDF reports: profiling showed rendering, not SQL, was the bottleneck, so generation moved to a dedicated background queue that also releases memory after each job.",
+          "Traced recurring 504 outages to outbound HTTP calls without timeouts hanging the application workers, and shipped timeouts plus database indexes.",
+          "Found a float × Decimal bug that had been silently dropping batch uploads in two countries since 2024, and fixed a portal-wide 403 for read-only users across 32 templates with a test that walks every link."
+        ],
+        "technologies": [
+          "Python",
+          "Django",
+          "PostgreSQL",
+          "GCP",
+          "Cloud Storage"
+        ],
+        "impact": [
+          {
+            "value": "66/67",
+            "label": "Blocked deals recovered"
+          },
+          {
+            "value": "3",
+            "label": "Countries running consent evidence"
+          }
+        ]
+      },
+      {
+        "title": "E-commerce Catalog & Marketplace Integrations",
+        "client": "European electronics retailer",
+        "period": "2026",
+        "summary": "Legacy Java EE system managing catalog, pricing, orders and marketplace connections for a high-volume retailer.",
+        "highlights": [
+          "Root-caused a payment-integrity defect: a background job confirmed marketplace payments as successful for every order, including orders that did not exist, and contained it.",
+          "Restored store access to online orders for 176 users by tracing a missing permission group in the new per-store logins — fixed in data, with no code change.",
+          "Recovered 616 of 616 seller invoices for the finance team after a seller suspension by scripting the right marketplace API, with no new development.",
+          "Authored a production AWS infrastructure audit that identified roughly $12.5k per year in potential savings.",
+          "Wrote the production cutover runbook for the catalog integration with the VTEX commerce platform."
+        ],
+        "technologies": [
+          "Java EE",
+          "SQL Server",
+          "AWS",
+          "VTEX",
+          "Mirakl"
+        ],
+        "impact": [
+          {
+            "value": "~$12.5k",
+            "label": "Yearly savings identified"
+          },
+          {
+            "value": "616/616",
+            "label": "Invoices recovered"
+          }
+        ]
+      },
+      {
+        "title": "Recruiting Integration Middleware",
+        "client": "Integration service for a recruiting SaaS",
+        "period": "2026",
+        "summary": "Reactive service connecting the public careers site and the employee portal with a recruiting SaaS: vacancies, applications, referrals and webhooks.",
+        "highlights": [
+          "Built an AI job-posting pipeline: a poller and an outbox worker turn draft vacancies into the company's standard template with Gemini, later extended to postings published directly.",
+          "Automated a candidate re-engagement campaign with signed-token links, a durable outbox with dead-letter handling and email de-duplication, replacing manual spreadsheet cleanup.",
+          "Root-caused reopened and duplicated job postings to an external CRM automation after first ruling out the middleware.",
+          "Moved the service to a fully non-blocking WebFlux stack on Java 25 / Spring Boot 4, with client timeouts, connection pools and Prometheus monitoring.",
+          "A post-upgrade audit uncovered a CI pipeline silently skipping all 20 test classes and a blocking call on the reactive event loop — both fixed."
+        ],
+        "technologies": [
+          "Java",
+          "Spring Boot",
+          "WebFlux",
+          "Gemini",
+          "Prometheus"
+        ],
+        "impact": [
+          {
+            "value": "459",
+            "label": "Candidates in automated campaign"
+          },
+          {
+            "value": "20",
+            "label": "Test classes restored in CI"
+          }
+        ]
+      },
+      {
+        "title": "Internal Employee Portal",
+        "client": "Coderland — internal platform",
+        "period": "2026",
+        "summary": "Portal used for timesheets, invoicing, leave requests and referral commissions, integrated with the CRM, issue trackers and the recruiting middleware.",
+        "highlights": [
+          "Modernized the full stack with a strangler approach, one library per small PR: Spring Boot 3.5 / Java 17 on the backend and Vite, React 19 and TypeScript on the frontend.",
+          "Replaced a CRM SDK integration spread across 168 files with lean REST calls, and resolved duplicate CRM contacts deterministically, returning an explicit support error code instead of guessing.",
+          "Investigated referral commissions on production data: only 2 of 310 referrals were ever hired, showing an attribution and conversion problem rather than data loss, and fixed a double-charge root cause.",
+          "Root-caused around 40 recurring payroll and billing incidents, such as an API page limit truncating results and cancelled pre-invoices counted as pending.",
+          "Switched the build to pnpm, cutting CI build time from ~8 minutes to ~3 minutes."
+        ],
+        "technologies": [
+          "Java",
+          "Spring Boot",
+          "React",
+          "TypeScript",
+          "Vite"
+        ],
+        "impact": [
+          {
+            "value": "-60%",
+            "label": "CI build time"
+          },
+          {
+            "value": "~40",
+            "label": "Incidents root-caused"
+          }
+        ]
+      },
+      {
+        "title": "Corporate Website & Headless CMS",
+        "client": "Coderland — public multilingual website (ES/EN)",
+        "period": "2026",
+        "summary": "Multilingual corporate website and headless CMS whose contact forms feed leads into the CRM.",
+        "highlights": [
+          "Hardened lead forms with four anti-spam layers plus a final AI check with Gemini, after an audit found the reCAPTCHA token was never verified on the server.",
+          "Traced a long-running silent failure in lead capture through the logs and restored it, then fixed lead-source attribution so the CRM stores the real UTM source instead of a single default.",
+          "Migrated the blog off a paid SaaS into the CMS: 67 bilingual articles with permanent redirects and webhook-driven cache refresh.",
+          "Brought 45 orphan URLs to 100% crawlable coverage and fixed redirect status codes, validated in production.",
+          "Wrote a blameless postmortem for a cache-poisoning incident, identifying a three-layer amplification, and shipped the hotfix and architecture fix; also led the Strapi 4 → 5 production upgrade."
+        ],
+        "technologies": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Strapi",
+          "Gemini",
+          "AWS"
+        ],
+        "impact": [
+          {
+            "value": "67",
+            "label": "Articles migrated"
+          },
+          {
+            "value": "45",
+            "label": "Orphan URLs recovered"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "clinpays-fintech",
