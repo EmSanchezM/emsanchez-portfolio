@@ -5,7 +5,7 @@
     "company": "Coderland",
     "description": "Software consulting firm delivering digital transformation solutions for organizations across industries and geographies. As a Senior Developer, I contribute to enterprise-grade client projects spanning e-commerce platforms, financial systems, and corporate digital products. Currently developing REST API services for a legacy e-commerce platform serving a major European retailer — building pricing update and customer creation endpoints within a complex ecosystem involving multi-marketplace integrations, multiple payment gateways, and high-volume transaction processing. Architected backend services for a multi-country financial factoring system deployed on GCP, enabling invoice discounting operations across three Central American markets and expanding the client's regional reach. Also supporting the company's corporate website — resolving production bugs, integrating the recruitment microservice to power the careers section, and upgrading core dependencies including a Next.js version migration to improve stability and long-term maintainability.",
     "time": "2025 — Present",
-    "summary": "At Coderland I work across several client engagements at once, from legacy enterprise systems to cloud-native microservices. My focus is keeping production platforms modern, secure and fast: planning low-risk framework and runtime migrations with written runbooks and rollback plans, shipping integrations, and turning technical findings into clear reports for project managers and clients. Client names are kept confidential.",
+    "summary": "At Coderland I work across several client engagements at once, from legacy enterprise systems to cloud-native microservices. My focus is keeping production platforms modern, secure and fast: planning low-risk framework and runtime migrations with written runbooks and rollback plans, shipping integrations, and turning technical findings into clear reports for project managers and clients.",
     "engagements": [
       {
         "title": "Multi-Country Invoice Factoring Platform",
@@ -54,7 +54,6 @@
           "Java EE",
           "SQL Server",
           "AWS",
-          "VTEX",
           "Mirakl"
         ],
         "impact": [
